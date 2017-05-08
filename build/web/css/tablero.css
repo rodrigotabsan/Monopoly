@@ -1,0 +1,313 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14-abr-2017, 3:43:46
+    Author     : Rodrigo
+*/
+#puntuacionJugadores{
+    margin-top:2%;
+    width:100%;
+    height:5%;
+    display:inline-flex;
+    margin-left:2%;
+}
+.puntuaciones{
+    border-style: solid;
+    border-width: 2px;
+    width:7%;
+    margin-left:3%;
+    padding:0.2%;
+}
+
+#tapete{ 
+    width: 1540px;
+    height:1540px;
+    margin-top:3%;
+    margin-left:2%;
+}
+
+#har{
+      margin-top:-1400px;
+      float:left;
+      
+}
+.horizontalArriba{      
+    border-style: solid;
+    border-width: 2px;
+    height:136px;
+    width:136px;
+    float:left;
+    background-color:white;
+}
+
+#hab{
+    margin-top:-5px;
+    float:left;
+    
+}
+.horizontalAbajo{    
+    border-style: solid;
+    border-width: 2px;
+    height:136px;
+    width:136px;
+    float:left;
+    background-color:white;
+}
+
+#vi{
+    float:left;
+    margin-top:140px;
+    
+}
+.verticalIzquierda{    
+    border-style: solid;
+    border-width: 2px;
+    height:136px;
+    width:136px;
+    background-color:white;
+}
+
+#vd{
+    margin-top:-1400px;
+    float:left;
+    
+}
+.verticalDerecha{
+    margin-left:1400px;
+    border-style: solid;
+    border-width: 2px;
+    height:136px;
+    width:136px;
+    background-color:white;
+}
+
+#imagenCentro{
+    margin-top:-1265px;
+    margin-left:140px;
+    float:left;
+}
+
+#imagenCentro img{
+    width:1260px;
+    margin-top:5px;
+}
+
+#controles{
+    margin-left:83.2%;
+    margin-top:-80.95%;
+    border-style: solid;
+    border-width: 2px;
+    width:15.8%;
+    background-color:#CDE6D0;
+    display:scroll;
+    position:fixed;
+    
+}
+#jugador{    
+    margin-top:0%;    
+    padding:3%;
+        
+}
+
+#btnLanzarDados{
+    padding: 3%;
+    width:60%;
+    background-color:#AC1528;
+    color:white;
+    font-family: Arial; font-size: 12pt;
+    margin-bottom: 7%;
+    margin-left: 20%;
+    font-weight: bold;
+}
+
+#btnLanzarDados:hover{
+    color:#AC1528;
+    background-color:white;
+    cursor:pointer;
+}
+
+#btnNegociar{
+    padding: 3%;
+    width:60%;
+    background-color:#AC1528;
+    color:white;
+    font-family: Arial; font-size: 12pt;
+    margin-bottom: 7%;
+    margin-left: 20%;
+    font-weight: bold;
+}
+
+#btnNegociar:hover{
+    color:#AC1528;
+    background-color:white;
+    cursor:pointer;
+}
+
+#btnTerminar{
+    padding: 3%;
+    width:60%;
+    background-color:#AC1528;
+    color:white;
+    font-family: Arial; font-size: 12pt;
+    margin-bottom: 7%;
+    margin-left: 20%;
+    font-weight: bold;
+}
+
+#btnTerminar:hover{
+    color:#AC1528;
+    background-color:white;
+    cursor:pointer;
+}
+
+#btnGuardarPartida{
+    padding: 3%;
+    width:60%;
+    background-color:#AC1528;
+    color:white;
+    font-family: Arial; font-size: 12pt;
+    margin-bottom: 7%;
+    margin-left: 20%;
+    font-weight: bold;
+}
+
+#btnGuardarPartida:hover{
+    color:#AC1528;
+    background-color:white;
+    cursor:pointer;
+}
+
+#cajaMensaje{
+    visibility:hidden;
+    display:block;
+    background:#CDE6D0;
+    width:24%;
+    height:15%;
+    float:left;
+    margin-top:-83%;
+    margin-left:35%;    
+    z-index:1002;
+    padding:2%;
+    border-style:solid;    
+    border-width:2px;
+}
+
+#cajaTerminarTurno{
+    visibility:hidden;
+    display:block;
+    background:#CDE6D0;
+    width:24%;
+    height:15%;
+    float:left;
+    margin-top:-83%;
+    margin-left:35%;    
+    z-index:1002;
+    padding:1%;
+    border-style:solid;    
+    border-width:2px;
+}
+
+#cajaLanzarDados{
+    visibility:hidden;
+    display:block;
+    background:#CDE6D0;
+    width:24%;
+    height:15%;
+    float:left;
+    margin-top:-83%;
+    margin-left:35%;    
+    z-index:1002;
+    padding:2%;
+    border-style:solid;    
+    border-width:2px;
+}
+
+#todoMonopoly{
+    background-color:#9ED68D;
+    z-index:1001;
+    opacity:initial;
+}
+
+#labelLanzarDados{
+    float:left;
+    margin-top:-2%;
+    margin-left:26%;
+} 
+
+#dados1{
+   width:12%;
+   height:40%;
+   float:left;
+   margin-left:35%;
+   margin-top:4%;
+}
+
+#dados2{
+   width:12%;
+   height:40%; 
+   margin-left:5%;
+   float:left;
+   margin-top:4%;
+   margin-right:15%;
+}
+
+#inputLanzarDados{
+    margin-top:23%;
+    margin-left:-74%;
+}
+
+#inputCancelarLanzarDados{
+    float:left;
+    margin-top:-4.4%;
+    margin-left:77%;
+}
+
+#labelTerminarTurno{
+    margin-top:35%;   
+    margin-left:-9%;
+}   
+
+#inputAceptarTerminarTurno{
+    float:left;
+    margin-top:21%;
+    margin-left:15%;
+}
+
+#inputCancelarTerminarTurno{
+    float:left;
+    margin-top:17.2%;
+    margin-left:42%;
+}
+
+#labelMensaje{
+    margin-top:15%;   
+    margin-left:9%;
+}   
+
+#inputNombreMensaje{
+    float:left;
+    margin-top:8%;
+    margin-left:32%;
+}
+
+#inputAceptarMensaje{
+    float:left;
+    margin-top:21%;
+    margin-left:-55%;
+}
+
+#inputCancelarMensaje{
+    float:left;
+    margin-top:21%;
+    margin-left:2%;
+}
+
+#piePagina2{
+    height:20%;
+    margin-top:3%;
+    margin-left:44%;
+}
+

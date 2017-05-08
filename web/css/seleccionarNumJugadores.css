@@ -1,0 +1,72 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19-abr-2017, 16:23:38
+    Author     : Rodrigo
+*/
+h2{
+    margin-left:35%;
+}
+
+#seleccionJugadores{
+    background-color:#CDE6D0;
+    border-style: solid;
+    border-width: 2px;
+    width:20%;
+    margin-left:40%;
+    margin-top:3%;
+}
+#botonesJugadores{
+    margin-left:39%;
+    margin-top:5%;
+    margin-bottom: 9%;
+}
+#botonesJugadores input{
+    margin-top:5%;
+    padding: 3%;
+    background-color:#AC1528;
+    color:white;
+    font-weight: bold;
+}
+#botonesJugadores input:hover {
+    color:#AC1528;
+    background-color:white;
+    cursor:pointer;
+}
+
+#rellenarDatosJugadores{
+    background-color:#CDE6D0;
+    border-style: solid;
+    border-width: 2px;
+    width:40%;
+    margin-left:30%;
+    margin-top:-20%;
+}
+#formularioJugadores{
+    padding:2%;
+}
+
+#aceptar{
+    margin-left:45%;
+}
+#aceptar input{
+    padding: 3%;
+    background-color:#AC1528;
+    color:white;
+    font-weight: bold;
+}
+#aceptar input:hover{
+    color:#AC1528;
+    background-color:white;
+    cursor:pointer;
+}
+.backgrounddiv {
+    margin-top:-1%;
+}
+.backgrounddiv #check_box{
+    margin-right:3%;
+}
+

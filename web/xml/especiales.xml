@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<especiales>
+    <especial>
+        <id>1</id>
+        <nombre>CAJA DE COMUNIDAD</nombre>
+        <tipo>CARTA DE COMUNIDAD</tipo>
+        <bonus>0</bonus>
+        <idcasilla>2</idcasilla>
+    </especial>
+    <especial>
+        <id>2</id>
+        <nombre>IMPUESTO SOBRE EL CAPITAL</nombre>
+        <tipo>IMPUESTO</tipo>
+        <bonus>-200</bonus>
+        <idcasilla>4</idcasilla>
+    </especial>
+    <especial>
+        <id>3</id>
+        <nombre>SUERTE</nombre>
+        <tipo>CARTA SUERTE</tipo>
+        <bonus>0</bonus>
+        <idcasilla>7</idcasilla>
+    </especial>
+    <especial>
+        <id>4</id>
+        <nombre>CÁRCEL/SOLO VISITAS</nombre>
+        <tipo>VISITAS</tipo>
+        <bonus>0</bonus>
+        <idcasilla>10</idcasilla>
+    </especial>
+    <especial>
+        <id>5</id>
+        <nombre>CAJA DE COMUNIDAD</nombre>
+        <tipo>CARTA DE COMUNIDAD</tipo>
+        <bonus>0</bonus>
+        <idcasilla>17</idcasilla>
+    </especial>
+    <especial>
+        <id>6</id>
+        <nombre>PARKING GRATUITO</nombre>
+        <tipo>OTROS</tipo>
+        <bonus>0</bonus>
+        <idcasilla>20</idcasilla>
+    </especial>
+    <especial>
+        <id>7</id>
+        <nombre>SUERTE</nombre>
+        <tipo>CARTA SUERTE</tipo>
+        <bonus>0</bonus>
+        <idcasilla>22</idcasilla>
+    </especial>
+    <especial>
+        <id>8</id>
+        <nombre>VE A LA CÁRCEL</nombre>
+        <tipo>CÁRCEL</tipo>
+        <bonus>0</bonus>
+        <idcasilla>30</idcasilla>
+    </especial>
+    <especial>
+        <id>9</id>
+        <nombre>CAJA DE COMUNIDAD</nombre>
+        <tipo>CARTA DE COMUNIDAD</tipo>
+        <bonus>0</bonus>
+        <idcasilla>33</idcasilla>
+    </especial>
+    <especial>
+        <id>10</id>
+        <nombre>SUERTE</nombre>
+        <tipo>CARTA SUERTE</tipo>
+        <bonus>0</bonus>
+        <idcasilla>36</idcasilla>
+    </especial>
+    <especial>
+        <id>11</id>
+        <nombre>IMPUESTO DE LUJO</nombre>
+        <tipo>IMPUESTO</tipo>
+        <bonus>-100</bonus>
+        <idcasilla>38</idcasilla>
+    </especial>
+    <especial>
+        <id>12</id>
+        <nombre>SALIDA</nombre>
+        <tipo>OTROS</tipo>
+        <bonus>200</bonus>
+        <idcasilla>0</idcasilla>
+    </especial>
+</especiales>
