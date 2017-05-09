@@ -197,7 +197,11 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 jugador.setIdCasilla(0);
                 jugador.setIdPartida(partidaNueva.getId());
                 jugador.setTurno(1);
-                jugador.setEstadoTurno(0);
+                if(i==1){
+                    jugador.setEstadoTurno(1);
+                }else{
+                    jugador.setEstadoTurno(0);
+                }
                 jugadores.add(jugador);
             }
             IJugadorDAL jugadoresDAL = new JugadorDAL();
