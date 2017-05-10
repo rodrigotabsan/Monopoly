@@ -14,10 +14,19 @@ public class Casilla {
     String nombre;
     String tipo;
     
+    /**
+     *
+     */
     public Casilla(){
         
     }
     
+    /**
+     *
+     * @param id
+     * @param nombre
+     * @param tipo
+     */
     public Casilla(int id, String nombre, String tipo) {
         this.id = id;
         this.nombre = nombre;

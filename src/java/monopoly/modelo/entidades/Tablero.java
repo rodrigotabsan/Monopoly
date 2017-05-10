@@ -15,6 +15,13 @@ public class Tablero {
     int idTSorpresaSuerte;
     int turno;
     
+    /**
+     *
+     * @param id
+     * @param idCasilla
+     * @param idTSorpresaSuerte
+     * @param turno
+     */
     public Tablero(int id, int idCasilla, int idTSorpresaSuerte, int turno) {
         this.id = id;
         this.idCasilla = idCasilla;
@@ -22,37 +29,72 @@ public class Tablero {
         this.turno= turno;
     }
 
+    /**
+     *
+     */
     public Tablero() {
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getIdCasilla() {
         return idCasilla;
     }
 
+    /**
+     *
+     * @param idCasilla
+     */
     public void setIdCasilla(int idCasilla) {
         this.idCasilla = idCasilla;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getIdTSorpresaSuerte() {
         return idTSorpresaSuerte;
     }
 
+    /**
+     *
+     * @param idTSorpresaSuerte
+     */
     public void setIdTSorpresaSuerte(int idTSorpresaSuerte) {
         this.idTSorpresaSuerte = idTSorpresaSuerte;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTurno() {
         return turno;
     }
 
+    /**
+     *
+     * @param turno
+     */
     public void setTurno(int turno) {
         this.turno = turno;
     }

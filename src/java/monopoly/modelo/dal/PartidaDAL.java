@@ -26,6 +26,9 @@ import org.xml.sax.SAXException;
  */
 public class PartidaDAL implements IPartidaDAL{
 
+    /**
+     *
+     */
     public PartidaDAL() {
     }
     

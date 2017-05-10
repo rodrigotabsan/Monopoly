@@ -16,10 +16,21 @@ public class Especial {
     int bonus;
     int idCasilla;
     
-     public Especial(){
+    /**
+     *
+     */
+    public Especial(){
          
      }
     
+    /**
+     *
+     * @param id
+     * @param nombre
+     * @param tipo
+     * @param bonus
+     * @param idCasilla
+     */
     public Especial(int id, String nombre, String tipo, int bonus, int idCasilla) {
         this.id = id;
         this.nombre = nombre;

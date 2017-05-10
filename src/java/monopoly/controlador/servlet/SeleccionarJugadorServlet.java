@@ -43,6 +43,14 @@ import monopoly.util.UtilesXML;
  * @author Rodrigo
  */
 public class SeleccionarJugadorServlet extends HttpServlet {
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
           throws ServletException, IOException {
         

@@ -25,6 +25,9 @@ import org.xml.sax.SAXException;
  */
 public class CasillaDAL implements ICasillaDAL{
     
+    /**
+     *
+     */
     public CasillaDAL(){
         
     }

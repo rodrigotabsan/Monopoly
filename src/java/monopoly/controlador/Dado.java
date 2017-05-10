@@ -14,30 +14,59 @@ public class Dado {
     int numero;
     String imagen;
     
+    /**
+     *
+     */
     public Dado() {
     }
 
+    /**
+     *
+     * @param numero
+     * @param imagen
+     */
     public Dado(int numero, String imagen) {
         this.numero = numero;
         this.imagen=imagen;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNumero() {
         return numero;
     }
 
+    /**
+     *
+     * @param numero
+     */
     public void setNumero(int numero) {
         this.numero = numero;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getImagen() {
         return imagen;
     }
 
+    /**
+     *
+     * @param imagen
+     */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
     
+    /**
+     *
+     * @param result
+     * @return
+     */
     public Dado resultadoDado(int result){
         String tipoFichero=".gif";
         Dado dado = new Dado();

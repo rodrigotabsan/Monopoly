@@ -25,6 +25,9 @@ import org.xml.sax.SAXException;
  */
 public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
 
+    /**
+     *
+     */
     public TSorpresaSuerteDAL() {
     }
     

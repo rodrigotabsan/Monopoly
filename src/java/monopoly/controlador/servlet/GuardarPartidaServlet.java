@@ -27,6 +27,13 @@ import monopoly.util.UtilesServlets;
  */
 public class GuardarPartidaServlet extends HttpServlet{
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
           throws ServletException, IOException{ 
          response.setContentType("text/html;charset=UTF-8");
@@ -40,6 +47,13 @@ public class GuardarPartidaServlet extends HttpServlet{
          
      }
     
+    /**
+     * Guarda la partida
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     private void guardarPartida(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         UtilesServlets utilServlet = new UtilesServlets();

@@ -27,6 +27,9 @@ import org.xml.sax.SAXException;
  */
 public class TableroDAL implements ITableroDAL{
 
+    /**
+     *
+     */
     public TableroDAL() {
     }
     

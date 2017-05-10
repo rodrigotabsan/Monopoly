@@ -15,26 +15,50 @@ public class Carcel {
     int turnos;
     Jugador jugador;
 
+    /**
+     *
+     */
     public Carcel() {
     }
 
+    /**
+     *
+     * @param turnos
+     * @param jugador
+     */
     public Carcel(int turnos, Jugador jugador) {
         this.turnos = turnos;
         this.jugador=jugador;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTurnos() {
         return turnos;
     }
 
+    /**
+     *
+     * @param turnos
+     */
     public void setTurnos(int turnos) {
         this.turnos = turnos;
     }
 
+    /**
+     *
+     * @return
+     */
     public Jugador getJugador() {
         return jugador;
     }
 
+    /**
+     *
+     * @param jugador
+     */
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }

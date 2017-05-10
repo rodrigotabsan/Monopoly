@@ -27,6 +27,9 @@ import org.xml.sax.SAXException;
  */
 public class JugadorDAL implements IJugadorDAL{
 
+    /**
+     *
+     */
     public JugadorDAL() {
     }
     

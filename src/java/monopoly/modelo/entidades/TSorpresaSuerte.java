@@ -15,9 +15,19 @@ public class TSorpresaSuerte {
     String descripcion;
     int bonus;
 
+    /**
+     *
+     */
     public TSorpresaSuerte() {
     }
    
+    /**
+     *
+     * @param id
+     * @param tipo
+     * @param descripcion
+     * @param bonus
+     */
     public TSorpresaSuerte(int id, String tipo, String descripcion, int bonus) {
         this.id = id;
         this.tipo = tipo;
@@ -25,34 +35,66 @@ public class TSorpresaSuerte {
         this.bonus = bonus;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTipo() {
         return tipo;
     }
 
+    /**
+     *
+     * @param tipo
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getBonus() {
         return bonus;
     }
 
+    /**
+     *
+     * @param bonus
+     */
     public void setBonus(int bonus) {
         this.bonus = bonus;
     }    

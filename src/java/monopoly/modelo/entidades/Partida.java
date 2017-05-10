@@ -14,35 +14,70 @@ public class Partida {
     String nombre;
     int idTablero;
     
-     public Partida(){
+    /**
+     *
+     */
+    public Partida(){
          
      }
+
+    /**
+     *
+     * @param id
+     * @param nombre
+     * @param idUsuario
+     * @param idTablero
+     */
     public Partida(int id, String nombre, int idUsuario, int idTablero) {
         this.id = id;
         this.nombre = nombre;
         this.idTablero = idTablero;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getIdTablero() {
         return idTablero;
     }
 
+    /**
+     *
+     * @param idTablero
+     */
     public void setIdTablero(int idTablero) {
         this.idTablero = idTablero;
     }

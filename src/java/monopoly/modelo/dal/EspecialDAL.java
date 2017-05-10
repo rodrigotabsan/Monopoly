@@ -26,6 +26,9 @@ import org.xml.sax.SAXException;
  */
 public class EspecialDAL implements IEspecialDAL{
 
+    /**
+     *
+     */
     public EspecialDAL() {
     }
     

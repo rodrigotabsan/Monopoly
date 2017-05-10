@@ -35,9 +35,16 @@ public class UtilesXML {
     private DocumentBuilder docBuilder;
     private Document doc; 
 
+    /**
+     *
+     */
     public UtilesXML() {
     }
        
+    /**
+     *
+     * @param file
+     */
     public UtilesXML(File file) {
         try {
             docFactory = DocumentBuilderFactory.newInstance();

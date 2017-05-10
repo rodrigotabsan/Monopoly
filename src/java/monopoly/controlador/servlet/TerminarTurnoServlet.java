@@ -17,6 +17,14 @@ import monopoly.util.UtilesServlets;
  * @author Rodrigo
  */
 public class TerminarTurnoServlet  extends HttpServlet{
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
           throws ServletException, IOException{ 
          response.setContentType("text/html;charset=UTF-8");

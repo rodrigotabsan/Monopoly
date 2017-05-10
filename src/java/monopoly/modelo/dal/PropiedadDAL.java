@@ -24,6 +24,9 @@ import org.xml.sax.SAXException;
  */
 public class PropiedadDAL implements IPropiedadDAL{
 
+    /**
+     *
+     */
     public PropiedadDAL() {
     }
     
