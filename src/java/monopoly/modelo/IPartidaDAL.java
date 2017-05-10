@@ -5,7 +5,7 @@
  */
 package monopoly.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 import monopoly.modelo.entidades.Partida;
 
 /**
@@ -21,7 +21,7 @@ public interface IPartidaDAL {
      * @see PartidaDAL
      * @return 
      */
-    public ArrayList<Partida> obtenerTodasPartidas();
+    public List<Partida> obtenerTodasPartidas();
     
     /**
      * Elimina una partida. Hay que pasarle un objeto Partida

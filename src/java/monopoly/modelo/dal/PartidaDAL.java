@@ -8,6 +8,7 @@ package monopoly.modelo.dal;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import monopoly.modelo.entidades.Partida;
@@ -48,7 +49,7 @@ public class PartidaDAL implements IPartidaDAL{
     @Override
     public void eliminarPartida(Partida partida){        
         UtilesXML util = new UtilesXML(new File("xml/partidas.xml"));
-        ArrayList<Partida> listaPartidas= new ArrayList<>(); 
+        List<Partida> listaPartidas= new ArrayList<Partida>(); 
         
         try{ 
          Document doc =util.accesoAlDocument();
@@ -106,8 +107,8 @@ public class PartidaDAL implements IPartidaDAL{
      * @see Partida
      */
     @Override
-    public ArrayList<Partida> obtenerTodasPartidas(){
-        ArrayList<Partida> listaPartidas= new ArrayList<>();
+    public List<Partida> obtenerTodasPartidas(){
+        List<Partida> listaPartidas= new ArrayList<Partida>();
         UtilesXML util = new UtilesXML(new File("xml/partidas.xml"));
         try{         
          NodeList nodosPartidas = util.accesoAXML("partida");

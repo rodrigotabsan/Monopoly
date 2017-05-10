@@ -5,7 +5,7 @@
  */
 package monopoly.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 import monopoly.modelo.entidades.Especial;
 
 /**
@@ -21,5 +21,5 @@ public interface IEspecialDAL {
      * @see EspecialDAL
      * @return 
      */
-     public ArrayList<Especial> obtenerTodasEspeciales();
+     public List<Especial> obtenerTodasEspeciales();
 }

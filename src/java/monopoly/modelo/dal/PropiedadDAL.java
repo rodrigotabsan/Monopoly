@@ -8,6 +8,7 @@ package monopoly.modelo.dal;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import monopoly.modelo.entidades.Propiedad;
 import monopoly.modelo.IPropiedadDAL;
@@ -44,8 +45,8 @@ public class PropiedadDAL implements IPropiedadDAL{
      * @see Propiedad
      */
     @Override
-    public ArrayList<Propiedad> obtenerTodasPropiedades(){
-        ArrayList<Propiedad> listaPropiedades= new ArrayList<>();
+    public List<Propiedad> obtenerTodasPropiedades(){
+        List<Propiedad> listaPropiedades= new ArrayList<Propiedad>();
         UtilesXML ut= new UtilesXML();
         
         UtilesXML util = new UtilesXML(new File("xml/propiedades.xml"));

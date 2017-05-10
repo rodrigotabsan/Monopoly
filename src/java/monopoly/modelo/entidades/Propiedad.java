@@ -32,7 +32,9 @@ public class Propiedad {
         
     }
 
-    public Propiedad(int id, String nombre, String tipo, int precio, int idUsuario, String descripcion, String color, int idCasilla, int hipoteca, int alquiler, int casa, int alquilerPrimeraCasa, int alquilerSegundaCasa, int alquilerTerceraCasa, int alquilerCuartaCasa, int hotel, int alquilerHotel) {
+    public Propiedad(int id, String nombre, String tipo, int precio, int idUsuario, String descripcion, String color, int idCasilla, 
+            int hipoteca, int alquiler, int casa, int alquilerPrimeraCasa, int alquilerSegundaCasa, int alquilerTerceraCasa, 
+            int alquilerCuartaCasa, int hotel, int alquilerHotel) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;

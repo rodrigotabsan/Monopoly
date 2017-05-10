@@ -8,6 +8,7 @@ package monopoly.modelo.dal;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import monopoly.modelo.entidades.TSorpresaSuerte;
 import monopoly.modelo.ITSorpresaSuerteDAL;
@@ -45,8 +46,8 @@ public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
      * @see TSorpresaSuerte
      */
     @Override
-    public ArrayList<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte(){
-        ArrayList<TSorpresaSuerte> listaTsSorpresaSuerte= new ArrayList<>();
+    public List<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte(){
+        List<TSorpresaSuerte> listaTsSorpresaSuerte= new ArrayList<TSorpresaSuerte>();
         UtilesXML util = new UtilesXML(new File("xml/tsorpresasuerte.xml"));
         try{         
          NodeList nodosTsSorpresaSuerte = util.accesoAXML("tarjeta");

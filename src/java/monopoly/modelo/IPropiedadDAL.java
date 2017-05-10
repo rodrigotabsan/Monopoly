@@ -5,7 +5,7 @@
  */
 package monopoly.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 import monopoly.modelo.entidades.Propiedad;
 
 /**
@@ -21,5 +21,5 @@ public interface IPropiedadDAL {
      * @see PropiedadDAL
      * @return 
      */
-    public ArrayList<Propiedad> obtenerTodasPropiedades();
+    public List<Propiedad> obtenerTodasPropiedades();
 }

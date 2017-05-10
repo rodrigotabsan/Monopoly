@@ -8,6 +8,7 @@ package monopoly.modelo.dal;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -49,7 +50,7 @@ public class TableroDAL implements ITableroDAL{
     @Override
     public void eliminarTablero(Tablero tablero){        
         UtilesXML util = new UtilesXML(new File("xml/tableros.xml"));
-        ArrayList<Tablero> listaTableros= new ArrayList<>(); 
+        List<Tablero> listaTableros= new ArrayList<>(); 
         
         try{ 
          Document doc =util.accesoAlDocument();
@@ -75,7 +76,7 @@ public class TableroDAL implements ITableroDAL{
     public void crearTablero(Tablero tablero) {
         UtilesXML util = new UtilesXML(new File("xml/tableros.xml"));
         int id=1;   
-        ArrayList<Tablero> listadoTableros=obtenerTodosTableros();
+        List<Tablero> listadoTableros=obtenerTodosTableros();
         try{  
          Document doc =util.accesoAlDocument();
                 
@@ -106,11 +107,9 @@ public class TableroDAL implements ITableroDAL{
          
          util.modificarOEliminarElementoXML(new File ("xml/tableros.xml"),doc);         
                          
-        }catch(ParserConfigurationException | SAXException | IOException | TransformerConfigurationException parseE){
+        }catch(ParserConfigurationException | SAXException | IOException | TransformerException parseE){
             System.out.println("Error: monopoly.dal.TableroDAL.obtenerTodasTableros() "+parseE.getMessage());
-        }catch (TransformerException parseE){
-            System.out.println("Error: monopoly.dal.TableroDAL.obtenerTodasTableros() "+parseE.getMessage());
-        }                
+        }              
     }
     
     /**
@@ -119,8 +118,8 @@ public class TableroDAL implements ITableroDAL{
      * @see Tablero
      */
     @Override
-    public ArrayList<Tablero> obtenerTodosTableros(){
-        ArrayList<Tablero> listaTableros= new ArrayList<Tablero>();
+    public List<Tablero> obtenerTodosTableros(){
+        List<Tablero> listaTableros= new ArrayList<Tablero>();
         UtilesXML util = new UtilesXML(new File("xml/tableros.xml"));
         try{         
          NodeList nodosTableros = util.accesoAXML("tablero");

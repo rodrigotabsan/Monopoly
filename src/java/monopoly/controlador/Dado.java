@@ -65,6 +65,10 @@ public class Dado {
                 case 6:
                     dado.setImagen("Dice6"+tipoFichero);
                     dado.setNumero(result); 
+                    break;                
+                default:
+                    dado.setImagen("Dice1"+tipoFichero);
+                    dado.setNumero(1);
                     break;
             }
         return dado;

@@ -49,16 +49,12 @@ public class SeleccionarJugadorServlet extends HttpServlet {
          response.setContentType("text/html;charset=UTF-8");
         // Recoger el parametro ficha y su numero correspondiente
         String jugadoresHumanos=request.getParameter("jugadoresHumanos");
-        if(jugadoresHumanos!=null){
-            if(jugadoresHumanos.equals("jugadoresHumanos")){
-                enviarJugadoresHumanos(request,response);
-            }
+        if(jugadoresHumanos!=null && "jugadoresHumanos".equals(jugadoresHumanos)){            
+            enviarJugadoresHumanos(request,response);            
         }
         String jugadoresCPU=request.getParameter("CPUName");
-        if(jugadoresCPU!=null && !jugadoresCPU.equals("null")){
-            if(!jugadoresCPU.isEmpty()){
-                crearPartida(request, response);
-            }
+        if(jugadoresCPU!=null && !jugadoresCPU.isEmpty() && !"null".equals(jugadoresCPU)){        
+            crearPartida(request, response);
         } 
         
      }

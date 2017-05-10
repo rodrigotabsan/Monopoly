@@ -66,7 +66,8 @@ public class UtilesServlets {
      */
     public void mensajeErrorNumTotalJugadores(HttpServletRequest request,
             HttpServletResponse response, int numCPU) throws IOException{
-        numCPU=8-numCPU;
+        int numCpu=numCPU;
+        numCPU=8-numCpu;
         request.getSession().setAttribute("numJugadoresError","El número de jugadores es superior a 8."+" Has seleccionado "+numCPU+" jugadores de más.");
     }
     

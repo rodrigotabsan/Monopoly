@@ -5,7 +5,7 @@
  */
 package monopoly.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 import monopoly.modelo.entidades.TSorpresaSuerte;
 
 /**
@@ -21,5 +21,5 @@ public interface ITSorpresaSuerteDAL {
      * @see TSorpresaSuerteDAL
      * @return 
      */
-    public ArrayList<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte();
+    public List<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte();
 }

@@ -7,6 +7,7 @@ package monopoly.modelo.dal;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import monopoly.modelo.entidades.Casilla;
 import monopoly.modelo.ICasillaDAL;
@@ -41,27 +42,13 @@ public class CasillaDAL implements ICasillaDAL{
     }  
     
     /**
-     * Crea un elemento
-     * @param datoEmple
-     * @param valor
-     * @param raiz
-     * @param document 
-     */
-    private static void crearElemento(String datoEmple, String valor, Element raiz, Document document) {
-        Element elemento = document.createElement(datoEmple);
-        Text texto = document.createTextNode(valor);
-        raiz.appendChild(elemento);
-        elemento.appendChild(texto);
-    }
-    
-    /**
      * Obtiene un listado de todas las casillas
      * @return 
      * @see Casilla
      */
     @Override
-    public ArrayList<Casilla> obtenerTodasCasillas(){
-        ArrayList<Casilla> listaCasillas= new ArrayList<>();
+    public List<Casilla> obtenerTodasCasillas(){
+        List<Casilla> listaCasillas= new ArrayList<Casilla>();
         UtilesXML util = new UtilesXML(new File("xml/casillas.xml"));
         try{         
          NodeList nodosCasillas = util.accesoAXML("casilla");

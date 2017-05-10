@@ -8,6 +8,7 @@ package monopoly.modelo.dal;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -75,7 +76,7 @@ public class JugadorDAL implements IJugadorDAL{
     public void crearUsuario(Jugador usuario) {
         UtilesXML util = new UtilesXML(new File("xml/usuarios.xml"));
         int id=1;   
-        ArrayList<Jugador> listadoTableros=obtenerTodosUsuarios();
+        List<Jugador> listadoTableros=obtenerTodosUsuarios();
         try{  
          Document doc =util.accesoAlDocument();
                 
@@ -121,11 +122,9 @@ public class JugadorDAL implements IJugadorDAL{
          
          util.modificarOEliminarElementoXML(new File ("xml/usuarios.xml"), doc);
                          
-        }catch(ParserConfigurationException | SAXException | IOException | TransformerConfigurationException parseE){
+        }catch(ParserConfigurationException | SAXException | IOException | TransformerException parseE){
             System.out.println("Error: monopoly.dal.TableroDAL.obtenerTodasTableros() "+parseE.getMessage());
-        }catch (TransformerException parseE){
-            System.out.println("Error: monopoly.dal.TableroDAL.obtenerTodasTableros() "+parseE.getMessage());
-        }                
+        }             
     }
     
     /**
@@ -134,8 +133,8 @@ public class JugadorDAL implements IJugadorDAL{
      * @see Jugador
      */   
     @Override
-    public ArrayList<Jugador> obtenerTodosUsuarios(){
-        ArrayList<Jugador> listaUsuarios= new ArrayList<>();
+    public List<Jugador> obtenerTodosUsuarios(){
+        List<Jugador> listaUsuarios= new ArrayList<Jugador>();
         UtilesXML util=new UtilesXML(new File("xml/usuarios.xml"));
         try{         
          NodeList nodosUsuarios = util.accesoAXML("usuario");

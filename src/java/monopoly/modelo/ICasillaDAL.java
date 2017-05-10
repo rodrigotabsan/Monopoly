@@ -5,10 +5,8 @@
  */
 package monopoly.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 import monopoly.modelo.entidades.Casilla;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
  * Interface para acceder a las funciones de CasillaDAL
@@ -23,5 +21,5 @@ public interface ICasillaDAL {
      * @see CasillaDAL
      * @return 
      */
-    public ArrayList<Casilla> obtenerTodasCasillas();
+    public List<Casilla> obtenerTodasCasillas();
 }

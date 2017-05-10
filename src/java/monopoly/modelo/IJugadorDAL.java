@@ -5,7 +5,7 @@
  */
 package monopoly.modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 import monopoly.modelo.entidades.Jugador;
 
 /**
@@ -37,5 +37,5 @@ public interface IJugadorDAL {
      * @see JugadorDAL
      * @return 
      */
-    public ArrayList <Jugador> obtenerTodosUsuarios();
+    public List <Jugador> obtenerTodosUsuarios();
 }

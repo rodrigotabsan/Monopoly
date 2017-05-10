@@ -11,10 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -171,6 +167,10 @@ public class UtilesXML {
                                 + "\r\n<idtablero>0</idtablero>"
                                 + "\r\n</partida>"
                                 + "\r\n</partidas>");
+                        break;
+                        
+                    default:                        
+                        System.out.println("Parece un caso de XML no contemplado: "+nombreXML);
                         break;
                 }
                 bw.close();
