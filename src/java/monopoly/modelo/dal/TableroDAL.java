@@ -98,12 +98,12 @@ public class TableroDAL implements ITableroDAL{
 
              Element nuevoTurno = doc.createElement("turno");
              nuevoTurno.setTextContent(String.valueOf(tablero.getTurno()));
-
+             
              nuevoTablero.appendChild(nuevoId);
              nuevoTablero.appendChild(nuevoIdCasilla);
              nuevoTablero.appendChild(nuevoIdSorpresaSuerte);
              nuevoTablero.appendChild(nuevoTurno);
-
+             System.out.println("pasa por aqui4");
              nodoRaiz.appendChild(nuevoTablero);     
 
              util.modificarOEliminarElementoXML(new File ("xml/tableros.xml"),doc);         

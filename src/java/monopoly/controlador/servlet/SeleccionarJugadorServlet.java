@@ -91,6 +91,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
             
             if(utilXML.crearXML("tableros.xml")){
                 tableroNuevo.setId(1);     
+                System.out.println("pasa por aqui");
                 tableroNuevo.setTurno(1);
             }else{               
                 List<Tablero> listaTableros = tableros.obtenerTodosTableros();
@@ -98,9 +99,11 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                     int idUltimoTablero = 0;
                     if(listaTableros.size()>0){
                         tableroNuevo.setId(listaTableros.size());
+                        System.out.println("pasa por aqui1");
                         tableroNuevo.setTurno(1);
                     }else{
                         tableroNuevo.setId(1);
+                        System.out.println("pasa por aqui2");
                         tableroNuevo.setTurno(1);
                     }
                 }                

@@ -144,6 +144,8 @@ public class UtilesXML {
                                 + "\r\n<dinero>9999999</dinero>"
                                 + "\r\n<idcasilla>0</idcasilla>"
                                 + "\r\n<idpartida>0</idpartida>"
+                                + "\r\n<turno>1</turno>"
+                                + "\r\n<estadoturno>1</estadoturno>"
                                 + "\r\n</usuario>"
                                 + "\r\n</usuarios>");
                         break;
@@ -153,6 +155,7 @@ public class UtilesXML {
                                 + "\r\n<id>0</id>"
                                 + "\r\n<idcasilla>0</idcasilla>"
                                 + "\r\n<idtsorpresasuerte>0</idtsorpresasuerte>"
+                                + "\r\n<turno>1</turno>"
                                 + "\r\n</tablero>"
                                 + "\r\n</tableros>");
                         break;

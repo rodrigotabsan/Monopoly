@@ -101,7 +101,7 @@ public class JugadorDAL implements IJugadorDAL{
              Element nuevoNombre = doc.createElement("nombre");
              nuevoNombre.setTextContent(usuario.getNombre());
 
-             Element nuevaIdPartida = doc.createElement("idPartida");
+             Element nuevaIdPartida = doc.createElement("idpartida");
              nuevaIdPartida.setTextContent(String.valueOf(usuario.getIdPartida()));
 
              Element nuevoTurno = doc.createElement("turno");
@@ -143,12 +143,12 @@ public class JugadorDAL implements IJugadorDAL{
                  Jugador objUsuario = new Jugador();
                  objUsuario.setId(Integer.parseInt(obtenerNodoValor("id", unElemento)));
                  objUsuario.setNombre(obtenerNodoValor("nombre", unElemento));                 
-                 objUsuario.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla", unElemento)));
-                 objUsuario.setDinero(Integer.parseInt(obtenerNodoValor("dinero",unElemento)));
                  objUsuario.setFigura(obtenerNodoValor("figura", unElemento)); 
+                 objUsuario.setDinero(Integer.parseInt(obtenerNodoValor("dinero",unElemento)));
+                 objUsuario.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla", unElemento)));
                  objUsuario.setIdCasilla(Integer.parseInt(obtenerNodoValor("idpartida", unElemento)));
-                 objUsuario.setTurno(Integer.valueOf(obtenerNodoValor("turno", unElemento)));
-                 objUsuario.setTurno(Integer.valueOf(obtenerNodoValor("estadoturno", unElemento)));
+                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("turno", unElemento)));
+                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("estadoturno", unElemento)));
                  listaUsuarios.add(objUsuario);
              }
          }    
