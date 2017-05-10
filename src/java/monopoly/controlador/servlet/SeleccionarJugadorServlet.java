@@ -90,7 +90,8 @@ public class SeleccionarJugadorServlet extends HttpServlet {
             List <TSorpresaSuerte> listaTarjetaCCySuerte= tarjetaCCySuerte.obtenerTodasTsSorpresaSuerte();
             
             if(utilXML.crearXML("tableros.xml")){
-                tableroNuevo.setId(1);                
+                tableroNuevo.setId(1);     
+                tableroNuevo.setTurno(1);
             }else{               
                 List<Tablero> listaTableros = tableros.obtenerTodosTableros();
                 if(!listaTableros.isEmpty()){
