@@ -13,6 +13,7 @@ import monopoly.modelo.entidades.Casilla;
  * @see CasillaDAL
  * @author Rodrigo
  */
+@FunctionalInterface
 public interface ICasillaDAL {
     
     /**

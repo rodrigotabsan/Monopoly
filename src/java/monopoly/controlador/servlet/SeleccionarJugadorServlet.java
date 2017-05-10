@@ -78,9 +78,11 @@ public class SeleccionarJugadorServlet extends HttpServlet {
             IPropiedadDAL casillasPropiedades = new PropiedadDAL();
             ICasillaDAL casillas = new CasillaDAL();
             ITSorpresaSuerteDAL tarjetaCCySuerte= new TSorpresaSuerteDAL();
+            ITableroDAL tableros= new TableroDAL();
+            IPartidaDAL partidas= new PartidaDAL();
             Tablero tableroNuevo = new Tablero();
             Partida partidaNueva=new Partida();
-            
+                        
             List <Especial> listaCasillasEspeciales = casillasEspeciales.obtenerTodasEspeciales();
             List <Propiedad> listaCasillasPropiedades = casillasPropiedades.obtenerTodasPropiedades();
             List <Casilla> listaCasillas = casillas.obtenerTodasCasillas();
@@ -88,18 +90,17 @@ public class SeleccionarJugadorServlet extends HttpServlet {
             
             if(utilXML.crearXML("tableros.xml")){
                 tableroNuevo.setId(1);                
-            }else{
-                ITableroDAL tableros= new TableroDAL();
-                
+            }else{               
                 List<Tablero> listaTableros = tableros.obtenerTodosTableros();
-                int idUltimoTablero = 0;
-                if(listaTableros.size()>0){
-                    tableroNuevo.setId(listaTableros.size());
-                    tableroNuevo.setTurno(1);
-                }else{
-                    tableroNuevo.setId(1);
-                    tableroNuevo.setTurno(1);
-                    
+                if(!listaTableros.isEmpty()){
+                    int idUltimoTablero = 0;
+                    if(listaTableros.size()>0){
+                        tableroNuevo.setId(listaTableros.size());
+                        tableroNuevo.setTurno(1);
+                    }else{
+                        tableroNuevo.setId(1);
+                        tableroNuevo.setTurno(1);
+                    }
                 }                
             }
             
@@ -107,20 +108,20 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 partidaNueva.setId(0);                            
                 partidaNueva.setIdTablero(tableroNuevo.getId());
             }else{
-                IPartidaDAL partidas= new PartidaDAL();
                 
                 List<Partida> listaPartidas = partidas.obtenerTodasPartidas();
-                
-                if(listaPartidas.size()>0){
-                    partidaNueva.setId(listaPartidas.size());                    
-                    partidaNueva.setIdTablero(tableroNuevo.getId());
-                            
-                }else{
-                    Date fechaHoy=new Date();
-                    partidaNueva.setId(1);
-                    partidaNueva.setIdTablero(tableroNuevo.getId());
-                    partidaNueva.setNombre(fechaHoy.toString());
-                }                
+                if(!listaPartidas.isEmpty()){
+                    if(listaPartidas.size()>0){
+                        partidaNueva.setId(listaPartidas.size());                    
+                        partidaNueva.setIdTablero(tableroNuevo.getId());
+
+                    }else{
+                        Date fechaHoy=new Date();
+                        partidaNueva.setId(1);
+                        partidaNueva.setIdTablero(tableroNuevo.getId());
+                        partidaNueva.setNombre(fechaHoy.toString());
+                    }                
+                }
             }
             
             //Aquí envío las listas, el tablero y la partida a partida.jsp
@@ -155,8 +156,8 @@ public class SeleccionarJugadorServlet extends HttpServlet {
         String jugadoresHumanosTotales=String.valueOf(request.getSession().getAttribute("numeroTotalJugadoresHumanos"));
         String jugadoresCPUTotales=request.getParameter("CPUName").substring(0, 1);
         
-        int intJugadoresHumanosTotales=Integer.valueOf(jugadoresHumanosTotales);
-        int intJugadorCPUTotales=Integer.valueOf(jugadoresCPUTotales);
+        int intJugadoresHumanosTotales=Integer.parseInt(jugadoresHumanosTotales);
+        int intJugadorCPUTotales=Integer.parseInt(jugadoresCPUTotales);
         UtilesXML utilXML = new UtilesXML();
         int totales = intJugadoresHumanosTotales+intJugadorCPUTotales;
         //Si el numero total de jugadores es mayor que 8 devuelvo un mensaje. Si no, continua.
@@ -242,7 +243,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
         int dineroInicial=1500;
         int casillaInicial=0;
         String opcion = request.getParameter("op");        
-        int numJugadores=Integer.valueOf(opcion);
+        int numJugadores=Integer.parseInt(opcion);
         for(int i = 1; i <=numJugadores; i++){
             /*
             Si hay algun dato nulo le devolvemos a la pantalla de elección de jugadores.

@@ -40,7 +40,8 @@
                 <img src="./img/monopoly-logo.jpg">
             </header>
             <section id='puntuacionJugadores'> 
-                <%                               
+                <%                     
+					Jugador turnoDeJugador= new Jugador();
                     ArrayList<Jugador> jugadores = (ArrayList<Jugador>) request.getSession().getAttribute("listaJugadoresPartida");
                     for (int a = 0; a < jugadores.size(); a++) {
                         out.print("<div class='puntuaciones'><label id='jugador'>"
@@ -48,15 +49,17 @@
                                 + "</label> <label><strong>" + jugadores.get(a).getDinero() + " €" + "</strong>"
                                 + "</label>"
                                 + "</div><br>");
-                    }
-                                       
+								
+                    if(jugadores.get(a).getEstadoTurno()==1){
+			turnoDeJugador=jugadores.get(a);								}
+                    }            										
+					
                 %>
             </section>
             <section id="tapete">
                 <div id="tablero">
                     <div id="vi">
                         <%
-
                             List<Propiedad> propiedades = (ArrayList<Propiedad>) 
                                     request.getSession().getAttribute("listaPropiedades");
                             List<Especial> especiales = (ArrayList<Especial>) 
@@ -91,7 +94,6 @@
                                                 + "</div>");
                                     }
                                 }
-
                             }
                         %>
                     </div>
@@ -183,17 +185,20 @@
 
             </section>
             <%  
-                Random random = new Random();            
+                int result1=0;
+                int result2=0;
+		if(turnoDeJugador.getEstadoTurno()==1){
+                    Random random = new Random();            
                     int minimo = 1;
                     int maximo = 7;
-                    int result1 = random.nextInt(maximo-minimo) + minimo;
-                    int result2 = random.nextInt(maximo-minimo) + minimo; 
+                    result1 = random.nextInt(maximo-minimo) + minimo;
+                    result2 = random.nextInt(maximo-minimo) + minimo; 
                     System.out.println(result1+" / "+result2);
                     Dado dado1= new Dado();
                     dado1=dado1.resultadoDado(result1);
                     Dado dado2=new Dado();
                     dado2=dado2.resultadoDado(result2);
-
+					
                     out.println("<script>"
                             + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
                             + "btnLanzarDados.addEventListener('click', function(){"
@@ -202,7 +207,12 @@
                             + "});"
                             + "</script>");
                 
-                
+                }else{
+                    out.println("<script>"
+                            + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
+                            + "btnLanzarDados.onclick(alert('No es posible lanzar los dados.'));"
+                            + "</script>");
+		}
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
                 request.getSession().setAttribute("listaCasillas", casillas);
@@ -210,6 +220,21 @@
                 request.getSession().setAttribute("listaTarjetaCCySuerte", tarjetasCCySuerte);
                 request.getSession().setAttribute("tablero", tablero);
                 request.getSession().setAttribute("partida", partida);
+				
+				int resultadoDados=result1+result2;
+				int posicionJugador=turnoDeJugador.getIdCasilla();
+				for(int i=1; i<=resultadoDados; i++){
+					if(posicionJugador==40){
+						posicionJugador=0;
+					}
+					posicionJugador++;					
+				}		
+				request.getSession().setAttribute("posicionJugador",posicionJugador);
+				request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);
+				
+				if(request.getSession().getAttribute("turnoDeJugadorDados")!=null){
+					turnoDeJugador=(Jugador)request.getSession().getAttribute("turnoDeJugadorDados");
+				}
             %>
             <footer id="piePagina2">
                 <p>(c) 2017 Invest In Andorra Services</p>

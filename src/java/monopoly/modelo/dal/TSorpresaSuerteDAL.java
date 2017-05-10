@@ -52,7 +52,7 @@ public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
     public List<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte(){
         List<TSorpresaSuerte> listaTsSorpresaSuerte= new ArrayList<TSorpresaSuerte>();
         UtilesXML util = new UtilesXML(new File("xml/tsorpresasuerte.xml"));
-        try{         
+           
          NodeList nodosTsSorpresaSuerte = util.accesoAXML("tarjeta");
          
          for(int i = 0; i < nodosTsSorpresaSuerte.getLength(); i++){
@@ -67,10 +67,7 @@ public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
                  
                  listaTsSorpresaSuerte.add(objTSorpresaSuerte);
              }
-         }                 
-        }catch(ParserConfigurationException | SAXException | IOException parseE){
-            System.out.println("Error: monopoly.dal.TSorpresaSuerteDAL.obtenerTodasTsSorpresaSuerte() "+parseE.getMessage());
-        }   
+         }  
         return listaTsSorpresaSuerte;
     }
 }

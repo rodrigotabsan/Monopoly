@@ -5,19 +5,14 @@
  */
 package monopoly.modelo.dal;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
 import monopoly.modelo.entidades.Casilla;
 import monopoly.modelo.ICasillaDAL;
 import monopoly.util.UtilesXML;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;        
-import org.w3c.dom.Text;
-import org.xml.sax.SAXException;
+import org.w3c.dom.NodeList;      
 
 /**
  * Utilizado para acceder al fichero XML que contiene los datos de las casillas.
@@ -53,7 +48,7 @@ public class CasillaDAL implements ICasillaDAL{
     public List<Casilla> obtenerTodasCasillas(){
         List<Casilla> listaCasillas= new ArrayList<Casilla>();
         UtilesXML util = new UtilesXML(new File("xml/casillas.xml"));
-        try{         
+                 
          NodeList nodosCasillas = util.accesoAXML("casilla");
          
          for(int i = 0; i < nodosCasillas.getLength(); i++){
@@ -67,9 +62,7 @@ public class CasillaDAL implements ICasillaDAL{
                  listaCasillas.add(objCasilla);
              }
          }                 
-        }catch(ParserConfigurationException | SAXException | IOException parseE){
-            System.out.println("Error: monopoly.dal.CasillaDAL.obtenerTodasCasillas() "+parseE.getMessage());
-        }   
+           
         return listaCasillas;
     }
 }

@@ -61,14 +61,11 @@ public class UtilesXML {
      * @param tagName
      * @see Document
      * @return
-     * @throws SAXException
-     * @throws ParserConfigurationException
-     * @throws IOException 
      */
-    public NodeList accesoAXML(String tagName) throws SAXException, ParserConfigurationException, IOException{                 
-         doc.getDocumentElement().normalize();
-         NodeList nodosUsuarios = doc.getElementsByTagName(tagName);
-         return nodosUsuarios;
+    public NodeList accesoAXML(String tagName) {           
+        doc.getDocumentElement().normalize();
+        NodeList nodos = doc.getElementsByTagName(tagName);
+        return nodos;
     }
     
     /**
@@ -78,11 +75,8 @@ public class UtilesXML {
      * @param document
      * @see Document
      * @return
-     * @throws SAXException
-     * @throws ParserConfigurationException
-     * @throws IOException 
      */
-    public NodeList accesoAXML(String tagName, Document document) throws SAXException, ParserConfigurationException, IOException{                 
+    public NodeList accesoAXML(String tagName, Document document) {                 
          document.getDocumentElement().normalize();
          NodeList nodosUsuarios = document.getElementsByTagName(tagName);
          return nodosUsuarios;
@@ -91,11 +85,8 @@ public class UtilesXML {
      * Devuelve el nodo padre (el tag padre o etiqueta).
      * @param tagName
      * @return
-     * @throws SAXException
-     * @throws ParserConfigurationException
-     * @throws IOException 
      */
-    public Node accesoANodoXML(String tagName) throws SAXException, ParserConfigurationException, IOException{                 
+    public Node accesoANodoXML(String tagName) {                 
          doc.getDocumentElement().normalize();
          Node nodoUsuario = doc.getDocumentElement();
          return nodoUsuario;
@@ -105,11 +96,8 @@ public class UtilesXML {
      * Retorna el Document por defecto.
      * @see Document
      * @return Document
-     * @throws SAXException
-     * @throws ParserConfigurationException
-     * @throws IOException 
      */
-    public Document accesoAlDocument() throws SAXException, ParserConfigurationException, IOException{                  
+    public Document accesoAlDocument() {                  
          return doc;
     }
     
@@ -118,16 +106,18 @@ public class UtilesXML {
      * @see File
      * @see Document
      * @param file
-     * @param document
-     * @throws TransformerConfigurationException
-     * @throws TransformerException 
+     * @param document 
      */
-    public void modificarOEliminarElementoXML(File file, Document document) throws TransformerConfigurationException, TransformerException{
+    public void modificarOEliminarElementoXML(File file, Document document) {
+        try{
          TransformerFactory transFactory = TransformerFactory.newInstance();
          Transformer transformer = transFactory.newTransformer();
          DOMSource source = new DOMSource(document);
          StreamResult result =  new StreamResult(file);
          transformer.transform(source, result);
+        }catch(TransformerException te){
+            System.out.println("Error al modificar o eliminar un elemento XML");
+        }
     }
     
     /**
@@ -185,7 +175,7 @@ public class UtilesXML {
             }        
                 
         } catch (IOException ex) {
-            Logger.getLogger(UtilesXML.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Parece que ha habido un error al generar las etiquetas del XML. Error: "+ ex);
         }
         return false;
     }

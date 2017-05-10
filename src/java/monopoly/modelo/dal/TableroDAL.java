@@ -55,7 +55,6 @@ public class TableroDAL implements ITableroDAL{
         UtilesXML util = new UtilesXML(new File("xml/tableros.xml"));
         List<Tablero> listaTableros= new ArrayList<>(); 
         
-        try{ 
          Document doc =util.accesoAlDocument();
          NodeList nodosTableros = util.accesoAXML("tablero", doc);         
          for(int i = 0; i < nodosTableros.getLength(); i++){
@@ -65,9 +64,7 @@ public class TableroDAL implements ITableroDAL{
              }
          }
          util.modificarOEliminarElementoXML(new File ("xml/tableros.xml"), doc);
-        }catch(SAXException | IOException | ParserConfigurationException | TransformerException ex){
-            System.out.println("monopoly.dal.TableroDAL.eliminarTablero() "+ ex.getMessage());  
-        }         
+           
     } 
     
     /**
@@ -80,39 +77,38 @@ public class TableroDAL implements ITableroDAL{
         UtilesXML util = new UtilesXML(new File("xml/tableros.xml"));
         int id=1;   
         List<Tablero> listadoTableros=obtenerTodosTableros();
-        try{  
-         Document doc =util.accesoAlDocument();
-                
-         Node nodoRaiz = util.accesoANodoXML("tableros");         
-         Element nuevoTablero = doc.createElement("tablero");
-         Element nuevoId = doc.createElement("id");  
-         if(listadoTableros.size()>0){
-             id=listadoTableros.size()+1;
-         }
-         tablero.setId(id);
-         nuevoId.setTextContent(String.valueOf(tablero.getId()));
-         
-         Element nuevoIdCasilla = doc.createElement("idcasilla"); 
-         nuevoIdCasilla.setTextContent(String.valueOf(tablero.getIdCasilla()));
-         
-         Element nuevoIdSorpresaSuerte = doc.createElement("idsorpresasuerte");
-         nuevoIdSorpresaSuerte.setTextContent(String.valueOf(tablero.getIdTSorpresaSuerte()));
-         
-         Element nuevoTurno = doc.createElement("turno");
-         nuevoTurno.setTextContent(String.valueOf(tablero.getTurno()));
-         
-         nuevoTablero.appendChild(nuevoId);
-         nuevoTablero.appendChild(nuevoIdCasilla);
-         nuevoTablero.appendChild(nuevoIdSorpresaSuerte);
-         nuevoTablero.appendChild(nuevoTurno);
-         
-         nodoRaiz.appendChild(nuevoTablero);     
-         
-         util.modificarOEliminarElementoXML(new File ("xml/tableros.xml"),doc);         
-                         
-        }catch(ParserConfigurationException | SAXException | IOException | TransformerException parseE){
-            System.out.println("Error: monopoly.dal.TableroDAL.obtenerTodasTableros() "+parseE.getMessage());
-        }              
+        if(!listadoTableros.isEmpty()){
+  
+             Document doc =util.accesoAlDocument();
+
+             Node nodoRaiz = util.accesoANodoXML("tableros");         
+             Element nuevoTablero = doc.createElement("tablero");
+             Element nuevoId = doc.createElement("id");  
+             if(listadoTableros.size()>0){
+                 id=listadoTableros.size()+1;
+             }
+             tablero.setId(id);
+             nuevoId.setTextContent(String.valueOf(tablero.getId()));
+
+             Element nuevoIdCasilla = doc.createElement("idcasilla"); 
+             nuevoIdCasilla.setTextContent(String.valueOf(tablero.getIdCasilla()));
+
+             Element nuevoIdSorpresaSuerte = doc.createElement("idsorpresasuerte");
+             nuevoIdSorpresaSuerte.setTextContent(String.valueOf(tablero.getIdTSorpresaSuerte()));
+
+             Element nuevoTurno = doc.createElement("turno");
+             nuevoTurno.setTextContent(String.valueOf(tablero.getTurno()));
+
+             nuevoTablero.appendChild(nuevoId);
+             nuevoTablero.appendChild(nuevoIdCasilla);
+             nuevoTablero.appendChild(nuevoIdSorpresaSuerte);
+             nuevoTablero.appendChild(nuevoTurno);
+
+             nodoRaiz.appendChild(nuevoTablero);     
+
+             util.modificarOEliminarElementoXML(new File ("xml/tableros.xml"),doc);         
+
+        }
     }
     
     /**
@@ -124,7 +120,7 @@ public class TableroDAL implements ITableroDAL{
     public List<Tablero> obtenerTodosTableros(){
         List<Tablero> listaTableros= new ArrayList<Tablero>();
         UtilesXML util = new UtilesXML(new File("xml/tableros.xml"));
-        try{         
+               
          NodeList nodosTableros = util.accesoAXML("tablero");
          
          for(int i = 0; i < nodosTableros.getLength(); i++){
@@ -139,9 +135,7 @@ public class TableroDAL implements ITableroDAL{
                  listaTableros.add(objTablero);
              }
          }                 
-        }catch(ParserConfigurationException | SAXException | IOException parseE){
-            System.out.println("Error: monopoly.dal.TableroDAL.obtenerTodasTableros() "+parseE.getMessage());
-        }   
+          
         return listaTableros;
     }
 }

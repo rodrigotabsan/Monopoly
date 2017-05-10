@@ -53,7 +53,7 @@ public class PropiedadDAL implements IPropiedadDAL{
         UtilesXML ut= new UtilesXML();
         
         UtilesXML util = new UtilesXML(new File("xml/propiedades.xml"));
-        try{         
+              
          NodeList nodosPropiedades = util.accesoAXML("propiedad");
          
          for(int i = 0; i < nodosPropiedades.getLength(); i++){
@@ -81,10 +81,7 @@ public class PropiedadDAL implements IPropiedadDAL{
                  
                  listaPropiedades.add(objPropiedad);
              }
-         }                 
-        }catch(ParserConfigurationException | SAXException | IOException parseE){
-            System.out.println("Error: monopoly.dal.PropiedadDAL.obtenerTodasPropiedades() "+parseE.getMessage());
-        }   
+         }   
         return listaPropiedades;
     }
 }

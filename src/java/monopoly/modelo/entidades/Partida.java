@@ -14,9 +14,6 @@ public class Partida {
     String nombre;
     int idTablero;
     
-    /**
-     *
-     */
     public Partida(){
          
      }
@@ -25,10 +22,9 @@ public class Partida {
      *
      * @param id
      * @param nombre
-     * @param idUsuario
      * @param idTablero
      */
-    public Partida(int id, String nombre, int idUsuario, int idTablero) {
+    public Partida(int id, String nombre, int idTablero) {
         this.id = id;
         this.nombre = nombre;
         this.idTablero = idTablero;

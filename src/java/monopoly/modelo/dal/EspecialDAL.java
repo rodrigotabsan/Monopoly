@@ -13,11 +13,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import monopoly.modelo.entidades.Especial;
 import monopoly.modelo.IEspecialDAL;
 import monopoly.util.UtilesXML;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 /**
@@ -53,7 +51,7 @@ public class EspecialDAL implements IEspecialDAL{
     public List<Especial> obtenerTodasEspeciales(){
         List<Especial> listaEspeciales= new ArrayList<Especial>();
         UtilesXML util = new UtilesXML(new File("xml/especiales.xml"));
-        try{         
+                 
          NodeList nodosEspeciales =  util.accesoAXML("especial");
          
          for(int i = 0; i < nodosEspeciales.getLength(); i++){
@@ -69,9 +67,7 @@ public class EspecialDAL implements IEspecialDAL{
                  listaEspeciales.add(objEspecial);
              }
          }                 
-        }catch(ParserConfigurationException | SAXException | IOException parseE){
-            System.out.println("Error: monopoly.dal.EspecialDAL.obtenerTodasEspeciales() "+parseE.getMessage());
-        }   
+          
         return listaEspeciales;
     }
 }

@@ -13,6 +13,7 @@ import monopoly.modelo.entidades.Propiedad;
  * @see PropiedadDAL
  * @author Rodrigo
  */
+@FunctionalInterface
 public interface IPropiedadDAL {
     
     /**

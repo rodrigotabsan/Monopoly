@@ -13,6 +13,7 @@ import monopoly.modelo.entidades.Especial;
  * @see EspecialDAL
  * @author Rodrigo
  */
+@FunctionalInterface
 public interface IEspecialDAL {
     
     /**

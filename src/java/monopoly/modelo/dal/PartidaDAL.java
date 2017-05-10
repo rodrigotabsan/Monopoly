@@ -54,19 +54,15 @@ public class PartidaDAL implements IPartidaDAL{
         UtilesXML util = new UtilesXML(new File("xml/partidas.xml"));
         List<Partida> listaPartidas= new ArrayList<Partida>(); 
         
-        try{ 
-         Document doc =util.accesoAlDocument();
-         NodeList nodosPartidas = util.accesoAXML("partida", doc);         
-         for(int i = 0; i < nodosPartidas.getLength(); i++){
-             Element element= (Element) nodosPartidas.item(i);
-             if(element.getAttribute("id").equalsIgnoreCase(String.valueOf(partida.getId()))){
-                  element.getParentNode().removeChild(element);
-             }
-         }
-         util.modificarOEliminarElementoXML(new File ("xml/partidas.xml"), doc);
-        }catch(SAXException | IOException | ParserConfigurationException | TransformerException ex){
-            System.out.println("monopoly.dal.PartidaDAL.eliminarPartida() "+ ex.getMessage());  
-        }         
+        Document doc =util.accesoAlDocument();
+        NodeList nodosPartidas = util.accesoAXML("partida", doc);
+        for(int i = 0; i < nodosPartidas.getLength(); i++){
+            Element element= (Element) nodosPartidas.item(i);
+            if(element.getAttribute("id").equalsIgnoreCase(String.valueOf(partida.getId()))){
+                element.getParentNode().removeChild(element);
+            }
+        }
+        util.modificarOEliminarElementoXML(new File ("xml/partidas.xml"), doc);         
     } 
     
     /*public static void crearPartida(Partida partida) {
@@ -113,7 +109,7 @@ public class PartidaDAL implements IPartidaDAL{
     public List<Partida> obtenerTodasPartidas(){
         List<Partida> listaPartidas= new ArrayList<Partida>();
         UtilesXML util = new UtilesXML(new File("xml/partidas.xml"));
-        try{         
+        
          NodeList nodosPartidas = util.accesoAXML("partida");
          
          for(int i = 0; i < nodosPartidas.getLength(); i++){
@@ -127,9 +123,7 @@ public class PartidaDAL implements IPartidaDAL{
                  listaPartidas.add(objPartida);
              }
          }                 
-        }catch(ParserConfigurationException | SAXException | IOException parseE){
-            System.out.println("Error: monopoly.dal.PartidaDAL.obtenerTodasPartidas() "+parseE.getMessage());
-        }   
+         
         return listaPartidas;
     }
 }

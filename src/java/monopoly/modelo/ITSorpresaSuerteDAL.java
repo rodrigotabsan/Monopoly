@@ -13,6 +13,7 @@ import monopoly.modelo.entidades.TSorpresaSuerte;
  * @see TSorpresaSuerteDAL
  * @author Rodrigo
  */
+@FunctionalInterface
 public interface ITSorpresaSuerteDAL {
     
     /**
