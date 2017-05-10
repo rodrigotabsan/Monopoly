@@ -9,7 +9,7 @@ package monopoly.modelo.entidades;
  * Utilizado para almacenar una partida de forma temporal.
  * @author Rodrigo
  */
-public class Partida {
+public class Partida implements java.io.Serializable {
     int id;
     String nombre;
     int idTablero;

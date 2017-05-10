@@ -9,7 +9,7 @@ package monopoly.modelo.entidades;
  * Utilizado para almacenar una casilla de forma temporal
  * @author Rodrigo
  */
-public class Casilla {
+public class Casilla implements java.io.Serializable {
     int id;
     String nombre;
     String tipo;

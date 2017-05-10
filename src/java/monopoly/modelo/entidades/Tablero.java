@@ -9,7 +9,7 @@ package monopoly.modelo.entidades;
  * Utilizado para almacenar un tablero de forma temporal.
  * @author Rodrigo
  */
-public class Tablero {
+public class Tablero implements java.io.Serializable {
     int id;
     int idCasilla;
     int idTSorpresaSuerte;

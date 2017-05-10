@@ -62,13 +62,12 @@ public class UtilesServlets {
     /**
      * Mensaje de error que avisa de que el número total de jugadores ha sido superado.
      * Esto ocurre al seleccionar los jugadores de la CPU.
-     * @param request
-     * @param response
+     * @param request     
      * @param numCPU
      * @throws IOException 
      */
     public void mensajeErrorNumTotalJugadores(HttpServletRequest request,
-            HttpServletResponse response, int numCPU) throws IOException{
+            int numCPU) throws IOException{
         int numCpu=numCPU;
         numCPU=8-numCpu;
         request.getSession().setAttribute("numJugadoresError","El número de jugadores es superior a 8."+" Has seleccionado "+numCPU+" jugadores de más.");
@@ -78,23 +77,20 @@ public class UtilesServlets {
      * Mensaje de error que avisa de que se han repetido, en la selección de jugadores 
      * humanos, dos figuras.
      * @param request
-     * @param response
      * @param jugador
      * @throws IOException 
      */
     public void mensajeErrorFigurasJugadoresDuplicadas(HttpServletRequest request,
-            HttpServletResponse response, int jugador) throws IOException{
+            int jugador) throws IOException{
         request.getSession().setAttribute("figurasError","El jugador "+jugador+" ha seleccionado una figura repetida.");
     }
     
     /**
      * Mensaje de error al dejar en blanco los datos de cualquier jugador humano.
      * @param request
-     * @param response
      * @throws IOException 
      */
-    public void mensajeErrorAnhadirJugadoresNulos(HttpServletRequest request,
-            HttpServletResponse response) throws IOException{
+    public void mensajeErrorAnhadirJugadoresNulos(HttpServletRequest request) throws IOException{
         request.getSession().setAttribute("jugadoresNulosError","Rellena todos los datos de todos los jugadores.");
     }
 }

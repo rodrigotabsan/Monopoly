@@ -81,7 +81,7 @@ public class TableroDAL implements ITableroDAL{
   
              Document doc =util.accesoAlDocument();
 
-             Node nodoRaiz = util.accesoANodoXML("tableros");         
+             Node nodoRaiz = util.accesoANodoXML();         
              Element nuevoTablero = doc.createElement("tablero");
              Element nuevoId = doc.createElement("id");  
              if(listadoTableros.size()>0){

@@ -9,7 +9,7 @@ package monopoly.modelo.entidades;
  * Correspondiente a casillas de Caja de Comunidad, Suerte, Impuestos, Cárcel...
  * @author Rodrigo
  */
-public class Especial {
+public class Especial implements java.io.Serializable {
     int id;
     String nombre;
     String tipo;

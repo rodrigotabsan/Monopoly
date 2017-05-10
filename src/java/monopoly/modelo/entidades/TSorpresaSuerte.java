@@ -9,7 +9,7 @@ package monopoly.modelo.entidades;
  * Objeto que almacena una tarjeta de caja de comunidad o suerte de forma temporal.
  * @author Rodrigo
  */
-public class TSorpresaSuerte {
+public class TSorpresaSuerte implements java.io.Serializable {
     int id;
     String tipo;
     String descripcion;

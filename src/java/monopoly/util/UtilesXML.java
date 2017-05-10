@@ -81,12 +81,12 @@ public class UtilesXML {
          NodeList nodosUsuarios = document.getElementsByTagName(tagName);
          return nodosUsuarios;
     }
+    
     /**
      * Devuelve el nodo padre (el tag padre o etiqueta).
-     * @param tagName
      * @return
      */
-    public Node accesoANodoXML(String tagName) {                 
+    public Node accesoANodoXML() {                 
          doc.getDocumentElement().normalize();
          Node nodoUsuario = doc.getDocumentElement();
          return nodoUsuario;

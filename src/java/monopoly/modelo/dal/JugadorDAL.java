@@ -80,7 +80,7 @@ public class JugadorDAL implements IJugadorDAL{
         if(!listadoTableros.isEmpty()){ 
              Document doc =util.accesoAlDocument();
 
-             Node nodoRaiz = util.accesoANodoXML("usuarios");         
+             Node nodoRaiz = util.accesoANodoXML();         
              Element nuevoUsuario = doc.createElement("usuario");
              Element nuevoId = doc.createElement("id");  
              if(listadoTableros.size()>0){

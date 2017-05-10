@@ -162,7 +162,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
         int totales = intJugadoresHumanosTotales+intJugadorCPUTotales;
         //Si el numero total de jugadores es mayor que 8 devuelvo un mensaje. Si no, continua.
         if(totales>8){
-            utilServlet.mensajeErrorNumTotalJugadores(request, response,intJugadorCPUTotales);
+            utilServlet.mensajeErrorNumTotalJugadores(request, intJugadorCPUTotales);
             utilServlet.mostrarVista("./jsp/seleccionarNumCPU.jsp", request, response);
         }else{
             /* Obtengo el listado de jugadores humanos que envié al pasar a esta ventana
@@ -264,7 +264,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 jugadores.add(jugador);
             }else{
                 jugadores.clear();
-                utilServlet.mensajeErrorAnhadirJugadoresNulos(request, response);
+                utilServlet.mensajeErrorAnhadirJugadoresNulos(request);
                 utilServlet.mostrarVista("./jsp/seleccionarNumJugadores.jsp", request, response);
             }
         }
@@ -290,7 +290,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                     if(figuraRepetida==2){
                         int idJugador=j+1;
                         jugadores.clear();
-                        utilServlet.mensajeErrorFigurasJugadoresDuplicadas(request, response, idJugador);                    
+                        utilServlet.mensajeErrorFigurasJugadoresDuplicadas(request, idJugador);                    
                         utilServlet.mostrarVista("./jsp/seleccionarNumJugadores.jsp", request, response);
                                                                 
                     }
