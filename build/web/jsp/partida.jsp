@@ -40,9 +40,7 @@
                 <img src="./img/monopoly-logo.jpg">
             </header>
             <section id='puntuacionJugadores'> 
-                <% 
-            
-                           
+                <%                               
                     ArrayList<Jugador> jugadores = (ArrayList<Jugador>) request.getSession().getAttribute("listaJugadoresPartida");
                     for (int a = 0; a < jugadores.size(); a++) {
                         out.print("<div class='puntuaciones'><label id='jugador'>"
@@ -51,8 +49,7 @@
                                 + "</label>"
                                 + "</div><br>");
                     }
-                    
-                    
+                                       
                 %>
             </section>
             <section id="tapete">
