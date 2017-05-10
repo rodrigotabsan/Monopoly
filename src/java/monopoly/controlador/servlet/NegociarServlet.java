@@ -24,11 +24,9 @@ public class NegociarServlet  extends HttpServlet{
      *
      * @param request
      * @param response
-     * @throws ServletException
-     * @throws IOException
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
-          throws ServletException, IOException{ 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+        try{ 
          response.setContentType("text/html;charset=UTF-8");
          UtilesServlets utilServlet = new UtilesServlets();
          utilServlet.eliminarMensajesDeError(request, response); 
@@ -37,7 +35,9 @@ public class NegociarServlet  extends HttpServlet{
          if(negociar!=null){                
            negociar(request, response);     
          }
-         
+        }catch(IOException ex){
+            System.out.println("Error: "+ex);
+        } 
      }
     
     private void negociar(HttpServletRequest request, HttpServletResponse response){

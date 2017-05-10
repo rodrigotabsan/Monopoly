@@ -48,22 +48,23 @@ public class SeleccionarJugadorServlet extends HttpServlet {
      *
      * @param request
      * @param response
-     * @throws ServletException
-     * @throws IOException
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
-          throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response){
         
-         response.setContentType("text/html;charset=UTF-8");
-        // Recoger el parametro ficha y su numero correspondiente
-        String jugadoresHumanos=request.getParameter("jugadoresHumanos");
-        if(jugadoresHumanos!=null && "jugadoresHumanos".equals(jugadoresHumanos)){            
-            enviarJugadoresHumanos(request,response);            
+        try{
+           response.setContentType("text/html;charset=UTF-8");
+           // Recoger el parametro ficha y su numero correspondiente
+           String jugadoresHumanos=request.getParameter("jugadoresHumanos");
+           if(jugadoresHumanos!=null && "jugadoresHumanos".equals(jugadoresHumanos)){            
+               enviarJugadoresHumanos(request,response);            
+           }
+           String jugadoresCPU=request.getParameter("CPUName");
+           if(jugadoresCPU!=null && !jugadoresCPU.isEmpty() && !"null".equals(jugadoresCPU)){        
+               crearPartida(request, response);
+           } 
+        }catch(ServletException | IOException ex){
+            System.out.println("Error: "+ex);
         }
-        String jugadoresCPU=request.getParameter("CPUName");
-        if(jugadoresCPU!=null && !jugadoresCPU.isEmpty() && !"null".equals(jugadoresCPU)){        
-            crearPartida(request, response);
-        } 
         
      }
     

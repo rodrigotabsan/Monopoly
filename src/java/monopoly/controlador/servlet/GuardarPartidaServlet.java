@@ -31,11 +31,9 @@ public class GuardarPartidaServlet extends HttpServlet{
      *
      * @param request
      * @param response
-     * @throws ServletException
-     * @throws IOException
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
-          throws ServletException, IOException{ 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) { 
+        try{ 
          response.setContentType("text/html;charset=UTF-8");
          UtilesServlets utilServlet = new UtilesServlets();
          utilServlet.eliminarMensajesDeError(request, response); 
@@ -44,6 +42,9 @@ public class GuardarPartidaServlet extends HttpServlet{
          if(guardarPartida!=null){                
            guardarPartida(request, response);     
          }
+        }catch(ServletException | IOException ex){
+            System.out.println("Error: "+ex);
+        }
          
      }
     

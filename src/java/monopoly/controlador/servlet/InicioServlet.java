@@ -22,11 +22,9 @@ public class InicioServlet extends HttpServlet{
      *
      * @param request
      * @param response
-     * @throws ServletException
-     * @throws IOException
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
-          throws ServletException, IOException{ 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) { 
+        try{
          response.setContentType("text/html;charset=UTF-8");
          UtilesServlets utilServlet = new UtilesServlets();
          utilServlet.eliminarMensajesDeError(request, response); 
@@ -36,12 +34,12 @@ public class InicioServlet extends HttpServlet{
                 utilServlet.mostrarVista("./jsp/seleccionarNumJugadores.jsp", request, response);
              
          }
+        }catch(ServletException | IOException ex){
+            System.out.println("Error: "+ex);
+        }
          
      }
-    
-    
-    
-    
+       
      /**
      * Handles the HTTP <code>GET</code> method.
      *

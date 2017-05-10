@@ -50,7 +50,6 @@ public class PropiedadDAL implements IPropiedadDAL{
     @Override
     public List<Propiedad> obtenerTodasPropiedades(){
         List<Propiedad> listaPropiedades= new ArrayList<Propiedad>();
-        UtilesXML ut= new UtilesXML();
         
         UtilesXML util = new UtilesXML(new File("xml/propiedades.xml"));
               
