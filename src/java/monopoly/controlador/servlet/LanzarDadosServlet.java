@@ -46,7 +46,12 @@ public class LanzarDadosServlet extends HttpServlet{
     private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador){
         try {
             UtilesServlets utilServlet = new UtilesServlets();                         
-            
+            int posicionJugador = (int) request.getSession().getAttribute("posicionJugador");
+            jugador=(Jugador)request.getSession().getAttribute("turnoDeJugador");
+            jugador.setIdCasilla(posicionJugador);
+            System.out.println("El jugador se encuentra en la casilla "+jugador.getIdCasilla());
+            jugador.setEstadoTurno(2);
+            request.getSession().setAttribute("turnoDeJugadorDados", jugador);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(LanzarDadosServlet.class.getName()).log(Level.SEVERE, null, ex);

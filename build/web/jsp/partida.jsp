@@ -209,8 +209,7 @@
                 
                 }else{
                     out.println("<script>"
-                            + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
-                            + "btnLanzarDados.onclick(alert('No es posible lanzar los dados.'));"
+                            + "document.getElementById('btnLanzarDados').disabled=true;"
                             + "</script>");
 		}
                 request.getSession().setAttribute("listaPropiedades", propiedades);
