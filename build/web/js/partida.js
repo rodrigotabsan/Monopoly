@@ -179,12 +179,7 @@ function guardarPartida(){
     
 }
 
-window.onload = function() {
-    colorFondo();
-    lanzarDados();
-    terminarTurno();
-    guardarPartida();   
-    
+function actionBtnLanzarDados(){
     document.getElementById("btnLanzarDados").onclick = function(){
         
         document.getElementById("cajaLanzarDados").style.position= "absolute";    
@@ -215,8 +210,8 @@ window.onload = function() {
         document.getElementById("cajaLanzarDados").style.zIndex="1002"; 
         
         document.getElementById("btnLanzarDados").disabled=false;
-        document.getElementById("btnNegociar").disabled=false;
-        document.getElementById("btnTerminar").disabled=false;
+        document.getElementById("btnNegociar").disabled=true;
+        document.getElementById("btnTerminar").disabled=true;
         document.getElementById("btnGuardarPartida").disabled=false;
         
         document.getElementById("btnLanzarDados").style.cursor = 'pointer';
@@ -225,8 +220,9 @@ window.onload = function() {
         document.getElementById("btnGuardarPartida").style.cursor = 'pointer';
         
     };
-    
-    
+}
+
+function actionBtnTerminar(){
     document.getElementById("btnTerminar").onclick = function(){
         
         document.getElementById("cajaTerminarTurno").style.position= "absolute";    
@@ -256,7 +252,7 @@ window.onload = function() {
         document.getElementById("cajaTerminarTurno").style.visibility="hidden";  
         document.getElementById("cajaTerminarTurno").style.zIndex="1002"; 
         
-        document.getElementById("btnLanzarDados").disabled=false;
+        document.getElementById("btnLanzarDados").disabled=true;
         document.getElementById("btnNegociar").disabled=false;
         document.getElementById("btnTerminar").disabled=false;
         document.getElementById("btnGuardarPartida").disabled=false;
@@ -268,8 +264,10 @@ window.onload = function() {
         
     };
     
-    
-    document.getElementById("btnGuardarPartida").onclick = function(){
+}
+
+function actionBtnGuardarPartida(){
+        document.getElementById("btnGuardarPartida").onclick = function(){
         
         document.getElementById("cajaMensaje").style.position= "absolute";    
         document.getElementById("cajaMensaje").style.overflow= "auto";
@@ -278,18 +276,15 @@ window.onload = function() {
         document.body.style.backgroundColor="black";
         document.getElementById("todoMonopoly").style.zIndex="1002";
         document.getElementById("todoMonopoly").style.opacity="0.60";
-        
-        document.getElementById("btnLanzarDados").disabled=true;
-        document.getElementById("btnNegociar").disabled=true;
-        document.getElementById("btnTerminar").disabled=true;
-        document.getElementById("btnGuardarPartida").disabled=true;
-   
+           
         document.getElementById("btnLanzarDados").style.cursor = 'default';
         document.getElementById("btnNegociar").style.cursor = 'default';
         document.getElementById("btnTerminar").style.cursor = 'default';
         document.getElementById("btnGuardarPartida").style.cursor = 'default';
     };
-    
+}
+
+function cancelarMensaje(){
     document.getElementById("inputCancelarMensaje").onclick = function(){
         
         document.body.style.backgroundColor="#9ED68D";
@@ -299,16 +294,21 @@ window.onload = function() {
         
         document.getElementById("cajaMensaje").style.visibility="hidden";  
         document.getElementById("cajaMensaje").style.zIndex="1002"; 
-        
-        document.getElementById("btnLanzarDados").disabled=false;
-        document.getElementById("btnNegociar").disabled=false;
-        document.getElementById("btnTerminar").disabled=false;
-        document.getElementById("btnGuardarPartida").disabled=false;
-        
         document.getElementById("btnLanzarDados").style.cursor = 'pointer';
         document.getElementById("btnNegociar").style.cursor = 'pointer';
         document.getElementById("btnTerminar").style.cursor = 'pointer';
         document.getElementById("btnGuardarPartida").style.cursor = 'pointer';
         
     };
+}
+
+window.onload = function() {
+    colorFondo();
+    lanzarDados();
+    terminarTurno();
+    guardarPartida();   
+    actionBtnLanzarDados();
+    actionBtnTerminar();
+    actionBtnGuardarPartida();
+    cancelarMensaje();   
 };

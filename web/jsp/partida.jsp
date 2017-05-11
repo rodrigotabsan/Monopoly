@@ -201,17 +201,45 @@
 					
                     out.println("<script>"
                             + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
+                            + "btnLanzarDados.disabled=false;"
+                            + "document.getElementById('btnNegociar').disabled=true;"
+                            + "document.getElementById('btnTerminar').disabled=true;"
                             + "btnLanzarDados.addEventListener('click', function(){"
                             + "document.getElementById('dados1').src='./img/"+dado1.getImagen()+"';"
                             + "document.getElementById('dados2').src='./img/"+dado2.getImagen()+"';"
-                            + "});"
-                            + "</script>");
+                            + "});"                            
+                            + "</script>");  
+                    int resultadoDados=result1+result2;
+                    int posicionJugador=turnoDeJugador.getIdCasilla();
+                    for(int i=1; i<=resultadoDados; i++){
+                        if(posicionJugador==40){
+                            posicionJugador=0;
+                        }
+                        posicionJugador++;					
+                    }		
+                    request.getSession().setAttribute("posicionJugador",posicionJugador);
+                    request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);
+
+                    
+                }
                 
-                }else{
+                if(request.getSession().getAttribute("turnoDeJugadorDados")!=null){
+                        turnoDeJugador=(Jugador)request.getSession().getAttribute("turnoDeJugadorDados");
+                }
+                
+                if(turnoDeJugador.getEstadoTurno()==2){
                     out.println("<script>"
+                            + "var btnTerminar = document.getElementById('btnTerminar');"
+                            + "var btnNegociar = document.getElementById('btnNegociar');"
+                            + "btnTerminar.disabled=false;"
+                            + "btnNegociar.disabled=false;"
                             + "document.getElementById('btnLanzarDados').disabled=true;"
                             + "</script>");
+                    
+                    
 		}
+                
+
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
                 request.getSession().setAttribute("listaCasillas", casillas);
@@ -219,21 +247,6 @@
                 request.getSession().setAttribute("listaTarjetaCCySuerte", tarjetasCCySuerte);
                 request.getSession().setAttribute("tablero", tablero);
                 request.getSession().setAttribute("partida", partida);
-				
-				int resultadoDados=result1+result2;
-				int posicionJugador=turnoDeJugador.getIdCasilla();
-				for(int i=1; i<=resultadoDados; i++){
-					if(posicionJugador==40){
-						posicionJugador=0;
-					}
-					posicionJugador++;					
-				}		
-				request.getSession().setAttribute("posicionJugador",posicionJugador);
-				request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);
-				
-				if(request.getSession().getAttribute("turnoDeJugadorDados")!=null){
-					turnoDeJugador=(Jugador)request.getSession().getAttribute("turnoDeJugadorDados");
-				}
             %>
             <footer id="piePagina2">
                 <p>(c) 2017 Invest In Andorra Services</p>
