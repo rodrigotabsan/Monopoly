@@ -207,7 +207,8 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 jugador.setIdCasilla(0);
                 jugador.setIdPartida(partidaNueva.getId());
                 jugador.setTurno(1);
-                jugador.setEstadoTurno(0);                
+                jugador.setEstadoTurno(0);     
+                jugador.setTurnoCarcel(0);
                 jugadores.add(jugador);
             }
             IJugadorDAL jugadoresDAL = new JugadorDAL();
@@ -261,7 +262,8 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 jugador.setIdCasilla(casillaInicial);
                 jugador.setDinero(dineroInicial);
                 jugador.setEstadoTurno(0);
-                jugador.setTurno(1);                
+                jugador.setTurno(1);   
+                jugador.setTurnoCarcel(0);
                 jugadores.add(jugador);
             }else{
                 jugadores.clear();

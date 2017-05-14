@@ -10,14 +10,14 @@ package monopoly.controlador;
  *
  * @author Rodrigo
  */
-public class Dado {
+public class DadoRule {
     int numero;
     String imagen;
     
     /**
      *
      */
-    public Dado() {
+    public DadoRule() {
     }
 
     /**
@@ -25,7 +25,7 @@ public class Dado {
      * @param numero
      * @param imagen
      */
-    public Dado(int numero, String imagen) {
+    public DadoRule(int numero, String imagen) {
         this.numero = numero;
         this.imagen=imagen;
     }
@@ -67,9 +67,9 @@ public class Dado {
      * @param result
      * @return
      */
-    public Dado resultadoDado(int result){
+    public DadoRule resultadoDado(int result){
         String tipoFichero=".gif";
-        Dado dado = new Dado();
+        DadoRule dado = new DadoRule();
         switch(result){
                 case 1:
                     dado.setImagen("Dice1"+tipoFichero);
@@ -102,4 +102,6 @@ public class Dado {
             }
         return dado;
     }
+    
+    
 }

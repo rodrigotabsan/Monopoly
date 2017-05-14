@@ -4,7 +4,8 @@
     Author     : Rodrigo
 --%>
 
-<%@page import="monopoly.controlador.Dado"%>
+
+<%@page import="monopoly.controlador.DadoRule"%>
 <%@page import="java.util.Random"%>
 <%@page import="monopoly.modelo.entidades.Partida"%>
 <%@page import="monopoly.modelo.entidades.Tablero"%>
@@ -57,15 +58,38 @@
                                 + "</label> <label><strong>" + jugadores.get(a).getDinero() + " €" + "</strong>"
                                 + "</label>"
                                 + "</div><br>");
-								
-                        if(jugadores.get(a).getEstadoTurno()==1){
-                            contadorJugadores=a;
-                            turnoDeJugador=jugadores.get(a);	                            
-                            request.getSession().setAttribute("contadorJugadores", contadorJugadores);   
-                        }    
-                        if(jugadores.get(a).getEstadoTurno()==2){
-                            turnoDeJugador=jugadores.get(a);	
-                        }
+                    }
+                    for (int a = 0; a < jugadores.size(); a++) {                       
+                            //En caso de que el jugador esté en la cárcel...   
+                            if(jugadores.get(a).getEstadoTurno()==1){
+                                if(jugadores.get(a).getIdCasilla()==10 && jugadores.get(a).getTurnoCarcel()>0){
+                                    System.out.println("Jugador "+jugadores.get(a).getNombre()+" en la cárcel");
+                                    System.out.println("El estado turno es: "+jugadores.get(a).getEstadoTurno());
+                                    jugadores.get(a).setTurnoCarcel(jugadores.get(a).getTurnoCarcel()-1);
+                                    jugadores.get(a).setEstadoTurno(0);
+                                    System.out.println("Te quedan "+jugadores.get(a).getTurnoCarcel()+" para salir.");
+                                    turnoDeJugador=jugadores.get(a);
+                                    a++;
+                                    if(a==jugadores.size()){
+                                        a=0;
+                                    }
+                                    System.out.println("Pasa el turno al Jugador "+jugadores.get(a).getNombre());
+                                    jugadores.get(a).setEstadoTurno(1);
+                                    turnoDeJugador=jugadores.get(a);
+                                    break;                                                                
+                                }
+                            }
+                    }
+                    for (int a = 0; a < jugadores.size(); a++) {     
+                            if(jugadores.get(a).getEstadoTurno()==1){
+                                contadorJugadores=a;
+                                turnoDeJugador=jugadores.get(a);	                            
+                                request.getSession().setAttribute("contadorJugadores", contadorJugadores);   
+                            }    
+                            if(jugadores.get(a).getEstadoTurno()==2){
+                                turnoDeJugador=jugadores.get(a);	
+                            }
+                        
                     }
                     
                 %>
@@ -209,9 +233,9 @@
                     result1 = random.nextInt(maximo-minimo) + minimo;
                     result2 = random.nextInt(maximo-minimo) + minimo; 
                     System.out.println("Jugador "+turnoDeJugador.getNombre()+" obtiene un resultado de "+result1+" / "+result2);
-                    Dado dado1= new Dado();
+                    DadoRule dado1= new DadoRule();
                     dado1=dado1.resultadoDado(result1);
-                    Dado dado2=new Dado();
+                    DadoRule dado2=new DadoRule();
                     dado2=dado2.resultadoDado(result2);
 					
                     out.println("<script>"

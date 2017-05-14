@@ -56,6 +56,11 @@ public class LanzarDadosServlet extends HttpServlet{
                 if(jugador.getId()==jugadores.get(i).getId()){
                     jugadores.get(i).setEstadoTurno(2);
                     jugadores.get(i).setIdCasilla(jugador.getIdCasilla());
+                    if(jugadores.get(i).getIdCasilla()==30){
+                        jugadores.get(i).setIdCasilla(10);
+                        jugadores.get(i).setTurnoCarcel(3);
+                        jugadores.get(i).setEstadoTurno(1);
+                    }
                 }
             }
             System.out.println("Estado "+jugador.getEstadoTurno()+ " del jugador "+jugador.getNombre());

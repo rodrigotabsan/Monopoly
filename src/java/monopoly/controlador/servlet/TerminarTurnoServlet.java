@@ -62,7 +62,7 @@ public class TerminarTurnoServlet  extends HttpServlet{
             }
             if(jugadorSiguiente.getId()==jugadores.get(i).getId()){
                 jugadores.get(i).setEstadoTurno(jugadorSiguiente.getEstadoTurno());
-            }
+            }        
         }
         
         request.getSession().setAttribute("jugadores", jugadores);        

@@ -20,28 +20,18 @@ public class Jugador implements Serializable{
     int idPartida;
     int turno;
     int estadoTurno;
+    int turnoCarcel;
 
-    /**
-     *
-     * @param id
-     * @param nombre
-     * @param figura
-     * @param dinero
-     * @param idCasilla
-     * @param idPartida
-     * @param turno
-     * @param estadoTurno
-     */
-    public Jugador(int id, String nombre, String figura, int dinero, int idCasilla, int idPartida, int turno, int estadoTurno){
+    public Jugador(int id, String nombre, String figura, int dinero, int idCasilla, int idPartida, int turno, int estadoTurno, int turnoCarcel) {
         this.id = id;
         this.nombre = nombre;
         this.figura = figura;
         this.dinero = dinero;
         this.idCasilla = idCasilla;
         this.idPartida = idPartida;
-        this.turno=turno;
-        this.estadoTurno=estadoTurno;
-        
+        this.turno = turno;
+        this.estadoTurno = estadoTurno;
+        this.turnoCarcel = turnoCarcel;
     }
 
     /**
@@ -177,4 +167,22 @@ public class Jugador implements Serializable{
     public void setEstadoTurno(int estadoTurno) {
         this.estadoTurno = estadoTurno;
     }    
+    
+    /**
+     * 
+     * @return 
+     */
+    public int getTurnoCarcel() {
+        return turnoCarcel;
+    }
+    
+    /**
+     * 
+     * @param turnoCarcel 
+     */
+    public void setTurnoCarcel(int turnoCarcel) {
+        this.turnoCarcel = turnoCarcel;
+    }
+    
+    
 }
