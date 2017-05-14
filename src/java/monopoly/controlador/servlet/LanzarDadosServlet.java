@@ -6,6 +6,7 @@
 package monopoly.controlador.servlet;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -50,8 +51,15 @@ public class LanzarDadosServlet extends HttpServlet{
             jugador=(Jugador)request.getSession().getAttribute("turnoDeJugador");
             jugador.setIdCasilla(posicionJugador);
             System.out.println("El jugador se encuentra en la casilla "+jugador.getIdCasilla());
-            jugador.setEstadoTurno(2);
-            request.getSession().setAttribute("turnoDeJugador", jugador);
+            List <Jugador> jugadores= (List <Jugador>)request.getSession().getAttribute("todosJugadores");
+            for(int i = 0; i<jugadores.size();i++){
+                if(jugador.getId()==jugadores.get(i).getId()){
+                    jugadores.get(i).setEstadoTurno(2);
+                    jugadores.get(i).setIdCasilla(jugador.getIdCasilla());
+                }
+            }
+            System.out.println("Estado "+jugador.getEstadoTurno()+ " del jugador "+jugador.getNombre());
+            request.getSession().setAttribute("todosjugadores", jugadores);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(LanzarDadosServlet.class.getName()).log(Level.SEVERE, null, ex);
