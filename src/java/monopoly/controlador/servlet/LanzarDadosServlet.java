@@ -51,7 +51,7 @@ public class LanzarDadosServlet extends HttpServlet{
             jugador.setIdCasilla(posicionJugador);
             System.out.println("El jugador se encuentra en la casilla "+jugador.getIdCasilla());
             jugador.setEstadoTurno(2);
-            request.getSession().setAttribute("turnoDeJugadorDados", jugador);
+            request.getSession().setAttribute("turnoDeJugador", jugador);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(LanzarDadosServlet.class.getName()).log(Level.SEVERE, null, ex);

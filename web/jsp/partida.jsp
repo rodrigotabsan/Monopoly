@@ -41,8 +41,14 @@
             </header>
             <section id='puntuacionJugadores'> 
                 <%                     
-					Jugador turnoDeJugador= new Jugador();
-                    ArrayList<Jugador> jugadores = (ArrayList<Jugador>) request.getSession().getAttribute("listaJugadoresPartida");
+                    Jugador turnoDeJugador= new Jugador();
+                    Jugador siguienteTurnoDeJugador= new Jugador();
+                    List<Jugador> jugadores = (List<Jugador>) request.getSession().getAttribute("listaJugadoresPartida");                    
+                    if(request.getSession().getAttribute("jugadores")!=null){
+                        jugadores=(List <Jugador>)request.getSession().getAttribute("jugadores");                        
+                    }
+                                     
+                    int contadorJugadores=0;
                     for (int a = 0; a < jugadores.size(); a++) {
                         out.print("<div class='puntuaciones'><label id='jugador'>"
                                 + "<strong>" + jugadores.get(a).getNombre() + ":</strong>"
@@ -50,10 +56,13 @@
                                 + "</label>"
                                 + "</div><br>");
 								
-                    if(jugadores.get(a).getEstadoTurno()==1){
-			turnoDeJugador=jugadores.get(a);								}
-                    }            										
-					
+                        if(jugadores.get(a).getEstadoTurno()==1){
+                            contadorJugadores=a;
+                            turnoDeJugador=jugadores.get(a);	                            
+                            request.getSession().setAttribute("contadorJugadores", contadorJugadores);   
+                        }                                    			
+                    }
+                    
                 %>
             </section>
             <section id="tapete">
@@ -187,13 +196,14 @@
             <%  
                 int result1=0;
                 int result2=0;
+                
 		if(turnoDeJugador.getEstadoTurno()==1){
                     Random random = new Random();            
                     int minimo = 1;
                     int maximo = 7;
                     result1 = random.nextInt(maximo-minimo) + minimo;
                     result2 = random.nextInt(maximo-minimo) + minimo; 
-                    System.out.println(result1+" / "+result2);
+                    System.out.println("Jugador "+turnoDeJugador.getNombre()+" obtiene un resultado de "+result1+" / "+result2);
                     Dado dado1= new Dado();
                     dado1=dado1.resultadoDado(result1);
                     Dado dado2=new Dado();
@@ -209,6 +219,7 @@
                             + "document.getElementById('dados2').src='./img/"+dado2.getImagen()+"';"
                             + "});"                            
                             + "</script>");  
+                    System.out.println("Turno de Jugador "+turnoDeJugador.getNombre());
                     int resultadoDados=result1+result2;
                     int posicionJugador=turnoDeJugador.getIdCasilla();
                     for(int i=1; i<=resultadoDados; i++){
@@ -223,9 +234,7 @@
                     
                 }
                 
-                if(request.getSession().getAttribute("turnoDeJugadorDados")!=null){
-                        turnoDeJugador=(Jugador)request.getSession().getAttribute("turnoDeJugadorDados");
-                }
+                
                 
                 if(turnoDeJugador.getEstadoTurno()==2){
                     out.println("<script>"
@@ -235,11 +244,17 @@
                             + "btnNegociar.disabled=false;"
                             + "document.getElementById('btnLanzarDados').disabled=true;"
                             + "</script>");
-                    
-                    
+                    System.out.println("Turno parte 2 de Jugador "+turnoDeJugador.getNombre());
+                    request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);                 
 		}
                 
-
+                out.println("<script>"
+                            + "var btnTerminar = document.getElementById('btnTerminar');"
+                            + "var btnNegociar = document.getElementById('btnNegociar');"
+                            + "btnTerminar.disabled=false;"
+                            + "btnNegociar.disabled=false;"
+                            + "document.getElementById('btnLanzarDados').disabled=true;"
+                            + "</script>");
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
                 request.getSession().setAttribute("listaCasillas", casillas);

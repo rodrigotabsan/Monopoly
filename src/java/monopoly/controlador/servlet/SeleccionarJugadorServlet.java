@@ -207,11 +207,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 jugador.setIdCasilla(0);
                 jugador.setIdPartida(partidaNueva.getId());
                 jugador.setTurno(1);
-                if(i==1){
-                    jugador.setEstadoTurno(1);
-                }else{
-                    jugador.setEstadoTurno(0);
-                }
+                jugador.setEstadoTurno(0);                
                 jugadores.add(jugador);
             }
             IJugadorDAL jugadoresDAL = new JugadorDAL();
@@ -219,10 +215,10 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 List <Jugador> listaJugadores = jugadoresDAL.obtenerTodosUsuarios();
                 for(int i = 0; i<jugadores.size();i++){
                     listaJugadores.add(jugadores.get(i));
-                }
+                }                
                 request.getSession().setAttribute("listaJugadoresTotales", jugadores);
             }
-            
+            jugadores.get(0).setEstadoTurno(1);
             request.getSession().setAttribute("listaJugadoresPartida", jugadores);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
         }     

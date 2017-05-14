@@ -6,10 +6,12 @@
 package monopoly.controlador.servlet;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import monopoly.modelo.entidades.Jugador;
 import monopoly.util.UtilesServlets;
 
 /**
@@ -41,6 +43,29 @@ public class TerminarTurnoServlet  extends HttpServlet{
     private void terminarTurno(HttpServletRequest request, HttpServletResponse response) 
           throws ServletException, IOException{
         UtilesServlets utilServlet = new UtilesServlets();
+        Jugador jugador = (Jugador)request.getSession().getAttribute("turnoDeJugador");
+        
+        int contadorJugador = (int)request.getSession().getAttribute("contadorJugadores");
+        List <Jugador> jugadores= (List <Jugador>) request.getSession().getAttribute("listaJugadoresTotales");
+        
+        int contadorNuevoJugador = contadorJugador+1;
+        if(contadorNuevoJugador>=jugadores.size()){
+            contadorNuevoJugador=0;
+        }
+        
+        Jugador jugadorSiguiente = jugadores.get(contadorNuevoJugador);
+        jugadorSiguiente.setEstadoTurno(1);
+        jugador.setEstadoTurno(0);
+        for(int i = 0; i<jugadores.size();i++){
+            if(jugador.getId()==jugadores.get(i).getId()){
+                jugadores.get(i).setEstadoTurno(jugador.getEstadoTurno());
+            }
+            if(jugadorSiguiente.getId()==jugadores.get(i).getId()){
+                jugadores.get(i).setEstadoTurno(jugadorSiguiente.getEstadoTurno());
+            }
+        }
+        
+        request.getSession().setAttribute("jugadores", jugadores);        
         utilServlet.mostrarVista("./jsp/partida.jsp", request, response);   
     }
     /**
