@@ -254,6 +254,8 @@
                     for(int i=1; i<=resultadoDados; i++){
                         if(posicionJugador==40){
                             posicionJugador=0;
+                            //cobra la salida.
+                            turnoDeJugador.setDinero(turnoDeJugador.getDinero()+200);
                         }
                         posicionJugador++;					
                     }		
