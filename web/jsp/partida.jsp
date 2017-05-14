@@ -255,9 +255,9 @@
 		}
                 
                 
-                 out.println("<script>"
+                out.println("<script>"
                             
-                            + "</script>");
+                          + "</script>");
                 
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
