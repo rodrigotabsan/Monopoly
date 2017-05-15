@@ -35,15 +35,12 @@ public class UtilesXML {
     private DocumentBuilder docBuilder;
     private Document doc; 
 
-    /**
-     *
-     */
     public UtilesXML() {
     }
        
     /**
-     *
-     * @param file
+     *  Función que permite el acceso al fichero XML
+     * @param file Fichero XML al que se quiere acceder
      */
     public UtilesXML(File file) {
         try {
@@ -58,9 +55,9 @@ public class UtilesXML {
     /**
      * Obtiene el listado de nodos (los tags del XML). Por defecto coge un Document
      * reutilizable.
-     * @param tagName
+     * @param tagName Nombre de la etiqueta a la que se quiere acceder
      * @see Document
-     * @return
+     * @return Un listado de nodos
      */
     public NodeList accesoAXML(String tagName) {           
         doc.getDocumentElement().normalize();
@@ -71,10 +68,10 @@ public class UtilesXML {
     /**
      * Obtenemos el listado de nodos (los tags del XML). Hay que pasarle un Document
      * nuevo.
-     * @param tagName
-     * @param document
-     * @see Document
-     * @return
+     * @param tagName Nombre de la etiqueta a la que se quiere acceder
+     * @param document Document que se quiere utilizar para el acceso de la etiqueta.
+     * @see Document 
+     * @return Un listado de nodos.
      */
     public NodeList accesoAXML(String tagName, Document document) {                 
          document.getDocumentElement().normalize();
@@ -84,7 +81,7 @@ public class UtilesXML {
     
     /**
      * Devuelve el nodo padre (el tag padre o etiqueta).
-     * @return
+     * @return el Nodo del XML
      */
     public Node accesoANodoXML() {                 
          doc.getDocumentElement().normalize();
@@ -95,7 +92,7 @@ public class UtilesXML {
     /**
      * Retorna el Document por defecto.
      * @see Document
-     * @return Document
+     * @return Document Devuelve el document generico
      */
     public Document accesoAlDocument() {                  
          return doc;
@@ -105,8 +102,8 @@ public class UtilesXML {
      * Modifica o elimina un elemento XML. Se le indica el fichero y el Document
      * @see File
      * @see Document
-     * @param file
-     * @param document 
+     * @param file Fichero XML que se quiere acceder
+     * @param document Document que se quiere utilizar
      */
     public void modificarOEliminarElementoXML(File file, Document document) {
         try{
@@ -123,8 +120,8 @@ public class UtilesXML {
     /**
      * Comprueba si el XML existe. En caso negativo, crea un XML con el nombre 
      * dado, y devuelve true. Sino devuelve false.
-     * @param nombreXML
-     * @return 
+     * @param nombreXML Fichero XML al que se quiere acceder.
+     * @return Un booleano para saber si es necesario crearlo o no.
      */
     public boolean crearXML(String nombreXML){
         try {

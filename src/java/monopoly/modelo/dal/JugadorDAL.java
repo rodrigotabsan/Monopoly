@@ -31,8 +31,8 @@ public class JugadorDAL implements IJugadorDAL{
     /**
      * Obtiene el valor del nodo. Básicamente coge del tag o pestaña que se le pase,
      * en el parámetro strTag, el valor que le corresponde en el fichero XML.
-     * @param strTag
-     * @param eCasilla
+     * @param strTag el tag correspondiente del XML
+     * @param eUsuario El usuario que se quiere obtener 
      * @return 
      */ 
     private static String obtenerNodoValor(String strTag, Element eUsuario){
@@ -42,7 +42,7 @@ public class JugadorDAL implements IJugadorDAL{
     
     /**
      * Elimina un jugador pasándole el objeto Jugador.
-     * @param usuario 
+     * @param usuario El usuario que se quiere eliminar
      * @see Jugador
      */
     @Override
@@ -63,7 +63,7 @@ public class JugadorDAL implements IJugadorDAL{
     
     /**
      * Crea un Jugador pasándole el objeto Jugador
-     * @param usuario 
+     * @param usuario El usuario que se quiere crear
      * @see Jugador
      */
     @Override
@@ -124,7 +124,7 @@ public class JugadorDAL implements IJugadorDAL{
     
     /**
      * Obtiene un listado de todos los Jugadores
-     * @return 
+     * @return El listado de jugadores
      * @see Jugador
      */   
     @Override

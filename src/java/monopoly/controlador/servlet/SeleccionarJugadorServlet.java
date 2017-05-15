@@ -45,9 +45,9 @@ import monopoly.util.UtilesXML;
 public class SeleccionarJugadorServlet extends HttpServlet {
 
     /**
-     *
-     * @param request
-     * @param response
+     *  Procesa la petición
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response){
         
@@ -71,6 +71,8 @@ public class SeleccionarJugadorServlet extends HttpServlet {
     /**
      * Contiene los objetos necesarios para crear la partida.
      * Además se reenvía a la ventana partida los objetos.
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      */
     private void crearPartida(HttpServletRequest request, HttpServletResponse response){
         UtilesXML utilXML= new UtilesXML();                

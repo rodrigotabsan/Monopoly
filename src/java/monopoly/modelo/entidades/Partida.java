@@ -19,10 +19,10 @@ public class Partida implements java.io.Serializable {
      }
 
     /**
-     *
-     * @param id
-     * @param nombre
-     * @param idTablero
+     * Constructor de la partida.
+     * @param id id de la partida
+     * @param nombre nombre de la partida
+     * @param idTablero id del tablero de la partida
      */
     public Partida(int id, String nombre, int idTablero) {
         this.id = id;
@@ -32,7 +32,7 @@ public class Partida implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return id de la partida
      */
     public int getId() {
         return id;
@@ -40,7 +40,7 @@ public class Partida implements java.io.Serializable {
 
     /**
      *
-     * @param id
+     * @param id id de la partida
      */
     public void setId(int id) {
         this.id = id;
@@ -48,7 +48,7 @@ public class Partida implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return nombre de la partida
      */
     public String getNombre() {
         return nombre;
@@ -56,7 +56,7 @@ public class Partida implements java.io.Serializable {
 
     /**
      *
-     * @param nombre
+     * @param nombre nombre de la partida
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -64,7 +64,7 @@ public class Partida implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return id del tablero de la partida
      */
     public int getIdTablero() {
         return idTablero;
@@ -72,7 +72,7 @@ public class Partida implements java.io.Serializable {
 
     /**
      *
-     * @param idTablero
+     * @param idTablero id del tablero de la partida
      */
     public void setIdTablero(int idTablero) {
         this.idTablero = idTablero;

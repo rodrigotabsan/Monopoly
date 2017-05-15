@@ -19,9 +19,9 @@ import monopoly.util.UtilesServlets;
 public class InicioServlet extends HttpServlet{
 
     /**
-     *
-     * @param request
-     * @param response
+     * Procesa la peticion
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) { 
         try{

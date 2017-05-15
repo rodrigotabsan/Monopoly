@@ -33,8 +33,8 @@ public class PropiedadDAL implements IPropiedadDAL{
     /**
      * Obtiene el valor del nodo. Básicamente coge del tag o pestaña que se le pase,
      * en el parámetro strTag, el valor que le corresponde en el fichero XML.
-     * @param strTag
-     * @param eCasilla
+     * @param strTag la etiqueta xml
+     * @param ePropiedad La propiedad a la que se quiere acceder.
      * @return 
      */     
     private static String obtenerNodoValor(String strTag, Element ePropiedad){
@@ -44,7 +44,7 @@ public class PropiedadDAL implements IPropiedadDAL{
     
     /**
      * Obtiene un listado con todas las propiedades
-     * @return 
+     * @return El listado de Propiedades
      * @see Propiedad
      */
     @Override

@@ -36,8 +36,8 @@ public class TableroDAL implements ITableroDAL{
     /**
      * Obtiene el valor del nodo. Básicamente coge del tag o pestaña que se le pase,
      * en el parámetro strTag, el valor que le corresponde en el fichero XML.
-     * @param strTag
-     * @param eCasilla
+     * @param strTag La etiqueta xml a la que se quiere acceder
+     * @param eTablero El tablero que se quiere obtener
      * @return 
      */ 
     private static String obtenerNodoValor(String strTag, Element eTablero){
@@ -47,7 +47,7 @@ public class TableroDAL implements ITableroDAL{
     
     /**
      * Elimina el tablero. Para ello se le pasa un objeto Tablero.
-     * @param tablero 
+     * @param tablero El tablero que se quiere eliminar
      * @see Tablero
      */
     @Override
@@ -69,7 +69,7 @@ public class TableroDAL implements ITableroDAL{
     
     /**
      * Crea un nuevo tablero. Se le pasa un objeto tipo Tablero
-     * @param tablero 
+     * @param tablero El tablero que se quiere crear
      * @see Tablero
      */
     @Override

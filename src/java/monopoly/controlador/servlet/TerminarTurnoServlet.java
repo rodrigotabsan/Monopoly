@@ -21,9 +21,9 @@ import monopoly.util.UtilesServlets;
 public class TerminarTurnoServlet  extends HttpServlet{
 
     /**
-     *
-     * @param request
-     * @param response
+     *  Procesa la petición
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response){           
         try{
@@ -40,6 +40,13 @@ public class TerminarTurnoServlet  extends HttpServlet{
         }
      }
     
+    /**
+     * Utilizado como respuesta para el botón de terminar turno
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
+     * @throws ServletException Excepción en caso de error de los Servlet
+     * @throws IOException Excepcion de entrada salida de ficheros.
+     */
     private void terminarTurno(HttpServletRequest request, HttpServletResponse response) 
           throws ServletException, IOException{
         UtilesServlets utilServlet = new UtilesServlets();
@@ -71,8 +78,8 @@ public class TerminarTurnoServlet  extends HttpServlet{
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
-     * @param response servlet response
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
@@ -85,8 +92,8 @@ public class TerminarTurnoServlet  extends HttpServlet{
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
-     * @param response servlet response
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */

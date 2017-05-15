@@ -35,8 +35,8 @@ public class PartidaDAL implements IPartidaDAL{
     /**
      * Obtiene el valor del nodo. Básicamente coge del tag o pestaña que se le pase,
      * en el parámetro strTag, el valor que le corresponde en el fichero XML.
-     * @param strTag
-     * @param eCasilla
+     * @param strTag La etiqueta xml.
+     * @param ePartida La partida que se quiere. 
      * @return 
      */     
     private static String obtenerNodoValor(String strTag, Element ePartida){
@@ -46,7 +46,7 @@ public class PartidaDAL implements IPartidaDAL{
     
     /**
      * Elimina una partida
-     * @param partida 
+     * @param partida La partida que se quiere eliminar
      * @see Partida
      */
     @Override
@@ -102,7 +102,7 @@ public class PartidaDAL implements IPartidaDAL{
     */
     /**
      * Obtiene un listado con todas las partidas.
-     * @return 
+     * @return El listado de partidas
      * @see Partida
      */
     @Override

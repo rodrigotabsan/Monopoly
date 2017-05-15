@@ -36,24 +36,24 @@ public class Propiedad implements java.io.Serializable {
     }
 
     /**
-     *
-     * @param id
-     * @param nombre
-     * @param tipo
-     * @param precio
-     * @param idUsuario
-     * @param descripcion
-     * @param color
-     * @param idCasilla
-     * @param hipoteca
-     * @param alquiler
-     * @param casa
-     * @param alquilerPrimeraCasa
-     * @param alquilerSegundaCasa
-     * @param alquilerTerceraCasa
-     * @param alquilerCuartaCasa
-     * @param hotel
-     * @param alquilerHotel
+     * Constructor de Propiedad
+     * @param id Id de la propiedad
+     * @param nombre Nombre de la propiedad
+     * @param tipo Tipo de propiedad
+     * @param precio Precio de la propiedad
+     * @param idUsuario Id del usuario propietario de la propiedad (por defecto 0 si no tiene)
+     * @param descripcion Descripcion de la propiedad
+     * @param color Color de la propiedad
+     * @param idCasilla Id casilla de la propiedad
+     * @param hipoteca Hipoteca de la propiedad
+     * @param alquiler Alquiler de la propiedad
+     * @param casa número de casas de la propiedad
+     * @param alquilerPrimeraCasa Cobro por una casa
+     * @param alquilerSegundaCasa Cobro por dos casas
+     * @param alquilerTerceraCasa Cobro por tres casas
+     * @param alquilerCuartaCasa Cobro por cuatro casas
+     * @param hotel Número de hoteles
+     * @param alquilerHotel Alquiler de un hotel
      */
     public Propiedad(int id, String nombre, String tipo, int precio, int idUsuario, String descripcion, String color, int idCasilla, 
             int hipoteca, int alquiler, int casa, int alquilerPrimeraCasa, int alquilerSegundaCasa, int alquilerTerceraCasa, 
@@ -79,7 +79,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el id de la propiedad
      */
     public int getId() {
         return id;
@@ -87,7 +87,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param id
+     * @param id el id de la propiedad
      */
     public void setId(int id) {
         this.id = id;
@@ -95,7 +95,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el nombre de la propiedad
      */
     public String getNombre() {
         return nombre;
@@ -103,7 +103,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param nombre
+     * @param nombre el nombre de la propiedad
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -111,7 +111,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return tipo de propiedad
      */
     public String getTipo() {
         return tipo;
@@ -119,7 +119,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param tipo
+     * @param tipo tipo de propiedad
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -127,7 +127,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return obtiene el precio de la propiedad
      */
     public int getPrecio() {
         return precio;
@@ -135,7 +135,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param precio
+     * @param precio el precio de la propiedad
      */
     public void setPrecio(int precio) {
         this.precio = precio;
@@ -143,7 +143,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el usuario propietario
      */
     public int getIdUsuario() {
         return idUsuario;
@@ -151,7 +151,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param idUsuario
+     * @param idUsuario el usuario propietario
      */
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
@@ -159,7 +159,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return la descripcion de la propiedad
      */
     public String getDescripcion() {
         return descripcion;
@@ -167,7 +167,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param descripcion
+     * @param descripcion la descripcion de la propiedad
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
@@ -175,7 +175,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el color de la casilla
      */
     public String getColor() {
         return color;
@@ -183,7 +183,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param color
+     * @param color el color de la casilla
      */
     public void setColor(String color) {
         this.color = color;
@@ -191,7 +191,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el id de la casilla correspondiente
      */
     public int getIdCasilla() {
         return idCasilla;
@@ -199,7 +199,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param idCasilla
+     * @param idCasilla el id de la casilla correspondiente
      */
     public void setIdCasilla(int idCasilla) {
         this.idCasilla = idCasilla;
@@ -207,7 +207,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return la hipoteca de la propiedad
      */
     public int getHipoteca() {
         return hipoteca;
@@ -215,7 +215,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param hipoteca
+     * @param hipoteca la hipoteca de la propiedad
      */
     public void setHipoteca(int hipoteca) {
         this.hipoteca = hipoteca;
@@ -223,7 +223,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el alquiler de la propiedad
      */
     public int getAlquiler() {
         return alquiler;
@@ -231,7 +231,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param alquiler
+     * @param alquiler precio del alquiler de la propiedad
      */
     public void setAlquiler(int alquiler) {
         this.alquiler = alquiler;
@@ -239,7 +239,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el número de casas
      */
     public int getCasa() {
         return casa;
@@ -247,7 +247,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param casa
+     * @param casa el número de casas
      */
     public void setCasa(int casa) {
         this.casa = casa;
@@ -255,7 +255,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el número de hoteles
      */
     public int getHotel() {
         return hotel;
@@ -263,7 +263,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param hotel
+     * @param hotel es un entero
      */
     public void setHotel(int hotel) {
         this.hotel = hotel;
@@ -271,7 +271,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el entero del AlquilerHotel
      */
     public int getAlquilerHotel() {
         return alquilerHotel;
@@ -279,7 +279,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param alquilerHotel
+     * @param alquilerHotel es un entero
      */
     public void setAlquilerHotel(int alquilerHotel) {
         this.alquilerHotel = alquilerHotel;
@@ -287,7 +287,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el entero de alquilerPrimeraCasa
      */
     public int getAlquilerPrimeraCasa() {
         return alquilerPrimeraCasa;
@@ -295,7 +295,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param alquilerPrimeraCasa
+     * @param alquilerPrimeraCasa es un entero
      */
     public void setAlquilerPrimeraCasa(int alquilerPrimeraCasa) {
         this.alquilerPrimeraCasa = alquilerPrimeraCasa;
@@ -303,7 +303,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el entero de AlquilerSegundaCasa
      */
     public int getAlquilerSegundaCasa() {
         return alquilerSegundaCasa;
@@ -311,7 +311,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param alquilerSegundaCasa
+     * @param alquilerSegundaCasa el entero de AlquilerSegundaCasa
      */
     public void setAlquilerSegundaCasa(int alquilerSegundaCasa) {
         this.alquilerSegundaCasa = alquilerSegundaCasa;
@@ -319,7 +319,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el entero de AlquilerTerceraCasa
      */
     public int getAlquilerTerceraCasa() {
         return alquilerTerceraCasa;
@@ -327,7 +327,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param alquilerTerceraCasa
+     * @param alquilerTerceraCasa el entero de AlquilerTerceraCasa
      */
     public void setAlquilerTerceraCasa(int alquilerTerceraCasa) {
         this.alquilerTerceraCasa = alquilerTerceraCasa;
@@ -335,7 +335,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return el entero de AlquilerCuartaCasa
      */
     public int getAlquilerCuartaCasa() {
         return alquilerCuartaCasa;
@@ -343,7 +343,7 @@ public class Propiedad implements java.io.Serializable {
 
     /**
      *
-     * @param alquilerCuartaCasa
+     * @param alquilerCuartaCasa el entero de AlquilerCuartaCasa
      */
     public void setAlquilerCuartaCasa(int alquilerCuartaCasa) {
         this.alquilerCuartaCasa = alquilerCuartaCasa;

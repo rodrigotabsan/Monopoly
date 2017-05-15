@@ -280,11 +280,16 @@
                     request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);                 
 		}
                 
-                
-                out.println("<script>"
-                            
-                          + "</script>");
-                
+                for(int i=0; i<jugadores.size();i++){
+                    int contadorFiguras = i+1;
+                    out.println("<script>"
+                              +"var tablero=document.getElementById('tablero');"
+                              +"var imgFiguras = document.createElement('img');"
+                              +"imgFiguras.id='"+jugadores.get(i).getFigura()+"';"
+                              +"imgFiguras.src='./img/figura"+contadorFiguras+".png';"    
+                              +"tablero.appendChild(imgFiguras);"
+                              + "</script>");
+                }
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
                 request.getSession().setAttribute("listaCasillas", casillas);

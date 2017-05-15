@@ -10,7 +10,6 @@ import monopoly.modelo.entidades.TSorpresaSuerte;
 
 /**
  * Interface para acceder a las funciones de TSorpresaSuerteDAL
- * @see TSorpresaSuerteDAL
  * @author Rodrigo
  */
 @FunctionalInterface
@@ -19,8 +18,7 @@ public interface ITSorpresaSuerteDAL {
     /**
      * Obtiene todas las tarjetas de Caja Comunidad y Suerte.
      * @see TSorpresaSuerte
-     * @see TSorpresaSuerteDAL
-     * @return 
+     * @return Un listado de TSorpresaSuerteDAL
      */
     public List<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte();
 }

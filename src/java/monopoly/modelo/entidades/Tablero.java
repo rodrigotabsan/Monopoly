@@ -17,10 +17,10 @@ public class Tablero implements java.io.Serializable {
     
     /**
      *
-     * @param id
-     * @param idCasilla
-     * @param idTSorpresaSuerte
-     * @param turno
+     * @param id id del tablero
+     * @param idCasilla id de la casilla 
+     * @param idTSorpresaSuerte id de la tarjeta caja de comunidad o suerte
+     * @param turno id del turno
      */
     public Tablero(int id, int idCasilla, int idTSorpresaSuerte, int turno) {
         this.id = id;
@@ -29,15 +29,12 @@ public class Tablero implements java.io.Serializable {
         this.turno= turno;
     }
 
-    /**
-     *
-     */
     public Tablero() {
     }
 
     /**
-     *
-     * @return
+     * 
+     * @return id del tablero
      */
     public int getId() {
         return id;
@@ -45,7 +42,7 @@ public class Tablero implements java.io.Serializable {
 
     /**
      *
-     * @param id
+     * @param id id del tablero
      */
     public void setId(int id) {
         this.id = id;
@@ -53,7 +50,7 @@ public class Tablero implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return id de la casilla
      */
     public int getIdCasilla() {
         return idCasilla;
@@ -61,7 +58,7 @@ public class Tablero implements java.io.Serializable {
 
     /**
      *
-     * @param idCasilla
+     * @param idCasilla id de la casilla
      */
     public void setIdCasilla(int idCasilla) {
         this.idCasilla = idCasilla;
@@ -69,7 +66,7 @@ public class Tablero implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return id de la tarjeta caja de comunidad o suerte
      */
     public int getIdTSorpresaSuerte() {
         return idTSorpresaSuerte;
@@ -77,7 +74,7 @@ public class Tablero implements java.io.Serializable {
 
     /**
      *
-     * @param idTSorpresaSuerte
+     * @param idTSorpresaSuerte id de la tarjeta caja de comunidad o suerte
      */
     public void setIdTSorpresaSuerte(int idTSorpresaSuerte) {
         this.idTSorpresaSuerte = idTSorpresaSuerte;
@@ -85,7 +82,7 @@ public class Tablero implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return turno en la partida
      */
     public int getTurno() {
         return turno;
@@ -93,7 +90,7 @@ public class Tablero implements java.io.Serializable {
 
     /**
      *
-     * @param turno
+     * @param turno turno en la partida
      */
     public void setTurno(int turno) {
         this.turno = turno;

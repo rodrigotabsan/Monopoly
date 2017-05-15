@@ -10,7 +10,6 @@ import monopoly.modelo.entidades.Propiedad;
 
 /**
  * Interface para acceder a las funciones de PropiedadDAL
- * @see PropiedadDAL
  * @author Rodrigo
  */
 @FunctionalInterface
@@ -19,8 +18,7 @@ public interface IPropiedadDAL {
     /**
      * Obtiene todas las propiedades.
      * @see Propiedad
-     * @see PropiedadDAL
-     * @return 
+     * @return Un listado de Propiedad
      */
     public List<Propiedad> obtenerTodasPropiedades();
 }

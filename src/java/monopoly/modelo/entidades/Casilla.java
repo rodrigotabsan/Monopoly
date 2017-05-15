@@ -22,10 +22,10 @@ public class Casilla implements java.io.Serializable {
     }
     
     /**
-     *
-     * @param id
-     * @param nombre
-     * @param tipo
+     * Constructor para Casilla
+     * @param id El id de la casilla
+     * @param nombre El nombre de la casilla
+     * @param tipo El tipo de la casilla
      */
     public Casilla(int id, String nombre, String tipo) {
         this.id = id;
@@ -35,7 +35,7 @@ public class Casilla implements java.io.Serializable {
     
     /**
      * Obtiene el ID de la casilla.
-     * @return 
+     * @return EL id de la casilla
      */
     public int getId() {
         return id;
@@ -43,7 +43,7 @@ public class Casilla implements java.io.Serializable {
     
     /**
      * Dar valor al ID de la casilla
-     * @param id 
+     * @param id El id de la casilla
      */
     public void setId(int id) {
         this.id = id;
@@ -51,7 +51,7 @@ public class Casilla implements java.io.Serializable {
     
     /**
      * Obtiene el nombre de la casilla
-     * @return 
+     * @return El nombre de la casilla
      */
     public String getNombre() {
         return nombre;
@@ -59,7 +59,7 @@ public class Casilla implements java.io.Serializable {
     
     /**
      * Dar un nombre a la casilla
-     * @param nombre 
+     * @param nombre El nombre de la casilla que se quiere modificar
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -67,7 +67,7 @@ public class Casilla implements java.io.Serializable {
     
     /**
      * Consigue la descripción o el tipo de la casilla.
-     * @return 
+     * @return El tipo de casilla que se quiere obtener
      */
     public String getTipo() {
         return tipo;
@@ -75,7 +75,7 @@ public class Casilla implements java.io.Serializable {
     
     /**
      * Da una descripción o tipo de casilla.
-     * @param tipo 
+     * @param tipo El tipo de casilla.
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;

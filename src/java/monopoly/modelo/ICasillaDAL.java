@@ -10,7 +10,6 @@ import monopoly.modelo.entidades.Casilla;
 
 /**
  * Interface para acceder a las funciones de CasillaDAL
- * @see CasillaDAL
  * @author Rodrigo
  */
 @FunctionalInterface
@@ -19,8 +18,7 @@ public interface ICasillaDAL {
     /**
      * Obtiene todas las casillas del tablero.
      * @see Casilla
-     * @see CasillaDAL
-     * @return 
+     * @return Un listado de Casilla
      */
     public List<Casilla> obtenerTodasCasillas();
 }

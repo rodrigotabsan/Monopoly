@@ -23,9 +23,9 @@ import monopoly.util.UtilesServlets;
 public class LanzarDadosServlet extends HttpServlet{
 
     /**
-     *
-     * @param request
-     * @param response
+     * Procesa la petición
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) { 
         try{ 
@@ -44,6 +44,12 @@ public class LanzarDadosServlet extends HttpServlet{
          
      }
     
+    /**
+     * Utilizado para responder a la petición de lanzar dados.
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
+     * @param jugador Jugador que lanza los dados
+     */
     private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador){
         try {
             UtilesServlets utilServlet = new UtilesServlets();                         

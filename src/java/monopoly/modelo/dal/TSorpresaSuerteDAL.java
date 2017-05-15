@@ -34,8 +34,8 @@ public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
     /**
      * Obtiene el valor del nodo. Básicamente coge del tag o pestaña que se le pase,
      * en el parámetro strTag, el valor que le corresponde en el fichero XML.
-     * @param strTag
-     * @param eCasilla
+     * @param strTag La etiqueta a la que se quiere acceder
+     * @param eTSorpresaSuerte La TSorpresaSuerte a la que se quiere acceder
      * @return 
      */     
     private static String obtenerNodoValor(String strTag, Element eTSorpresaSuerte){
@@ -45,7 +45,7 @@ public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
     
     /**
      * Obtiene un listado de todas las tarjetas de Caja de Comunidad y Suerte.
-     * @return 
+     * @return El listado de TSorpresaSuerte 
      * @see TSorpresaSuerte
      */
     @Override

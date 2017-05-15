@@ -10,7 +10,6 @@ import monopoly.modelo.entidades.Especial;
 
 /**
  * Interface para acceder a las funciones de EspecialDAL
- * @see EspecialDAL
  * @author Rodrigo
  */
 @FunctionalInterface
@@ -19,8 +18,7 @@ public interface IEspecialDAL {
     /**
      * Obtiene todas las casillas especiales del tablero.
      * @see Especial
-     * @see EspecialDAL
-     * @return 
+     * @return Un listado de Especial
      */
      public List<Especial> obtenerTodasEspeciales();
 }

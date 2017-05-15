@@ -44,7 +44,7 @@ public class EspecialDAL implements IEspecialDAL{
         
     /**
      * Obtiene un listado de todas las casillas especiales.
-     * @return 
+     * @return Listado de Especial
      * @see Especial
      */
     @Override

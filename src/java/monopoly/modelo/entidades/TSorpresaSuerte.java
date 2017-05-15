@@ -23,10 +23,10 @@ public class TSorpresaSuerte implements java.io.Serializable {
    
     /**
      *
-     * @param id
-     * @param tipo
-     * @param descripcion
-     * @param bonus
+     * @param id id de la tarjeta caja comunidad o suerte
+     * @param tipo tipo de tarjeta 
+     * @param descripcion descripcion de la tarjeta 
+     * @param bonus bonus de la tarjeta. Puede ser negativo o positivo
      */
     public TSorpresaSuerte(int id, String tipo, String descripcion, int bonus) {
         this.id = id;
@@ -37,7 +37,7 @@ public class TSorpresaSuerte implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return id de la tarjeta caja comunidad o suerte
      */
     public int getId() {
         return id;
@@ -45,7 +45,7 @@ public class TSorpresaSuerte implements java.io.Serializable {
 
     /**
      *
-     * @param id
+     * @param id id de la tarjeta caja comunidad o suerte
      */
     public void setId(int id) {
         this.id = id;
@@ -53,7 +53,7 @@ public class TSorpresaSuerte implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return tipo de tarjeta
      */
     public String getTipo() {
         return tipo;
@@ -61,7 +61,7 @@ public class TSorpresaSuerte implements java.io.Serializable {
 
     /**
      *
-     * @param tipo
+     * @param tipo tipo de tarjeta
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -69,7 +69,7 @@ public class TSorpresaSuerte implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return descripcion de la tarjeta
      */
     public String getDescripcion() {
         return descripcion;
@@ -77,7 +77,7 @@ public class TSorpresaSuerte implements java.io.Serializable {
 
     /**
      *
-     * @param descripcion
+     * @param descripcion descripcion de la tarjeta
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
@@ -85,7 +85,7 @@ public class TSorpresaSuerte implements java.io.Serializable {
 
     /**
      *
-     * @return
+     * @return bonus de la tarjeta. Puede ser negativo o positivo
      */
     public int getBonus() {
         return bonus;
@@ -93,7 +93,7 @@ public class TSorpresaSuerte implements java.io.Serializable {
 
     /**
      *
-     * @param bonus
+     * @param bonus bonus de la tarjeta. Puede ser negativo o positivo
      */
     public void setBonus(int bonus) {
         this.bonus = bonus;

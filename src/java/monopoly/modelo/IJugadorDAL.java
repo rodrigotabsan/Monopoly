@@ -10,7 +10,6 @@ import monopoly.modelo.entidades.Jugador;
 
 /**
  * Interface para acceder a las funciones de JugadorDAL
- * @see JugadorDAL
  * @author Rodrigo
  */
 public interface IJugadorDAL {
@@ -18,24 +17,21 @@ public interface IJugadorDAL {
     /**
      * Elimina un jugador pasándole el objeto Jugador
      * @see Jugador
-     * @see JugadorDAL
-     * @param usuario 
+     * @param usuario Jugador que se desea eliminar
      */
     public void eliminarUsuario(Jugador usuario);
     
     /**
      * Crea un jugador pasándole un objeto Jugador.
      * @see Jugador
-     * @see JugadorDAL
-     * @param usuario 
+     * @param usuario  Jugador que se desea crear
      */
     public void crearUsuario(Jugador usuario);
     
     /**
      * Obtiene un listado de todos los jugadores
      * @see Jugador
-     * @see JugadorDAL
-     * @return 
+     * @return Un listado de Jugador
      */
     public List <Jugador> obtenerTodosUsuarios();
 }

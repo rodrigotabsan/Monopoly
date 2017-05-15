@@ -10,7 +10,6 @@ import monopoly.modelo.entidades.Tablero;
 
 /**
  * Interface para acceder a las funciones de TableroDAL
- * @see TableroDAL
  * @author Rodrigo
  */
 public interface ITableroDAL {
@@ -18,20 +17,19 @@ public interface ITableroDAL {
     /**
      * Elimina un tablero pasándole un objeto Tablero
      * @see Tablero
-     * @see TableroDAL
-     * @param tablero 
+     * @param tablero Tablero que se desea eliminar
      */
     public void eliminarTablero(Tablero tablero);
     
     /**
      * Obtiene todos los tableros del XML tableros.xml
-     * @return 
+     * @return Un listado de Tablero
      */
     public List<Tablero> obtenerTodosTableros();
     
     /**
      * Añade una etiqueta tablero nueva al XML tableros.xml 
-     * @param tablero 
+     * @param tablero Tablero que se desea crear
      */
     public void crearTablero(Tablero tablero);
 }

@@ -28,9 +28,9 @@ import monopoly.util.UtilesServlets;
 public class GuardarPartidaServlet extends HttpServlet{
 
     /**
-     *
-     * @param request
-     * @param response
+     * Proceso la petición
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) { 
         try{ 
@@ -50,10 +50,10 @@ public class GuardarPartidaServlet extends HttpServlet{
     
     /**
      * Guarda la partida
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException 
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
+     * @throws ServletException Excepcion en caso de error para los Servlets
+     * @throws IOException Excepcion en caso de error de entrada y salida en el acceso a ficheros.
      */
     private void guardarPartida(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {

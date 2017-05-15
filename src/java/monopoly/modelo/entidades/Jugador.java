@@ -21,7 +21,19 @@ public class Jugador implements Serializable{
     int turno;
     int estadoTurno;
     int turnoCarcel;
-
+    
+    /**
+     * Constructor del Jugador
+     * @param id id del jugador
+     * @param nombre nombre del jugador
+     * @param figura figura del jugador
+     * @param dinero dinero del jugador
+     * @param idCasilla id de la casilla en la que se situa el jugador
+     * @param idPartida id de la partida en la que está el jugador
+     * @param turno el turno del jugador en el que está
+     * @param estadoTurno El estado del turno del jugador
+     * @param turnoCarcel La cantidad de turnos que tiene que esperar para salir de la cárcel.
+     */
     public Jugador(int id, String nombre, String figura, int dinero, int idCasilla, int idPartida, int turno, int estadoTurno, int turnoCarcel) {
         this.id = id;
         this.nombre = nombre;
@@ -42,7 +54,7 @@ public class Jugador implements Serializable{
     
     /**
      *
-     * @return
+     * @return El id del jugador
      */
     public int getId() {
         return id;
@@ -50,7 +62,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @param id
+     * @param id El id del jugador
      */
     public void setId(int id) {
         this.id = id;
@@ -58,7 +70,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @return
+     * @return El nombre del jugador
      */
     public String getNombre() {
         return nombre;
@@ -66,7 +78,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @param nombre
+     * @param nombre El nombre del jugador
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -74,7 +86,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @return
+     * @return La figura que corresponde al jugador
      */
     public String getFigura() {
         return figura;
@@ -82,7 +94,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @param figura
+     * @param figura La figura que corresponde al jugador
      */
     public void setFigura(String figura) {
         this.figura = figura;
@@ -90,7 +102,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @return
+     * @return El dinero del jugador
      */
     public int getDinero() {
         return dinero;
@@ -98,7 +110,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @param dinero
+     * @param dinero El dinero del jugador
      */
     public void setDinero(int dinero) {
         this.dinero = dinero;
@@ -106,7 +118,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @return
+     * @return El id de casilla donde se situa el jugador
      */
     public int getIdCasilla() {
         return idCasilla;
@@ -114,7 +126,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @param idCasilla
+     * @param idCasilla El id de casilla donde se situa el jugador
      */
     public void setIdCasilla(int idCasilla) {
         this.idCasilla = idCasilla;
@@ -122,7 +134,7 @@ public class Jugador implements Serializable{
     
     /**
      *
-     * @return
+     * @return el id de la partida a la que pertenece el jugador
      */
     public int getIdPartida() {
         return idPartida;
@@ -130,7 +142,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @param idPartida
+     * @param idPartida el id de la partida a la que pertenece el jugador
      */
     public void setIdPartida(int idPartida) {
         this.idPartida = idPartida;
@@ -138,7 +150,7 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @return
+     * @return El turno en el que está el jugador
      */
     public int getTurno() {
         return turno;
@@ -146,23 +158,26 @@ public class Jugador implements Serializable{
 
     /**
      *
-     * @param turno
+     * @param turno El turno en el que está el jugador
      */
     public void setTurno(int turno) {
         this.turno = turno;
     }
 
     /**
-     *
-     * @return
+     * Hay tres estados: 
+     * 0) El estado cero es que no es su turno
+     * 1) El estado uno, es su turno, pero solo para lanzar dados o guardar partida
+     * 2) El estado dos, es su turno, pero solo para negociar, terminar turno o guardar partida
+     * @return El estado del turno en el que está el jugador
      */
     public int getEstadoTurno() {
         return estadoTurno;
     }
 
     /**
-     *
-     * @param estadoTurno
+     * 
+     * @param estadoTurno El estado del turno en el que está el jugador
      */
     public void setEstadoTurno(int estadoTurno) {
         this.estadoTurno = estadoTurno;
@@ -170,7 +185,7 @@ public class Jugador implements Serializable{
     
     /**
      * 
-     * @return 
+     * @return La cantidad de turnos que le faltan por esperar para salir de la cárcel
      */
     public int getTurnoCarcel() {
         return turnoCarcel;
@@ -178,7 +193,7 @@ public class Jugador implements Serializable{
     
     /**
      * 
-     * @param turnoCarcel 
+     * @param turnoCarcel La cantidad de turnos que tiene que esperar para salir de la cárcel
      */
     public void setTurnoCarcel(int turnoCarcel) {
         this.turnoCarcel = turnoCarcel;

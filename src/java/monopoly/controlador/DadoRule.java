@@ -22,8 +22,8 @@ public class DadoRule {
 
     /**
      *
-     * @param numero
-     * @param imagen
+     * @param numero el resultado del random del Dado
+     * @param imagen la imagen del dado
      */
     public DadoRule(int numero, String imagen) {
         this.numero = numero;
@@ -32,7 +32,7 @@ public class DadoRule {
 
     /**
      *
-     * @return
+     * @return el resultado del dado
      */
     public int getNumero() {
         return numero;
@@ -40,7 +40,7 @@ public class DadoRule {
 
     /**
      *
-     * @param numero
+     * @param numero resultado del random del dado.
      */
     public void setNumero(int numero) {
         this.numero = numero;
@@ -48,7 +48,7 @@ public class DadoRule {
 
     /**
      *
-     * @return
+     * @return la imagen del dado
      */
     public String getImagen() {
         return imagen;
@@ -56,7 +56,7 @@ public class DadoRule {
 
     /**
      *
-     * @param imagen
+     * @param imagen la imagen del dado
      */
     public void setImagen(String imagen) {
         this.imagen = imagen;
@@ -64,8 +64,8 @@ public class DadoRule {
     
     /**
      *
-     * @param result
-     * @return
+     * @param result resultado del dado
+     * @return el Dado
      */
     public DadoRule resultadoDado(int result){
         String tipoFichero=".gif";

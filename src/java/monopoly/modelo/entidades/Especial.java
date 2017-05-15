@@ -25,11 +25,11 @@ public class Especial implements java.io.Serializable {
     
     /**
      *
-     * @param id
-     * @param nombre
-     * @param tipo
-     * @param bonus
-     * @param idCasilla
+     * @param id El id de la casilla Especial
+     * @param nombre El nombre de la casilla especial
+     * @param tipo El tipo de casilla especial
+     * @param bonus El bonus de la casilla especial
+     * @param idCasilla el id de la casilla
      */
     public Especial(int id, String nombre, String tipo, int bonus, int idCasilla) {
         this.id = id;
@@ -41,7 +41,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Obtiene el ID de la casilla especial.
-     * @return 
+     * @return El id de la casilla especial
      */
     public int getId() {
         return id;
@@ -49,7 +49,7 @@ public class Especial implements java.io.Serializable {
 
     /**
      * Dar ID a la casilla especial.
-     * @param id 
+     * @param id El id de la casilla especial
      */
     public void setId(int id) {
         this.id = id;
@@ -57,7 +57,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Obtener el nombre de la casilla especial.
-     * @return 
+     * @return El nombre de la casilla especial
      */
     public String getNombre() {
         return nombre;
@@ -65,7 +65,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Dar nombre a la casilla especial.
-     * @param nombre 
+     * @param nombre El nombre de la casilla especial
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -73,7 +73,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Obtener qué tipo de casilla es.
-     * @return 
+     * @return el tipo de casilla especial
      */
     public String getTipo() {
         return tipo;
@@ -81,7 +81,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Enviar qué tipo de casilla es.
-     * @param tipo 
+     * @param tipo El tipo de casilla
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -89,7 +89,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Obtener el bonus de la casilla si lo tiene.  
-     * @return 
+     * @return el bonus de la casilla
      */
     public int getBonus() {
         return bonus;
@@ -97,7 +97,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Dar Bonus de la casilla. Si no tiene, debe rellenarse con un blanco " ".
-     * @param bonus 
+     * @param bonus El bonus de la casilla
      */
     public void setBonus(int bonus) {
         this.bonus = bonus;
@@ -105,7 +105,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Obtener ID de la casilla
-     * @return 
+     * @return El id de la casilla
      */
     public int getIdCasilla() {
         return idCasilla;
@@ -113,7 +113,7 @@ public class Especial implements java.io.Serializable {
     
     /**
      * Dar el ID de la casilla.
-     * @param idCasilla 
+     * @param idCasilla el id de la casilla
      */
     public void setIdCasilla(int idCasilla) {
         this.idCasilla = idCasilla;

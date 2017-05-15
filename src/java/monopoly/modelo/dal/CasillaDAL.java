@@ -41,7 +41,7 @@ public class CasillaDAL implements ICasillaDAL{
     
     /**
      * Obtiene un listado de todas las casillas
-     * @return 
+     * @return Listado de Casilla
      * @see Casilla
      */
     @Override

@@ -21,9 +21,9 @@ import monopoly.util.UtilesServlets;
 public class NegociarServlet  extends HttpServlet{
 
     /**
-     *
-     * @param request
-     * @param response
+     * Procesa la petición
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         try{ 
@@ -40,6 +40,11 @@ public class NegociarServlet  extends HttpServlet{
         } 
      }
     
+    /**
+     * Utilizado para conocer la respuesta que se dará al pulsar el botón submit de negociar.
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina 
+     */
     private void negociar(HttpServletRequest request, HttpServletResponse response){
         try {
             UtilesServlets utilServlet = new UtilesServlets();

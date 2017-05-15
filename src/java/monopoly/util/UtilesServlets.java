@@ -28,11 +28,11 @@ public class UtilesServlets {
     
     /**
      * Sirve para redireccionarte a la pantalla que marques en el campo vista.
-     * @param vista
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException 
+     * @param vista jsp al que se quiere redirigir
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
+     * @throws ServletException Excepcion para los Servlets
+     * @throws IOException  Excepción de entrada salida de ficheros.
      */
     public void mostrarVista(String vista,
             HttpServletRequest request,
@@ -48,9 +48,9 @@ public class UtilesServlets {
     /**
      * Elimina todos los mensajes de error de las pantallas. Esto se hace porque
      * puede ocurrir que al pulsar atrás en el navegador se muestre el mensaje de error.
-     * @param request
-     * @param response
-     * @throws IOException 
+     * @param request peticion de la pagina
+     * @param response respuesta de la pagina
+     * @throws IOException Excepcion de entrada salida de ficheros.
      */
     public void eliminarMensajesDeError(HttpServletRequest request,
             HttpServletResponse response) throws IOException{
@@ -62,9 +62,9 @@ public class UtilesServlets {
     /**
      * Mensaje de error que avisa de que el número total de jugadores ha sido superado.
      * Esto ocurre al seleccionar los jugadores de la CPU.
-     * @param request     
-     * @param numCPU
-     * @throws IOException 
+     * @param request peticion de la pagina 
+     * @param numCPU numero del CPU que se ha seleccionado de más.
+     * @throws IOException Excepcion de entrada salida de ficheros.
      */
     public void mensajeErrorNumTotalJugadores(HttpServletRequest request,
             int numCPU) throws IOException{
@@ -76,9 +76,9 @@ public class UtilesServlets {
     /**
      * Mensaje de error que avisa de que se han repetido, en la selección de jugadores 
      * humanos, dos figuras.
-     * @param request
-     * @param jugador
-     * @throws IOException 
+     * @param request peticion de la pagina
+     * @param jugador id del jugador
+     * @throws IOException Excepcion de entrada salida de ficheros.
      */
     public void mensajeErrorFigurasJugadoresDuplicadas(HttpServletRequest request,
             int jugador) throws IOException{
@@ -87,8 +87,8 @@ public class UtilesServlets {
     
     /**
      * Mensaje de error al dejar en blanco los datos de cualquier jugador humano.
-     * @param request
-     * @throws IOException 
+     * @param request peticion de la pagina
+     * @throws IOException Excepcion de entrada salida de ficheros.
      */
     public void mensajeErrorAnhadirJugadoresNulos(HttpServletRequest request) throws IOException{
         request.getSession().setAttribute("jugadoresNulosError","Rellena todos los datos de todos los jugadores.");

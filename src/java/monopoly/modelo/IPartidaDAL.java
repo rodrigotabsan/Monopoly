@@ -10,7 +10,6 @@ import monopoly.modelo.entidades.Partida;
 
 /**
  * Interface para acceder a las funciones de PartidaDAL
- * @see PartidaDAL
  * @author Rodrigo
  */
 public interface IPartidaDAL {
@@ -18,16 +17,14 @@ public interface IPartidaDAL {
     /**
      * Obtiene todas las partidas
      * @see Partida
-     * @see PartidaDAL
-     * @return 
+     * @return Un listado de las partidas
      */
     public List<Partida> obtenerTodasPartidas();
     
     /**
      * Elimina una partida. Hay que pasarle un objeto Partida
      * @see Partida
-     * @see PartidaDAL
-     * @param partida 
+     * @param partida Partida que se desea eliminar
      */
     public void eliminarPartida(Partida partida);
 }
