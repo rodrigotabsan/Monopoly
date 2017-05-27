@@ -303,6 +303,12 @@
                               +"imgFiguras.style.float = 'left';"
                               +"imgFiguras.style.marginTop = '-90px'"        
                               + "}"
+                              +"if("+jugadores.get(i).getIdCasilla()+">=11 && "+jugadores.get(i).getIdCasilla()+"<=20){"
+                              +"imgFiguras.style.float = 'left';"
+                              +"imgFiguras.style.marginTop = '40px'"        
+                              + "}"
+                              +"if("+jugadores.get(i).getIdCasilla()+">=31 && "+jugadores.get(i).getIdCasilla()+"<=39){"       
+                              + "}"        
                               +"casilla.appendChild(imgFiguras);"                                    
                               + "</script>");
                 }
