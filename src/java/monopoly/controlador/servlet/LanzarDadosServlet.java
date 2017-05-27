@@ -55,13 +55,32 @@ public class LanzarDadosServlet extends HttpServlet{
             UtilesServlets utilServlet = new UtilesServlets();                         
             int posicionJugador = (int) request.getSession().getAttribute("posicionJugador");
             jugador=(Jugador)request.getSession().getAttribute("turnoDeJugador");
+            int resultado1=(Integer)request.getSession().getAttribute("resultado1");
+            int resultado2=(Integer)request.getSession().getAttribute("resultado2");
+            int numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
+            //posicion actual del jugador
             jugador.setIdCasilla(posicionJugador);
             System.out.println("El jugador se encuentra en la casilla "+jugador.getIdCasilla());
             List <Jugador> jugadores= (List <Jugador>)request.getSession().getAttribute("todosJugadores");
             for(int i = 0; i<jugadores.size();i++){
                 if(jugador.getId()==jugadores.get(i).getId()){
-                    jugadores.get(i).setEstadoTurno(2);
+                    if(resultado1==resultado2){
+                        jugadores.get(i).setEstadoTurno(1);
+                        numVecesDadosRep++;
+                        
+                        //Si el numero de veces que se repite la tirada de dobles
+                        //es igual a 3, el jugador va a la cárcel                        
+                        if (numVecesDadosRep==3){
+                            jugadores.get(i).setIdCasilla(10);
+                            jugadores.get(i).setTurnoCarcel(3);
+                            jugadores.get(i).setEstadoTurno(1);
+                        }
+                    }else{
+                        jugadores.get(i).setEstadoTurno(2);
+                    }
                     jugadores.get(i).setIdCasilla(jugador.getIdCasilla());
+                    //Si el jugador cae en la casilla de ve a la carcel,
+                    //el jugador va a la casilla de visita carcel.
                     if(jugadores.get(i).getIdCasilla()==30){
                         jugadores.get(i).setIdCasilla(10);
                         jugadores.get(i).setTurnoCarcel(3);
@@ -70,6 +89,7 @@ public class LanzarDadosServlet extends HttpServlet{
                 }
             }
             System.out.println("Estado "+jugador.getEstadoTurno()+ " del jugador "+jugador.getNombre());
+            request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);
             request.getSession().setAttribute("todosjugadores", jugadores);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
         } catch (ServletException | IOException ex) {

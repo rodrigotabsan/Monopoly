@@ -88,8 +88,7 @@
                             }    
                             if(jugadores.get(a).getEstadoTurno()==2){
                                 turnoDeJugador=jugadores.get(a);	
-                            }
-                        
+                            }                        
                     }
                     
                 %>
@@ -239,7 +238,7 @@
                     dado1=dado1.resultadoDado(result1);
                     DadoRule dado2=new DadoRule();
                     dado2=dado2.resultadoDado(result2);
-					
+                     
                     out.println("<script>"
                             + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
                             + "btnLanzarDados.disabled=false;"
@@ -260,13 +259,23 @@
                             turnoDeJugador.setDinero(turnoDeJugador.getDinero()+200);
                         }
                         posicionJugador++;					
-                    }		
+                    }	
+                    if(posicionJugador==40){
+                        posicionJugador=0;                        
+                    }
+                    int numVecesDadosRep=0;
+                    
+                    if(request.getSession().getAttribute("numVecesDadosRep")!=null){
+                        numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
+                    }
+                    
+                    request.getSession().setAttribute("resultado1",result1);
+                    request.getSession().setAttribute("resultado2",result2);
                     request.getSession().setAttribute("posicionJugador",posicionJugador);
                     request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);
                     request.getSession().setAttribute("todosJugadores", jugadores);
-                    
-                }
-                
+                    request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);
+                }                
                 
                 System.out.println("Turno parte 2 de Jugador "+turnoDeJugador.getNombre()+ " estado "+turnoDeJugador.getEstadoTurno());
                 if(turnoDeJugador.getEstadoTurno()==2){
@@ -281,7 +290,7 @@
                     
                     request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);                 
 		}      
-                
+                                               
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
                 request.getSession().setAttribute("listaCasillas", casillas);
@@ -298,16 +307,18 @@
                              +"var casilla=document.getElementById('"+contadorCasilla+"');"
                               +"var imgFiguras = document.createElement('img');"
                               +"imgFiguras.id='"+jugadores.get(i).getFigura()+"';"
-                              +"imgFiguras.src='./img/figura"+contadorFiguras+".png';"    
+                              +"imgFiguras.src='./img/figura"+contadorFiguras+".png';"   
                               +"if("+jugadores.get(i).getIdCasilla()+">=21 && "+jugadores.get(i).getIdCasilla()+"<=30){"
-                              +"imgFiguras.style.float = 'left';"
-                              +"imgFiguras.style.marginTop = '-90px'"        
+                                +"imgFiguras.style.float = 'left';"
+                                +"imgFiguras.style.marginTop = '-90px'"        
                               + "}"
                               +"if("+jugadores.get(i).getIdCasilla()+">=11 && "+jugadores.get(i).getIdCasilla()+"<=20){"
-                              +"imgFiguras.style.float = 'left';"
-                              +"imgFiguras.style.marginTop = '40px'"        
+                                +"imgFiguras.style.float = 'left';"
+                                +"imgFiguras.style.marginTop = '40px'"        
                               + "}"
-                              +"if("+jugadores.get(i).getIdCasilla()+">=31 && "+jugadores.get(i).getIdCasilla()+"<=39){"       
+                              +"if("+jugadores.get(i).getIdCasilla()+">=31 && "+jugadores.get(i).getIdCasilla()+"<=39){" 
+                                +"imgFiguras.style.marginTop = '40px';"
+                                +"imgFiguras.style.marginLeft = '40px';"                                    
                               + "}"        
                               +"casilla.appendChild(imgFiguras);"                                    
                               + "</script>");
