@@ -114,13 +114,13 @@
                             for (int z = 19; z >= 11; z--) {
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(z).getId() == especiales.get(x).getIdCasilla()) {
-                                        out.print("<div class='verticalIzquierda'>"
+                                        out.print("<div id='"+casillas.get(z).getId()+"' class='verticalIzquierda'>"
                                                 + casillas.get(z).getNombre() + "</div>");
                                     }
                                 }
                                 for (int y = 0; y < propiedades.size(); y++) {
                                     if (casillas.get(z).getId() == propiedades.get(y).getIdCasilla()) {
-                                        out.print("<div class='verticalIzquierda'>"
+                                        out.print("<div id='"+casillas.get(z).getId()+"' class='verticalIzquierda'>"
                                                 + "<div style='width:100px;height:136px;margin-top:5%;'>"
                                                 + "<label style='margin-top:5px;'>" + casillas.get(z).getNombre() + "</label>"
                                                 + "</div>"
@@ -141,12 +141,12 @@
                             for (int j = 20; j <= 30; j++) {
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(j).getId() == especiales.get(x).getIdCasilla()) {
-                                        out.print("<div class='horizontalArriba'>" + casillas.get(j).getNombre() + "</div>");
+                                        out.print("<div id='"+casillas.get(j).getId()+"' class='horizontalArriba'>" + casillas.get(j).getNombre() + "</div>");
                                     }
                                 }
                                 for (int y = 0; y < propiedades.size(); y++) {
                                     if (casillas.get(j).getId() == propiedades.get(y).getIdCasilla()) {
-                                        out.print("<div class='horizontalArriba'>"
+                                        out.print("<div id='"+casillas.get(j).getId()+"' class='horizontalArriba'>"
                                                 + "<div style='width:136px;height:40px;font-family: Arial;'>"
                                                 + "<label style='margin-top:5px;'>" + casillas.get(j).getNombre() + "</label>"
                                                 + "</div><div style='background-color:" + propiedades.get(y).getColor() + "; "
@@ -165,13 +165,13 @@
                         <% for (int i = 10; i >= 0; i--) {
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(i).getId() == especiales.get(x).getIdCasilla()) {
-                                        out.print("<div class='horizontalAbajo'>" + casillas.get(i).getNombre()
+                                        out.print("<div id='"+casillas.get(i).getId()+"' class='horizontalAbajo'>" + casillas.get(i).getNombre()
                                                 + "</div>");
                                     }
                                 }
                                 for (int y = 0; y < propiedades.size(); y++) {
                                     if (casillas.get(i).getId() == propiedades.get(y).getIdCasilla()) {
-                                        out.print("<div class='horizontalAbajo'>"
+                                        out.print("<div id='"+casillas.get(i).getId()+"' class='horizontalAbajo'>"
                                                 + "<div style='background-color:" + propiedades.get(y).getColor() + "; "
                                                 + "height:30px; width:136px;'></div>"
                                                 + "<div style='width:136px;height:40px;font-family: Arial;'>"
@@ -191,13 +191,13 @@
                             for (int k = 31; k <= 39; k++) {
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(k).getId() == especiales.get(x).getIdCasilla()) {
-                                        out.print("<div class='verticalDerecha'>" + casillas.get(k).getNombre()
+                                        out.print("<div id='"+casillas.get(k).getId()+"' class='verticalDerecha'>" + casillas.get(k).getNombre()
                                                 + "</div>");
                                     }
                                 }
                                 for (int y = 0; y < propiedades.size(); y++) {
                                     if (casillas.get(k).getId() == propiedades.get(y).getIdCasilla()) {
-                                        out.print("<div class='verticalDerecha'>"
+                                        out.print("<div id='"+casillas.get(k).getId()+"' class='verticalDerecha'>"
                                                 + "<div style='background-color:" + propiedades.get(y).getColor() + "; "
                                                 + "height:136px; width:30px;'></div>"
                                                 + "<div style='width:90px;height:136px; margin-left:31px; "
@@ -208,8 +208,10 @@
                                     }
                                 }
                             }
+                            
                         %>         
                     </div>
+                      
                 </div>           
             </section>
             <section>
@@ -278,18 +280,8 @@
                             + "</script>");
                     
                     request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);                 
-		}
+		}      
                 
-                for(int i=0; i<jugadores.size();i++){
-                    int contadorFiguras = i+1;
-                    out.println("<script>"
-                              +"var tablero=document.getElementById('tablero');"
-                              +"var imgFiguras = document.createElement('img');"
-                              +"imgFiguras.id='"+jugadores.get(i).getFigura()+"';"
-                              +"imgFiguras.src='./img/figura"+contadorFiguras+".png';"    
-                              +"tablero.appendChild(imgFiguras);"
-                              + "</script>");
-                }
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
                 request.getSession().setAttribute("listaCasillas", casillas);
@@ -297,6 +289,23 @@
                 request.getSession().setAttribute("listaTarjetaCCySuerte", tarjetasCCySuerte);
                 request.getSession().setAttribute("tablero", tablero);
                 request.getSession().setAttribute("partida", partida);
+                
+                for(int i=0; i<jugadores.size();i++){
+                    int contadorFiguras = i+1;
+                    int contadorCasilla=jugadores.get(i).getIdCasilla();
+                    out.println("<script>"
+                            
+                             +"var casilla=document.getElementById('"+contadorCasilla+"');"
+                              +"var imgFiguras = document.createElement('img');"
+                              +"imgFiguras.id='"+jugadores.get(i).getFigura()+"';"
+                              +"imgFiguras.src='./img/figura"+contadorFiguras+".png';"    
+                              +"if("+jugadores.get(i).getIdCasilla()+">=21 && "+jugadores.get(i).getIdCasilla()+"<=30){"
+                              +"imgFiguras.style.float = 'left';"
+                              +"imgFiguras.style.marginTop = '-90px'"        
+                              + "}"
+                              +"casilla.appendChild(imgFiguras);"                                    
+                              + "</script>");
+                }
             %>
             <footer id="piePagina2">
                 <p>(c) 2017 Invest In Andorra Services</p>
