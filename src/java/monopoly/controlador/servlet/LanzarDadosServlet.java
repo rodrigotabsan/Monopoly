@@ -6,6 +6,7 @@
 package monopoly.controlador.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import monopoly.modelo.entidades.Casilla;
 import monopoly.modelo.entidades.Jugador;
 import monopoly.util.UtilesServlets;
 
@@ -35,8 +37,9 @@ public class LanzarDadosServlet extends HttpServlet{
          String lanzarDados=request.getParameter("lanzarDados");
          System.out.println("Lanza dados "+lanzarDados);
          Jugador jugador = new Jugador();
+         List<Casilla> casillas = new ArrayList<Casilla>();
          if(lanzarDados!=null){                
-           lanzarDados(request, response, jugador);     
+           lanzarDados(request, response, jugador, casillas);     
          }
         }catch(IOException ex){
             System.out.println("Error: "+ex);
@@ -50,11 +53,12 @@ public class LanzarDadosServlet extends HttpServlet{
      * @param response respuesta de la pagina
      * @param jugador Jugador que lanza los dados
      */
-    private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador){
+    private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador, List <Casilla> casillas){
         try {
             UtilesServlets utilServlet = new UtilesServlets();                         
             int posicionJugador = (int) request.getSession().getAttribute("posicionJugador");
             jugador=(Jugador)request.getSession().getAttribute("turnoDeJugador");
+            casillas=(List<Casilla>) request.getSession().getAttribute("listaCasillas");
             int resultado1=(Integer)request.getSession().getAttribute("resultado1");
             int resultado2=(Integer)request.getSession().getAttribute("resultado2");
             int numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
@@ -77,6 +81,13 @@ public class LanzarDadosServlet extends HttpServlet{
                         }
                     }else{
                         jugadores.get(i).setEstadoTurno(2);
+                    }
+                    for (int j=0;j<casillas.size();j++){
+                        if(jugador.getIdCasilla()==casillas.get(j).getId() && 
+                                    (casillas.get(j).getNombre().equals("CAJA DE COMUNIDAD") || 
+                                     casillas.get(j).getNombre().equals("SUERTE"))){
+                            jugador.setCogeTarjeta(1);
+                        }
                     }
                     jugadores.get(i).setIdCasilla(jugador.getIdCasilla());
                     //Si el jugador cae en la casilla de ve a la carcel,

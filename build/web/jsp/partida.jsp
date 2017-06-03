@@ -115,81 +115,85 @@
                     int minimoRes = 1;                    
                     int result11 = 0;                             
                     
-                    for (int j=0;j<casillas.size();j++){
-                        System.out.println("Id: "+casillas.get(j).getId()+" - "+"Id Casilla jugador: "+turnoDeJugador.getIdCasilla());
-                        System.out.println("Nombre casilla: "+casillas.get(j).getNombre());
-                        if(turnoDeJugador.getIdCasilla()==casillas.get(j).getId() && 
-                                (casillas.get(j).getNombre().equals("CAJA DE COMUNIDAD") || 
-                                 casillas.get(j).getNombre().equals("SUERTE"))){
-                            List <TSorpresaSuerte> tarjetasCC = new ArrayList<TSorpresaSuerte>(); 
-                            List <TSorpresaSuerte> tarjetasSuerte = new ArrayList<TSorpresaSuerte>();
-                            System.out.println("PASA POR AQUI");
-                            for(int i = 0; i<tarjetasCCySuerte.size();i++){
-                                System.out.println("PASA POR AQUI "+i);
-                                if(tarjetasCCySuerte.get(i).getTipo().equals("CARTA SORPRESA")){
-                                    System.out.println("PASA POR AQUI "+i+".1");
-                                    tarjetasCC.add(tarjetasCCySuerte.get(i));
+                    if(turnoDeJugador.getCogeTarjeta()==1){
+                        for (int j=0;j<casillas.size();j++){
+                            System.out.println("Id: "+casillas.get(j).getId()+" - "+"Id Casilla jugador: "+turnoDeJugador.getIdCasilla());
+                            System.out.println("Nombre casilla: "+casillas.get(j).getNombre());
+                            if(turnoDeJugador.getIdCasilla()==casillas.get(j).getId() && 
+                                    (casillas.get(j).getNombre().equals("CAJA DE COMUNIDAD") || 
+                                     casillas.get(j).getNombre().equals("SUERTE"))){
+                                List <TSorpresaSuerte> tarjetasCC = new ArrayList<TSorpresaSuerte>(); 
+                                List <TSorpresaSuerte> tarjetasSuerte = new ArrayList<TSorpresaSuerte>();
+
+                                System.out.println("PASA POR AQUI");
+                                for(int i = 0; i<tarjetasCCySuerte.size();i++){
+                                    System.out.println("PASA POR AQUI "+i);
+                                    if(tarjetasCCySuerte.get(i).getTipo().equals("CARTA SORPRESA")){
+                                        System.out.println("PASA POR AQUI "+i+".1");
+                                        tarjetasCC.add(tarjetasCCySuerte.get(i));
+                                    }
+                                    if(tarjetasCCySuerte.get(i).getTipo().equals("CARTA SUERTE")){
+                                        System.out.println("PASA POR AQUI "+i+".2");
+                                        tarjetasSuerte.add(tarjetasCCySuerte.get(i));
+                                    }
                                 }
-                                if(tarjetasCCySuerte.get(i).getTipo().equals("CARTA SUERTE")){
-                                    System.out.println("PASA POR AQUI "+i+".2");
-                                    tarjetasSuerte.add(tarjetasCCySuerte.get(i));
+                                List <TSorpresaSuerte> tarjetas=new ArrayList<TSorpresaSuerte>();
+                                if(casillas.get(j).getNombre().equals("SUERTE")){                                
+                                    int maximoRes = 15;
+                                    result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
+                                    tarjetas=tarjetasSuerte;
+                                }else{
+                                    int maximoRes = 16;
+                                    result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
+                                    tarjetas=tarjetasCC;
                                 }
-                            }
-                            List <TSorpresaSuerte> tarjetas=new ArrayList<TSorpresaSuerte>();
-                            if(casillas.get(j).getNombre().equals("SUERTE")){                                
-                                int maximoRes = 15;
-                                result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
-                                tarjetas=tarjetasSuerte;
-                            }else{
-                                int maximoRes = 16;
-                                result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
-                                tarjetas=tarjetasCC;
-                            }
-                            out.print("<script>"
-                                +"tarjetaCCSuerte();"
-                                +"document.getElementById('cajaTarjeta').style.position= 'absolute';"    
-                                +"document.getElementById('cajaTarjeta').style.overflow= 'auto';"
-                                +"document.getElementById('cajaTarjeta').style.visibility='visible';"
-                                +"document.getElementById('cajaTarjeta').style.zIndex='1001';"
-                                +"document.body.style.backgroundColor='black';"
-                                +"document.getElementById('todoMonopoly').style.zIndex='1002';"
-                                +"document.getElementById('todoMonopoly').style.opacity='0.60';"
-                                +"document.getElementById('textoTarjeta').style.backgroundColor='white';"
-                                +"document.getElementById('textoTarjeta').style.width='85%';"
-                                +"document.getElementById('textoTarjeta').style.height='30%';"
-                                +"document.getElementById('textoTarjeta').style.marginTop='5%';"
-                                +"document.getElementById('textoTarjeta').style.marginLeft='8%';"
-                                +"document.getElementById('inputAceptarTarjeta').style.marginLeft='42%';"
-                                +"document.getElementById('inputAceptarTarjeta').style.marginTop='10%';"
-                                + "document.getElementById('textoTarjeta').innerHTML='"+tarjetas.get(result11).getDescripcion()+"';"
-                                + "document.getElementById('btnLanzarDados').disabled=true;"
-                                + "document.getElementById('btnNegociar').disabled=true;"
-                                + "document.getElementById('btnTerminar').disabled=true;"
-                                + "document.getElementById('btnGuardarPartida').disabled=true;"
-                                        
-                                + "document.getElementById('inputAceptarTarjeta').onclick=function(){"                                
-                                    + "document.getElementById('todoMonopoly').style.zIndex='1001';"
-                                    + "document.getElementById('todoMonopoly').style.opacity='initial';"                                    
-                                    + "document.getElementById('cajaTarjeta').style.visibility='hidden';"  
-                                    + "document.getElementById('cajaTarjeta').style.zIndex='1002';" 
-                                    + "if("+turnoDeJugador.getEstadoTurno()+"==2){"
-                                        + "document.getElementById('btnLanzarDados').disabled=true;"
-                                        + "document.getElementById('btnNegociar').disabled=false;"
-                                        + "document.getElementById('btnTerminar').disabled=false;"
-                                        + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                out.print("<script>"
+                                    +"tarjetaCCSuerte();"
+                                    +"document.getElementById('cajaTarjeta').style.position= 'absolute';"    
+                                    +"document.getElementById('cajaTarjeta').style.overflow= 'auto';"
+                                    +"document.getElementById('cajaTarjeta').style.visibility='visible';"
+                                    +"document.getElementById('cajaTarjeta').style.zIndex='1001';"
+                                    +"document.body.style.backgroundColor='black';"
+                                    +"document.getElementById('todoMonopoly').style.zIndex='1002';"
+                                    +"document.getElementById('todoMonopoly').style.opacity='0.60';"
+                                    +"document.getElementById('textoTarjeta').style.backgroundColor='white';"
+                                    +"document.getElementById('textoTarjeta').style.width='85%';"
+                                    +"document.getElementById('textoTarjeta').style.height='30%';"
+                                    +"document.getElementById('textoTarjeta').style.marginTop='5%';"
+                                    +"document.getElementById('textoTarjeta').style.marginLeft='8%';"
+                                    +"document.getElementById('inputAceptarTarjeta').style.marginLeft='42%';"
+                                    +"document.getElementById('inputAceptarTarjeta').style.marginTop='10%';"
+                                    + "document.getElementById('textoTarjeta').innerHTML='"+tarjetas.get(result11).getDescripcion()+"';"
+                                    + "document.getElementById('btnLanzarDados').disabled=true;"
+                                    + "document.getElementById('btnNegociar').disabled=true;"
+                                    + "document.getElementById('btnTerminar').disabled=true;"
+                                    + "document.getElementById('btnGuardarPartida').disabled=true;"
+
+                                    + "document.getElementById('inputAceptarTarjeta').onclick=function(){"                                
+                                        + "document.getElementById('todoMonopoly').style.zIndex='1001';"
+                                        + "document.getElementById('todoMonopoly').style.opacity='initial';"                                    
+                                        + "document.getElementById('cajaTarjeta').style.visibility='hidden';"  
+                                        + "document.getElementById('cajaTarjeta').style.zIndex='1002';" 
+                                        + "if("+turnoDeJugador.getEstadoTurno()+"==2){"
+                                            + "document.getElementById('btnLanzarDados').disabled=true;"
+                                            + "document.getElementById('btnNegociar').disabled=false;"
+                                            + "document.getElementById('btnTerminar').disabled=false;"
+                                            + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                        + "}"
+                                        + "if("+turnoDeJugador.getEstadoTurno()+"==1){"
+                                            + "document.getElementById('btnLanzarDados').disabled=false;"
+                                            + "document.getElementById('btnNegociar').disabled=true;"
+                                            + "document.getElementById('btnTerminar').disabled=true;"
+                                            + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                        + "}"        
+                                        + "document.getElementById('btnLanzarDados').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnNegociar').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnTerminar').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnGuardarPartida').style.cursor = 'pointer';"
                                     + "}"
-                                    + "if("+turnoDeJugador.getEstadoTurno()+"==1){"
-                                        + "document.getElementById('btnLanzarDados').disabled=false;"
-                                        + "document.getElementById('btnNegociar').disabled=true;"
-                                        + "document.getElementById('btnTerminar').disabled=true;"
-                                        + "document.getElementById('btnGuardarPartida').disabled=false;"
-                                    + "}"        
-                                    + "document.getElementById('btnLanzarDados').style.cursor = 'pointer';"
-                                    + "document.getElementById('btnNegociar').style.cursor = 'pointer';"
-                                    + "document.getElementById('btnTerminar').style.cursor = 'pointer';"
-                                    + "document.getElementById('btnGuardarPartida').style.cursor = 'pointer';"
-                                + "}"
-                            +"</script>");
+                                +"</script>");
+                                turnoDeJugador.setCogeTarjeta(0);
+                            }
                         }
                     }%>
                 </section>
