@@ -5,6 +5,9 @@
 --%>
 
 
+
+<%@page import="monopoly.modelo.dal.TSorpresaSuerteDAL"%>
+<%@page import="monopoly.modelo.ITSorpresaSuerteDAL"%>
 <%@page import="monopoly.controlador.DadoRule"%>
 <%@page import="java.util.Random"%>
 <%@page import="monopoly.modelo.entidades.Partida"%>
@@ -59,6 +62,7 @@
                                 + "</label>"
                                 + "</div><br>");
                     }
+                    //compruebo si jugador está en la cárcel
                     for (int a = 0; a < jugadores.size(); a++) {                       
                             //En caso de que el jugador esté en la cárcel...   
                             if(jugadores.get(a).getEstadoTurno()==1){
@@ -80,6 +84,7 @@
                                 }
                             }
                     }
+                    
                     for (int a = 0; a < jugadores.size(); a++) {     
                             if(jugadores.get(a).getEstadoTurno()==1){
                                 contadorJugadores=a;
@@ -89,10 +94,105 @@
                             if(jugadores.get(a).getEstadoTurno()==2){
                                 turnoDeJugador=jugadores.get(a);	
                             }                        
-                    }
-                    
+                    }                     
                 %>
             </section>
+            <section>
+                    <div id="controles">
+                         <% out.print("<h2 id='jugador'>Turno de "+turnoDeJugador.getNombre()+" </h2>"); %>
+                            <input type="button" value="Lanzar dados" id="btnLanzarDados"/><br>
+                            <input type="button" value="Negociar" id="btnNegociar"/><br>
+                            <input type="button" value="Terminar Turno" id="btnTerminar"/><br>
+                            <input type="button" value="Guardar Partida" id="btnGuardarPartida"/>
+                    </div>
+                            <% 
+                    List<Casilla> casillas = (ArrayList<Casilla>) 
+                           request.getSession().getAttribute("listaCasillas");
+                    List<TSorpresaSuerte> tarjetasCCySuerte = (ArrayList<TSorpresaSuerte>) 
+                           request.getSession().getAttribute("listaTarjetaCCySuerte");
+                                                           
+                    Random rnd = new Random();
+                    int minimoRes = 1;                    
+                    int result11 = 0;                             
+                    
+                    for (int j=0;j<casillas.size();j++){
+                        System.out.println("Id: "+casillas.get(j).getId()+" - "+"Id Casilla jugador: "+turnoDeJugador.getIdCasilla());
+                        System.out.println("Nombre casilla: "+casillas.get(j).getNombre());
+                        if(turnoDeJugador.getIdCasilla()==casillas.get(j).getId() && 
+                                (casillas.get(j).getNombre().equals("CAJA DE COMUNIDAD") || 
+                                 casillas.get(j).getNombre().equals("SUERTE"))){
+                            List <TSorpresaSuerte> tarjetasCC = new ArrayList<TSorpresaSuerte>(); 
+                            List <TSorpresaSuerte> tarjetasSuerte = new ArrayList<TSorpresaSuerte>();
+                            System.out.println("PASA POR AQUI");
+                            for(int i = 0; i<tarjetasCCySuerte.size();i++){
+                                System.out.println("PASA POR AQUI "+i);
+                                if(tarjetasCCySuerte.get(i).getTipo().equals("CARTA SORPRESA")){
+                                    System.out.println("PASA POR AQUI "+i+".1");
+                                    tarjetasCC.add(tarjetasCCySuerte.get(i));
+                                }
+                                if(tarjetasCCySuerte.get(i).getTipo().equals("CARTA SUERTE")){
+                                    System.out.println("PASA POR AQUI "+i+".2");
+                                    tarjetasSuerte.add(tarjetasCCySuerte.get(i));
+                                }
+                            }
+                            List <TSorpresaSuerte> tarjetas=new ArrayList<TSorpresaSuerte>();
+                            if(casillas.get(j).getNombre().equals("SUERTE")){                                
+                                int maximoRes = 15;
+                                result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
+                                tarjetas=tarjetasSuerte;
+                            }else{
+                                int maximoRes = 16;
+                                result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
+                                tarjetas=tarjetasCC;
+                            }
+                            out.print("<script>"
+                                +"tarjetaCCSuerte();"
+                                +"document.getElementById('cajaTarjeta').style.position= 'absolute';"    
+                                +"document.getElementById('cajaTarjeta').style.overflow= 'auto';"
+                                +"document.getElementById('cajaTarjeta').style.visibility='visible';"
+                                +"document.getElementById('cajaTarjeta').style.zIndex='1001';"
+                                +"document.body.style.backgroundColor='black';"
+                                +"document.getElementById('todoMonopoly').style.zIndex='1002';"
+                                +"document.getElementById('todoMonopoly').style.opacity='0.60';"
+                                +"document.getElementById('textoTarjeta').style.backgroundColor='white';"
+                                +"document.getElementById('textoTarjeta').style.width='85%';"
+                                +"document.getElementById('textoTarjeta').style.height='30%';"
+                                +"document.getElementById('textoTarjeta').style.marginTop='5%';"
+                                +"document.getElementById('textoTarjeta').style.marginLeft='8%';"
+                                +"document.getElementById('inputAceptarTarjeta').style.marginLeft='42%';"
+                                +"document.getElementById('inputAceptarTarjeta').style.marginTop='10%';"
+                                + "document.getElementById('textoTarjeta').innerHTML='"+tarjetas.get(result11).getDescripcion()+"';"
+                                + "document.getElementById('btnLanzarDados').disabled=true;"
+                                + "document.getElementById('btnNegociar').disabled=true;"
+                                + "document.getElementById('btnTerminar').disabled=true;"
+                                + "document.getElementById('btnGuardarPartida').disabled=true;"
+                                        
+                                + "document.getElementById('inputAceptarTarjeta').onclick=function(){"                                
+                                    + "document.getElementById('todoMonopoly').style.zIndex='1001';"
+                                    + "document.getElementById('todoMonopoly').style.opacity='initial';"                                    
+                                    + "document.getElementById('cajaTarjeta').style.visibility='hidden';"  
+                                    + "document.getElementById('cajaTarjeta').style.zIndex='1002';" 
+                                    + "if("+turnoDeJugador.getEstadoTurno()+"==2){"
+                                        + "document.getElementById('btnLanzarDados').disabled=true;"
+                                        + "document.getElementById('btnNegociar').disabled=false;"
+                                        + "document.getElementById('btnTerminar').disabled=false;"
+                                        + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                    + "}"
+                                    + "if("+turnoDeJugador.getEstadoTurno()+"==1){"
+                                        + "document.getElementById('btnLanzarDados').disabled=false;"
+                                        + "document.getElementById('btnNegociar').disabled=true;"
+                                        + "document.getElementById('btnTerminar').disabled=true;"
+                                        + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                    + "}"        
+                                    + "document.getElementById('btnLanzarDados').style.cursor = 'pointer';"
+                                    + "document.getElementById('btnNegociar').style.cursor = 'pointer';"
+                                    + "document.getElementById('btnTerminar').style.cursor = 'pointer';"
+                                    + "document.getElementById('btnGuardarPartida').style.cursor = 'pointer';"
+                                + "}"
+                            +"</script>");
+                        }
+                    }%>
+                </section>
             <section id="tapete">
                 <div id="tablero">
                     <div id="vi">
@@ -101,10 +201,7 @@
                                     request.getSession().getAttribute("listaPropiedades");
                             List<Especial> especiales = (ArrayList<Especial>) 
                                     request.getSession().getAttribute("listaEspeciales");
-                            List<Casilla> casillas = (ArrayList<Casilla>) 
-                                    request.getSession().getAttribute("listaCasillas");
-                            List<TSorpresaSuerte> tarjetasCCySuerte = (ArrayList<TSorpresaSuerte>) 
-                                    request.getSession().getAttribute("listaTarjetaCCySuerte");
+                           
                             Tablero tablero = (Tablero)
                                     request.getSession().getAttribute("tablero");
                             Partida partida = (Partida)
@@ -114,19 +211,22 @@
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(z).getId() == especiales.get(x).getIdCasilla()) {
                                         out.print("<div id='"+casillas.get(z).getId()+"' class='verticalIzquierda'>"
-                                                + casillas.get(z).getNombre() + "</div>");
+                                                + casillas.get(z).getNombre() + ""
+                                                + "<div id='casillafigura"+casillas.get(z).getId()+"' style='width:100px; height:30px;'></div>"
+                                                + "</div>");
                                     }
                                 }
                                 for (int y = 0; y < propiedades.size(); y++) {
                                     if (casillas.get(z).getId() == propiedades.get(y).getIdCasilla()) {
                                         out.print("<div id='"+casillas.get(z).getId()+"' class='verticalIzquierda'>"
-                                                + "<div style='width:100px;height:136px;margin-top:5%;'>"
+                                                + "<div style='width:100px;height:106px;margin-top:5%;'>"
                                                 + "<label style='margin-top:5px;'>" + casillas.get(z).getNombre() + "</label>"
                                                 + "</div>"
+                                                + "<div id='casillafigura"+casillas.get(z).getId()+"' style='width:100px; height:30px;margin-top:-40px;'></div>"
                                                 + "<div "
                                                 + "style='background-color:" + propiedades.get(y).getColor() + "; "
                                                 + "height:136px; width:30px; margin-left:106px; "
-                                                + "margin-top:-142.5px;font-family: Arial;'>"
+                                                + "margin-top:-102.5px;font-family: Arial;'>"
                                                 + "</div>"
                                                 + "</div>");
                                     }
@@ -140,13 +240,15 @@
                             for (int j = 20; j <= 30; j++) {
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(j).getId() == especiales.get(x).getIdCasilla()) {
-                                        out.print("<div id='"+casillas.get(j).getId()+"' class='horizontalArriba'>" + casillas.get(j).getNombre() + "</div>");
+                                        out.print("<div id='"+casillas.get(j).getId()+"' class='horizontalArriba'>" + casillas.get(j).getNombre() + 
+                                                "<div id='casillafigura"+casillas.get(j).getId()+"' style='width:100px; height:30px;'></div></div>");
                                     }
                                 }
                                 for (int y = 0; y < propiedades.size(); y++) {
                                     if (casillas.get(j).getId() == propiedades.get(y).getIdCasilla()) {
                                         out.print("<div id='"+casillas.get(j).getId()+"' class='horizontalArriba'>"
                                                 + "<div style='width:136px;height:40px;font-family: Arial;'>"
+                                                + "<div id='casillafigura"+casillas.get(j).getId()+"' style='width:100px; height:30px;'></div>"
                                                 + "<label style='margin-top:5px;'>" + casillas.get(j).getNombre() + "</label>"
                                                 + "</div><div style='background-color:" + propiedades.get(y).getColor() + "; "
                                                 + "height:30px; width:136px; margin-top:66px;'>"
@@ -165,7 +267,7 @@
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(i).getId() == especiales.get(x).getIdCasilla()) {
                                         out.print("<div id='"+casillas.get(i).getId()+"' class='horizontalAbajo'>" + casillas.get(i).getNombre()
-                                                + "</div>");
+                                                + "<div id='casillafigura"+casillas.get(i).getId()+"' style='width:30px; height:100px;'></div></div>");
                                     }
                                 }
                                 for (int y = 0; y < propiedades.size(); y++) {
@@ -177,6 +279,7 @@
                                                 + "<label style='margin-top:5%;'><label style='margin-top:5px;'>"
                                                 + casillas.get(i).getNombre() + "</label>"
                                                 + "</div>"
+                                                + "<div id='casillafigura"+casillas.get(i).getId()+"' style='width:30px; height:100px;'></div>"
                                                 + "</div>");
                                     }
                                 }
@@ -191,7 +294,8 @@
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(k).getId() == especiales.get(x).getIdCasilla()) {
                                         out.print("<div id='"+casillas.get(k).getId()+"' class='verticalDerecha'>" + casillas.get(k).getNombre()
-                                                + "</div>");
+                                                + "<div id='casillafigura"+casillas.get(k).getId()+"' style='width:30px; height:100px;'></div></div>"
+                                                );
                                     }
                                 }
                                 for (int y = 0; y < propiedades.size(); y++) {
@@ -203,6 +307,7 @@
                                                 + "margin-top:-136px;font-family: Arial;'>"
                                                 + "<label style='margin-top:5px;'>" + casillas.get(k).getNombre() + "</label>"
                                                 + "</div>"
+                                                + "<div id='casillafigura"+casillas.get(k).getId()+"' style='width:30px; height:100px;margin-left:106px;margin-top:-100px'></div>"
                                                 + "</div>");
                                     }
                                 }
@@ -213,16 +318,7 @@
                       
                 </div>           
             </section>
-            <section>
-                <div id="controles">
-                     <% out.print("<h2 id='jugador'>Turno de "+turnoDeJugador.getNombre()+" </h2>"); %>
-                        <input type="button" value="Lanzar dados" id="btnLanzarDados"/><br>
-                        <input type="button" value="Negociar" id="btnNegociar"/><br>
-                        <input type="button" value="Terminar Turno" id="btnTerminar"/><br>
-                        <input type="button" value="Guardar Partida" id="btnGuardarPartida"/>
-                </div>
-
-            </section>
+            
             <%  
                 int result1=0;
                 int result2=0;
@@ -302,25 +398,29 @@
                 for(int i=0; i<jugadores.size();i++){
                     int contadorFiguras = i+1;
                     int contadorCasilla=jugadores.get(i).getIdCasilla();
-                    out.println("<script>"
-                            
-                             +"var casilla=document.getElementById('"+contadorCasilla+"');"
-                              +"var imgFiguras = document.createElement('img');"
-                              +"imgFiguras.id='"+jugadores.get(i).getFigura()+"';"
-                              +"imgFiguras.src='./img/figura"+contadorFiguras+".png';"   
+                    System.out.println("El jugador se mueve a la casilla: "+jugadores.get(i).getIdCasilla());
+                    out.println("<script>"                            
+                             +"var casilla=document.getElementById('casillafigura"+contadorCasilla+"');"
+                              
+                              +"casilla.style.backgroundRepeat='no-repeat';"
+                              +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                              +"casilla.style.backgroundSize = '30px';"
+                                      
                               +"if("+jugadores.get(i).getIdCasilla()+">=21 && "+jugadores.get(i).getIdCasilla()+"<=30){"
-                                +"imgFiguras.style.float = 'left';"
-                                +"imgFiguras.style.marginTop = '-90px'"        
+                                +"casilla.style.backgroundRepeat='no-repeat';"
+                              +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                              +"casilla.style.backgroundSize = '30px';"     
                               + "}"
                               +"if("+jugadores.get(i).getIdCasilla()+">=11 && "+jugadores.get(i).getIdCasilla()+"<=20){"
-                                +"imgFiguras.style.float = 'left';"
-                                +"imgFiguras.style.marginTop = '40px'"        
+                               +"casilla.style.backgroundRepeat='no-repeat';"
+                              +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                              +"casilla.style.backgroundSize = '30px';"      
                               + "}"
                               +"if("+jugadores.get(i).getIdCasilla()+">=31 && "+jugadores.get(i).getIdCasilla()+"<=39){" 
-                                +"imgFiguras.style.marginTop = '40px';"
-                                +"imgFiguras.style.marginLeft = '40px';"                                    
-                              + "}"        
-                              +"casilla.appendChild(imgFiguras);"                                    
+                                +"casilla.style.backgroundRepeat='no-repeat';"
+                              +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                              +"casilla.style.backgroundSize = '30px';"
+                              + "}"                                         
                               + "</script>");
                 }
             %>

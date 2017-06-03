@@ -21,8 +21,9 @@ public class Jugador implements Serializable{
     int turno;
     int estadoTurno;
     int turnoCarcel;
+    int cogeTarjeta;
     
-    /**
+     /**
      * Constructor del Jugador
      * @param id id del jugador
      * @param nombre nombre del jugador
@@ -33,8 +34,9 @@ public class Jugador implements Serializable{
      * @param turno el turno del jugador en el que está
      * @param estadoTurno El estado del turno del jugador
      * @param turnoCarcel La cantidad de turnos que tiene que esperar para salir de la cárcel.
+     * @param cogeTarjeta Indica si tiene que coger tarjeta cc o suerte.
      */
-    public Jugador(int id, String nombre, String figura, int dinero, int idCasilla, int idPartida, int turno, int estadoTurno, int turnoCarcel) {
+    public Jugador(int id, String nombre, String figura, int dinero, int idCasilla, int idPartida, int turno, int estadoTurno, int turnoCarcel, int cogeTarjeta) {
         this.id = id;
         this.nombre = nombre;
         this.figura = figura;
@@ -44,10 +46,11 @@ public class Jugador implements Serializable{
         this.turno = turno;
         this.estadoTurno = estadoTurno;
         this.turnoCarcel = turnoCarcel;
+        this.cogeTarjeta = cogeTarjeta;
     }
 
     /**
-     *
+     * Constructor vacío del jugador.
      */
     public Jugador() {
     }
@@ -197,6 +200,22 @@ public class Jugador implements Serializable{
      */
     public void setTurnoCarcel(int turnoCarcel) {
         this.turnoCarcel = turnoCarcel;
+    }
+    
+    /**
+     * Recoge si coge tarjeta cc o suerte
+     * @return 
+     */
+    public int getCogeTarjeta() {
+        return cogeTarjeta;
+    }
+    
+    /**
+     * Indica si tiene que coger tarjeta cc o suerte
+     * @param cogeTarjeta entero que indica si tiene que coger tarjeta.
+     */
+    public void setCogeTarjeta(int cogeTarjeta) {
+        this.cogeTarjeta = cogeTarjeta;
     }
     
     

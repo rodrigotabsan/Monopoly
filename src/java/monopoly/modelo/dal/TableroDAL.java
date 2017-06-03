@@ -6,12 +6,8 @@
 package monopoly.modelo.dal;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
 import monopoly.modelo.entidades.Tablero;
 import monopoly.modelo.ITableroDAL;
 import monopoly.util.UtilesXML;
@@ -19,7 +15,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 /**
  * Utilizado para acceder al fichero XML que contiene los datos de los tableros.

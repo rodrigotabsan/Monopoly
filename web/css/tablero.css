@@ -97,7 +97,7 @@ and open the template in the editor.
 
 #controles{
     margin-left:83.2%;
-    margin-top:-80.95%;
+    margin-top:3.95%;
     border-style: solid;
     border-width: 2px;
     width:15.8%;
@@ -221,6 +221,21 @@ and open the template in the editor.
     margin-left:35%;    
     z-index:1002;
     padding:2%;
+    border-style:solid;    
+    border-width:2px;
+}
+
+#cajaTarjeta{
+    visibility:hidden;
+    display:block;
+    background:#CDE6D0;
+    width:24%;
+    height:20%;
+    float:left;
+    margin-top:-83%;
+    margin-left:35%;    
+    z-index:1002;
+    padding:1%;
     border-style:solid;    
     border-width:2px;
 }

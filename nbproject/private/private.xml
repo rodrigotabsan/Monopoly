@@ -7,21 +7,24 @@
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/web/js/partida.js</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/web/jsp/partida.jsp</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/dal/JugadorDAL.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/web/xml/tsorpresasuerte.xml</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/util/UtilesXML.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/web/css/seleccionarNumJugadores.css</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/controlador/servlet/InicioServlet.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/IPartidaDAL.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/controlador/DadoRule.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/dal/PartidaDAL.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/dal/TSorpresaSuerteDAL.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/entidades/Especial.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/web/css/tablero.css</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/entidades/Propiedad.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/entidades/Jugador.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/controlador/servlet/TerminarTurnoServlet.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/IPropiedadDAL.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/ICasillaDAL.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/controlador/servlet/SeleccionarJugadorServlet.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/web/xml/casillas.xml</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/dal/EspecialDAL.java</file>
-            <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/controlador/Dado.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/dal/CasillaDAL.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/entidades/Partida.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/IJugadorDAL.java</file>
@@ -35,6 +38,7 @@
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/dal/TableroDAL.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/entidades/Tablero.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/controlador/servlet/GuardarPartidaServlet.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/web/xml/propiedades.xml</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/src/java/monopoly/modelo/ITSorpresaSuerteDAL.java</file>
             <file>file:/C:/Users/Rodrigo/Documents/NetBeansProjects/Monopoly/web/jsp/seleccionarNumJugadores.jsp</file>
         </group>

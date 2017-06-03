@@ -179,6 +179,39 @@ function guardarPartida(){
     
 }
 
+/*
+ * Crea los componentes para la pantalla de las tarjetas sorpresa y suerte 
+ */
+function tarjetaCCSuerte(){
+    var body=document.body;
+    var cajaTarjeta = document.createElement("form");
+    cajaTarjeta.id="cajaTarjeta";        
+    body.appendChild(cajaTarjeta);
+    
+    var strong = document.createElement("strong");    
+    cajaTarjeta.appendChild(strong);
+    
+    var labelMensaje = document.createElement("label");
+    labelMensaje.innerHTML="Descripción de la tarjeta: "; 
+    labelMensaje.id="labelTarjeta";
+    strong.appendChild(labelMensaje);
+    
+    var divTarjeta=document.createElement("div");    
+    divTarjeta.id="divTarjeta";
+    cajaTarjeta.appendChild(divTarjeta);
+    
+    var textoTarjeta=document.createElement("label");    
+    divTarjeta.id="textoTarjeta";
+    divTarjeta.appendChild(textoTarjeta);
+    
+    var inputAceptar = document.createElement("input");
+    inputAceptar.type="button";
+    inputAceptar.id="inputAceptarTarjeta";
+    inputAceptar.name="terminarTarjeta";
+    inputAceptar.value="Aceptar";
+    cajaTarjeta.appendChild(inputAceptar);   
+}
+
 function actionBtnLanzarDados(){
     document.getElementById("btnLanzarDados").onclick = function(){
         
@@ -302,8 +335,10 @@ function cancelarMensaje(){
     };
 }
 
+
+
 window.onload = function() {
-    colorFondo();
+    colorFondo();    
     lanzarDados();
     terminarTurno();
     guardarPartida();   

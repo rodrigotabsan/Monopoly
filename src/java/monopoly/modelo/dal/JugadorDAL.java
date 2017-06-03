@@ -107,6 +107,9 @@ public class JugadorDAL implements IJugadorDAL{
              Element nuevoTurnoCarcel = doc.createElement("turnoCarcel");
              nuevoTurnoCarcel.setTextContent(String.valueOf(usuario.getTurnoCarcel()));
              
+             Element nuevoCogeTarjeta = doc.createElement("cogetarjeta");
+             nuevoTurnoCarcel.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
+                     
              nuevoUsuario.appendChild(nuevoId);
              nuevoUsuario.appendChild(nuevoIdCasilla);
              nuevoUsuario.appendChild(nuevoDinero);
@@ -116,6 +119,7 @@ public class JugadorDAL implements IJugadorDAL{
              nuevoUsuario.appendChild(nuevoTurno);
              nuevoUsuario.appendChild(nuevoEstadoTurno);
              nuevoUsuario.appendChild(nuevoTurnoCarcel);
+             nuevoUsuario.appendChild(nuevoCogeTarjeta);
              nodoRaiz.appendChild(nuevoUsuario);     
 
              util.modificarOEliminarElementoXML(new File ("xml/usuarios.xml"), doc);    
@@ -146,7 +150,9 @@ public class JugadorDAL implements IJugadorDAL{
                  objUsuario.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla", unElemento)));
                  objUsuario.setIdCasilla(Integer.parseInt(obtenerNodoValor("idpartida", unElemento)));
                  objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("turno", unElemento)));
-                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("estadoturno", unElemento)));
+                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("estadoturno", unElemento)));                 
+                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("turnoCarcel", unElemento)));
+                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("cogetarjeta", unElemento)));
                  listaUsuarios.add(objUsuario);
              }
          }    
