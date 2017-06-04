@@ -47,12 +47,12 @@
                 <%                     
                     Jugador turnoDeJugador= new Jugador();
                     Jugador siguienteTurnoDeJugador= new Jugador();
-                    List<Jugador> jugadores = (List<Jugador>) request.getSession().getAttribute("listaJugadoresPartida");                    
+                    List<Jugador> jugadores = new ArrayList<Jugador>();
                     if(request.getSession().getAttribute("jugadores")!=null){
                         jugadores=(List <Jugador>)request.getSession().getAttribute("jugadores");                        
                     }
-                    if(request.getSession().getAttribute("todosjugadores")!=null){
-                        jugadores=(List <Jugador>)request.getSession().getAttribute("todosjugadores");                        
+                    if((List<Jugador>)request.getSession().getAttribute("listaJugadoresPartida")!=null){
+                        jugadores=(List <Jugador>)request.getSession().getAttribute("listaJugadoresPartida");                        
                     }                 
                     int contadorJugadores=0;
                     for (int a = 0; a < jugadores.size(); a++) {
@@ -125,15 +125,11 @@
                                 List <TSorpresaSuerte> tarjetasCC = new ArrayList<TSorpresaSuerte>(); 
                                 List <TSorpresaSuerte> tarjetasSuerte = new ArrayList<TSorpresaSuerte>();
 
-                                System.out.println("PASA POR AQUI");
                                 for(int i = 0; i<tarjetasCCySuerte.size();i++){
-                                    System.out.println("PASA POR AQUI "+i);
                                     if(tarjetasCCySuerte.get(i).getTipo().equals("CARTA SORPRESA")){
-                                        System.out.println("PASA POR AQUI "+i+".1");
                                         tarjetasCC.add(tarjetasCCySuerte.get(i));
                                     }
                                     if(tarjetasCCySuerte.get(i).getTipo().equals("CARTA SUERTE")){
-                                        System.out.println("PASA POR AQUI "+i+".2");
                                         tarjetasSuerte.add(tarjetasCCySuerte.get(i));
                                     }
                                 }
@@ -327,6 +323,56 @@
                 int result1=0;
                 int result2=0;
                 
+                for(int i=0; i<propiedades.size();i++){
+                    //Si el id del usuario es = 0 quiere decir que no tiene propietario.
+                    if(propiedades.get(i).getIdUsuario()==0 && turnoDeJugador.getIdCasilla()==propiedades.get(i).getIdCasilla()){
+                        request.getSession().setAttribute("listaJugadoresPartida", jugadores);
+                        request.getSession().setAttribute("jugador", turnoDeJugador);                        
+                        out.print("<script>"
+                                    +"comprarPropiedad();"
+                                    +"document.getElementById('cajaCompraPropiedad').style.position= 'absolute';"    
+                                    +"document.getElementById('cajaCompraPropiedad').style.overflow= 'auto';"
+                                    +"document.getElementById('cajaCompraPropiedad').style.visibility='visible';"
+                                    +"document.getElementById('cajaCompraPropiedad').style.zIndex='1001';"
+                                    +"document.body.style.backgroundColor='black';"
+                                    +"document.getElementById('todoMonopoly').style.zIndex='1002';"
+                                    +"document.getElementById('todoMonopoly').style.opacity='0.60';"                                    
+                                    +"document.getElementById('inputSiCompra').style.marginLeft='12%';"
+                                    +"document.getElementById('inputSiCompra').style.marginTop='10%';"
+                                    +"document.getElementById('inputNoCompra').style.marginLeft='57%';"
+                                    +"document.getElementById('inputNoCompra').style.marginTop='10%';"                                   
+                                    + "document.getElementById('btnLanzarDados').disabled=true;"
+                                    + "document.getElementById('btnNegociar').disabled=true;"
+                                    + "document.getElementById('btnTerminar').disabled=true;"
+                                    + "document.getElementById('btnGuardarPartida').disabled=true;"
+                                    
+                                    + "document.getElementById('inputNoCompra').onclick=function(){"
+                                        + "document.getElementById('todoMonopoly').style.zIndex='1001';"
+                                        + "document.getElementById('todoMonopoly').style.opacity='initial';"                                    
+                                        + "document.getElementById('cajaCompraPropiedad').style.visibility='hidden';"  
+                                        + "document.getElementById('cajaCompraPropiedad').style.zIndex='1002';" 
+                                        + "if("+turnoDeJugador.getEstadoTurno()+"==2){"
+                                            + "document.getElementById('btnLanzarDados').disabled=true;"
+                                            + "document.getElementById('btnNegociar').disabled=false;"
+                                            + "document.getElementById('btnTerminar').disabled=false;"
+                                            + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                        + "}"
+                                        + "if("+turnoDeJugador.getEstadoTurno()+"==1){"
+                                            + "document.getElementById('btnLanzarDados').disabled=false;"
+                                            + "document.getElementById('btnNegociar').disabled=true;"
+                                            + "document.getElementById('btnTerminar').disabled=true;"
+                                            + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                        + "}"        
+                                        + "document.getElementById('btnLanzarDados').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnNegociar').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnTerminar').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnGuardarPartida').style.cursor = 'pointer';"      
+                                    + "}"
+                                +"</script>");
+                        
+                    }
+                }
+                
 		if(turnoDeJugador.getEstadoTurno()==1){
                     Random random = new Random();            
                     int minimo = 1;
@@ -373,7 +419,7 @@
                     request.getSession().setAttribute("resultado2",result2);
                     request.getSession().setAttribute("posicionJugador",posicionJugador);
                     request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);
-                    request.getSession().setAttribute("todosJugadores", jugadores);
+                    request.getSession().setAttribute("listaJugadoresPartida", jugadores);
                     request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);
                 }                
                 

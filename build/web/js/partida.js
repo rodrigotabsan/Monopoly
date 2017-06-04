@@ -212,6 +212,38 @@ function tarjetaCCSuerte(){
     cajaTarjeta.appendChild(inputAceptar);   
 }
 
+/*Crea los componentes para la pantalla de compra.*/
+function comprarPropiedad(){
+    var body=document.body;
+    var cajaCompraPropiedad = document.createElement("form");
+    cajaCompraPropiedad.id="cajaCompraPropiedad";     
+    cajaCompraPropiedad.action="comprarPropiedadServlet";
+    cajaCompraPropiedad.method="POST";
+    body.appendChild(cajaCompraPropiedad);
+    
+    var strong = document.createElement("strong");    
+    cajaCompraPropiedad.appendChild(strong);
+    
+    var labelMensaje = document.createElement("label");
+    labelMensaje.innerHTML="La propiedad no tiene dueño. ¿Desea comprar la propiedad?"; 
+    labelMensaje.id="labelTarjeta";
+    strong.appendChild(labelMensaje);
+       
+    var inputSi = document.createElement("input");
+    inputSi.type="submit";
+    inputSi.id="inputSiCompra";
+    inputSi.name="finalizarCompra";
+    inputSi.value="Aceptar";
+    cajaCompraPropiedad.appendChild(inputSi);   
+    
+    var inputNo = document.createElement("input");
+    inputNo.type="button";
+    inputNo.id="inputNoCompra";
+    inputNo.name="cancelarCompra";
+    inputNo.value="Cancelar";
+    cajaCompraPropiedad.appendChild(inputNo);   
+}
+
 function actionBtnLanzarDados(){
     document.getElementById("btnLanzarDados").onclick = function(){
         

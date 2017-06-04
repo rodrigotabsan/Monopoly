@@ -240,6 +240,21 @@ and open the template in the editor.
     border-width:2px;
 }
 
+#cajaCompraPropiedad{
+    visibility:hidden;
+    display:block;
+    background:#CDE6D0;
+    width:24%;
+    height:20%;
+    float:left;
+    margin-top:-83%;
+    margin-left:35%;    
+    z-index:1002;
+    padding:1%;
+    border-style:solid;    
+    border-width:2px;
+}
+
 #todoMonopoly{
     background-color:#9ED68D;
     z-index:1001;

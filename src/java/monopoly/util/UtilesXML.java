@@ -140,6 +140,8 @@ public class UtilesXML {
                                 + "\r\n<idpartida>0</idpartida>"
                                 + "\r\n<turno>1</turno>"
                                 + "\r\n<estadoturno>1</estadoturno>"
+                                + "\r\n<turnoCarcel>0</turnoCarcel>"
+                                + "\r\n<cogetarjeta>0</cogetarjeta>"
                                 + "\r\n</usuario>"
                                 + "\r\n</usuarios>");
                         break;

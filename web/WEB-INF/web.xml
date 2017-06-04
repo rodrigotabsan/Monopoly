@@ -48,6 +48,14 @@
         <servlet-name>GuardarPartidaServlet</servlet-name>
         <url-pattern>/guardarPartidaServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ComprarPropiedadServlet</servlet-name>
+        <servlet-class>monopoly.controlador.servlet.ComprarPropiedadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ComprarPropiedadServlet</servlet-name>
+        <url-pattern>/comprarPropiedadServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             300

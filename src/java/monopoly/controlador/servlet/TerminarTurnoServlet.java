@@ -72,7 +72,7 @@ public class TerminarTurnoServlet  extends HttpServlet{
             }        
         }
         
-        request.getSession().setAttribute("jugadores", jugadores);        
+        request.getSession().setAttribute("listaJugadoresPartida", jugadores);        
         utilServlet.mostrarVista("./jsp/partida.jsp", request, response);   
     }
     /**

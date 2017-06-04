@@ -108,7 +108,7 @@ public class JugadorDAL implements IJugadorDAL{
              nuevoTurnoCarcel.setTextContent(String.valueOf(usuario.getTurnoCarcel()));
              
              Element nuevoCogeTarjeta = doc.createElement("cogetarjeta");
-             nuevoTurnoCarcel.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
+             nuevoCogeTarjeta.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
                      
              nuevoUsuario.appendChild(nuevoId);
              nuevoUsuario.appendChild(nuevoIdCasilla);
