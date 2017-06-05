@@ -375,8 +375,10 @@
                 
 		if(turnoDeJugador.getEstadoTurno()==1){
                     Random random = new Random();            
+                    int numVecesDadosRep=0;
                     int minimo = 1;
                     int maximo = 7;
+                    
                     result1 = random.nextInt(maximo-minimo) + minimo;
                     result2 = random.nextInt(maximo-minimo) + minimo; 
                     System.out.println("Jugador "+turnoDeJugador.getNombre()+" obtiene un resultado de "+result1+" / "+result2);
@@ -409,12 +411,12 @@
                     if(posicionJugador==40){
                         posicionJugador=0;                        
                     }
-                    int numVecesDadosRep=0;
+                   
                     
                     if(request.getSession().getAttribute("numVecesDadosRep")!=null){
                         numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
                     }
-                    
+                    System.out.println("Número de veces que los dados se repiten: "+numVecesDadosRep);
                     request.getSession().setAttribute("resultado1",result1);
                     request.getSession().setAttribute("resultado2",result2);
                     request.getSession().setAttribute("posicionJugador",posicionJugador);
@@ -436,7 +438,7 @@
                     
                     request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);                 
 		}      
-                                               
+                
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
                 request.getSession().setAttribute("listaCasillas", casillas);

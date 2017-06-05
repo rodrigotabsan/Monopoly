@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import monopoly.modelo.entidades.Casilla;
+import monopoly.modelo.entidades.Especial;
 import monopoly.modelo.entidades.Jugador;
 import monopoly.modelo.entidades.Propiedad;
 import monopoly.util.UtilesServlets;
@@ -40,8 +41,9 @@ public class LanzarDadosServlet extends HttpServlet{
          Jugador jugador = new Jugador();
          List<Casilla> casillas = new ArrayList<Casilla>();
          List<Propiedad> propiedades = new ArrayList<Propiedad>();
+         List<Especial> especiales = new ArrayList<Especial>();
          if(lanzarDados!=null){                
-           lanzarDados(request, response, jugador, casillas, propiedades);     
+           lanzarDados(request, response, jugador, casillas, propiedades, especiales);     
          }
         }catch(IOException ex){
             System.out.println("Error: "+ex);
@@ -55,16 +57,29 @@ public class LanzarDadosServlet extends HttpServlet{
      * @param response respuesta de la pagina
      * @param jugador Jugador que lanza los dados
      */
-    private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador, List <Casilla> casillas, List <Propiedad> propiedades){
+    private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador, List <Casilla> casillas, List <Propiedad> propiedades, List<Especial> especiales){
         try {
-            UtilesServlets utilServlet = new UtilesServlets();                         
+            UtilesServlets utilServlet = new UtilesServlets();  
+            
             int posicionJugador = (int) request.getSession().getAttribute("posicionJugador");
+            
             jugador=(Jugador)request.getSession().getAttribute("turnoDeJugador");
             casillas=(List<Casilla>) request.getSession().getAttribute("listaCasillas");
             propiedades=(List<Propiedad>)request.getSession().getAttribute("listaPropiedades");
+            especiales=(List<Especial>)request.getSession().getAttribute("listaEspeciales");
+            
             int resultado1=(Integer)request.getSession().getAttribute("resultado1");
             int resultado2=(Integer)request.getSession().getAttribute("resultado2");
             int numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
+            
+            boolean primeraEstacion=false;
+            boolean segundaEstacion=false;
+            boolean terceraEstacion=false;
+            boolean cuartaEstacion=false;
+            boolean centralElectrica=false;
+            boolean centralAgua=false;
+            boolean caeEnCasillaEstacion=false;
+            boolean caeEnCasillaCentral=false;
             
             //posicion actual del jugador
             jugador.setIdCasilla(posicionJugador);
@@ -85,6 +100,7 @@ public class LanzarDadosServlet extends HttpServlet{
                         }
                     }else{
                         jugadores.get(i).setEstadoTurno(2);
+                        numVecesDadosRep=0;
                     }
                     //Compruebo si el jugador esta en la casilla de CC o de suerte. 
                     //En caso de que este, indico que coja tarjeta.
@@ -104,23 +120,109 @@ public class LanzarDadosServlet extends HttpServlet{
                         jugadores.get(i).setEstadoTurno(1);
                     }
                     //Si el jugador cae en una propiedad que no es suya, realiza
-                    //el pago correspondiente.
+                    //el pago correspondiente.                    
                     for(int p=0; p<propiedades.size();p++){ 
                         if(jugador.getIdCasilla()==propiedades.get(p).getIdCasilla()){
+                            int dinero=propiedades.get(p).getAlquiler();
                             for(int x=0;x<jugadores.size();x++){
                                 if(jugadores.get(x).getId()==propiedades.get(p).getIdUsuario() &&
                                         jugador.getId()!=propiedades.get(p).getIdUsuario()
-                                        && propiedades.get(p).getIdUsuario()!=0){
-                                    jugadores.get(x).setDinero(jugadores.get(x).getDinero()+propiedades.get(p).getAlquiler());
-                                    System.out.println("El jugador "+jugadores.get(x).getNombre()+" ha cobrado el dinero del alquiler");
+                                        && propiedades.get(p).getIdUsuario()!=0){                          
+                                    //Estaciones
+                                    for(int r=0; r<propiedades.size();r++){                                        
+                                        
+                                        if(propiedades.get(p).getId()==propiedades.get(r).getId() && 
+                                                (propiedades.get(r).getId()==3||propiedades.get(r).getId()==11
+                                                ||propiedades.get(r).getId()==18||propiedades.get(r).getId()==26)){
+                                            caeEnCasillaEstacion=true;
+                                        }
+                                        
+                                        if(propiedades.get(r).getId()==3 && jugadores.get(x).getId()==propiedades.get(r).getIdUsuario()
+                                                && caeEnCasillaEstacion==true){
+                                            primeraEstacion=true;
+                                        }
+                                        
+                                        if(propiedades.get(r).getId()==11 && jugadores.get(x).getId()==propiedades.get(r).getIdUsuario()
+                                                && caeEnCasillaEstacion==true){
+                                            segundaEstacion=true;
+                                        }
+                                        
+                                        if(propiedades.get(r).getId()==18 && jugadores.get(x).getId()==propiedades.get(r).getIdUsuario()
+                                                && caeEnCasillaEstacion==true){
+                                            terceraEstacion=true;
+                                        }
+                                        
+                                        if(propiedades.get(r).getId()==26 && jugadores.get(x).getId()==propiedades.get(r).getIdUsuario()
+                                                && caeEnCasillaEstacion==true){
+                                            cuartaEstacion=true;
+                                        }                                                                                                                        
+                                        
+                                        if(primeraEstacion==true || segundaEstacion==true
+                                                ||terceraEstacion==true||cuartaEstacion==true){
+                                            dinero=propiedades.get(p).getAlquiler();
+                                            System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
+                                        }
+                                        if(segundaEstacion==true && terceraEstacion==true||
+                                                segundaEstacion==true && cuartaEstacion==true||
+                                                segundaEstacion==true && primeraEstacion==true||
+                                                terceraEstacion==true && cuartaEstacion==true||
+                                                primeraEstacion==true && terceraEstacion==true||
+                                                primeraEstacion==true && cuartaEstacion==true){
+                                            dinero=50;
+                                            System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
+                                        }                                        
+                                        if(terceraEstacion==true && segundaEstacion==true && cuartaEstacion==true||
+                                                terceraEstacion==true && segundaEstacion==true && primeraEstacion==true||
+                                                segundaEstacion==true && cuartaEstacion==true && primeraEstacion==true){
+                                            dinero=100;
+                                            System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
+                                        }
+                                        if(cuartaEstacion==true && terceraEstacion==true && segundaEstacion==true &&
+                                                primeraEstacion==true){
+                                            dinero=200;
+                                            System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
+                                        }
+                                        
+                                        //Compañia electrica y agua                                        
+                                        if(propiedades.get(p).getId()==propiedades.get(r).getId() && 
+                                                (propiedades.get(r).getId()==8 || propiedades.get(r).getId()==21)){
+                                            caeEnCasillaCentral=true;
+                                        }                                        
+                                        if(propiedades.get(r).getId()==8 
+                                               && caeEnCasillaCentral==true){
+                                            centralElectrica=true;
+                                        }
+                                        if(propiedades.get(r).getId()==21 
+                                                && caeEnCasillaCentral==true){
+                                            centralAgua=true;
+                                        }
+                                        if(centralElectrica==true||centralAgua==true){                                            
+                                            dinero=(resultado1+resultado2)*4;
+                                            System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
+                                        }
+                                        if(centralElectrica==true && centralAgua==true){
+                                            dinero=(resultado1+resultado2)*10;
+                                            System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
+                                        }
+                                    }                                                                    
+                                    jugadores.get(x).setDinero(jugadores.get(x).getDinero()+dinero);
+                                    System.out.println("El jugador "+jugadores.get(x).getNombre()+" ha cobrado "+dinero+" del alquiler");
                                 }
                             }
-                            if(jugadores.get(i).getId()==jugador.getId()&& propiedades.get(p).getIdUsuario()!=0){
-                                jugadores.get(i).setDinero(jugadores.get(i).getDinero()-propiedades.get(p).getAlquiler());
-                                System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha pagado el dinero del alquiler");
-                                
+                            if(jugadores.get(i).getId()!=propiedades.get(p).getIdUsuario()
+                                    && propiedades.get(p).getIdUsuario()!=0){
+                                jugadores.get(i).setDinero(jugadores.get(i).getDinero()-dinero);
+                                System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha pagado "+dinero+" del alquiler");                               
                             }                                
                         }                                                
+                    }
+                    
+                    for(int esp=0; esp<especiales.size();esp++){
+                        if(jugadores.get(i).getIdCasilla()==especiales.get(esp).getIdCasilla()
+                                && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)){
+                            jugadores.get(i).setDinero(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()));
+                            System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha pagado "+especiales.get(esp).getBonus()+" de impuestos");
+                        }
                     }
                 }
             }
