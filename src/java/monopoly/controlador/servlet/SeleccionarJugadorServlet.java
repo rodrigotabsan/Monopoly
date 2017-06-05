@@ -6,8 +6,10 @@
 package monopoly.controlador.servlet;
 import java.io.IOException; 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException; 
@@ -219,10 +221,14 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 List <Jugador> listaJugadores = jugadoresDAL.obtenerTodosUsuarios();
                 for(int i = 0; i<jugadores.size();i++){
                     listaJugadores.add(jugadores.get(i));
-                }                
+                }             
+                Random rndm = new Random();
+                Collections.shuffle(jugadores, rndm);
                 request.getSession().setAttribute("listaJugadoresTotales", jugadores);
             }
             jugadores.get(0).setEstadoTurno(1);
+            Random rndm = new Random();
+            Collections.shuffle(jugadores, rndm);
             request.getSession().setAttribute("listaJugadoresPartida", jugadores);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
         }     
@@ -307,9 +313,13 @@ public class SeleccionarJugadorServlet extends HttpServlet {
         //si jugadores humanos es igual a 8 no tenemos que ir a la pantalla de elegir
         //CPU. Sino, vamos a seleccionarNumCPU        
             if(numJugadores==8){
+                Random rndm = new Random();
+                Collections.shuffle(jugadores, rndm);
                 request.getSession().setAttribute("jugadoresTotales", jugadores);
                 utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
             }else{        
+                Random rndm = new Random();
+                Collections.shuffle(jugadores, rndm);
                 request.getSession().setAttribute("jugadores", jugadores);
                 utilServlet.mostrarVista("./jsp/seleccionarNumCPU.jsp", request, response);
             }
