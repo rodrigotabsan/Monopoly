@@ -62,6 +62,7 @@ public class ComprarPropiedadServlet extends HttpServlet{
         List<Jugador> jugadores=(List<Jugador>)request.getSession().getAttribute("listaJugadoresPartida");
         Jugador jugador = (Jugador)request.getSession().getAttribute("jugador");
         List<Propiedad> propiedades=(List<Propiedad>)request.getSession().getAttribute("listaPropiedades");
+        //Se resta el dinero de la compra al jugador
         for(int i=0; i<jugadores.size();i++){
             for(int j=0; j<propiedades.size();j++){
                 if(jugador.getId()==jugadores.get(i).getId() && 

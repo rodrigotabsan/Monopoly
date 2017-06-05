@@ -92,7 +92,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
             List <Propiedad> listaCasillasPropiedades = casillasPropiedades.obtenerTodasPropiedades();
             List <Casilla> listaCasillas = casillas.obtenerTodasCasillas();
             List <TSorpresaSuerte> listaTarjetaCCySuerte= tarjetaCCySuerte.obtenerTodasTsSorpresaSuerte();
-            
+            //Si no existe el fichero tableros.xml lo creo
             if(utilXML.crearXML("tableros.xml")){
                 tableroNuevo.setId(1);     
                 System.out.println("pasa por aqui");
@@ -112,7 +112,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                     }
                 }                
             }
-            
+            //Si no existe el fichero partidas.xml lo creo
             if(utilXML.crearXML("partidas.xml")){
                 partidaNueva.setId(0);                            
                 partidaNueva.setIdTablero(tableroNuevo.getId());
@@ -217,12 +217,14 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 jugadores.add(jugador);
             }
             IJugadorDAL jugadoresDAL = new JugadorDAL();
+            //Si existe el fichero xml de usuarios almaceno el contenido en el arrayList.
             if(!utilXML.crearXML("usuarios.xml")){                                            
                 List <Jugador> listaJugadores = jugadoresDAL.obtenerTodosUsuarios();
                 for(int i = 0; i<jugadores.size();i++){
                     listaJugadores.add(jugadores.get(i));
                 }             
                 Random rndm = new Random();
+                //Mezclo el arrayList para que sea aleatorio el comienzo.
                 Collections.shuffle(jugadores, rndm);
                 request.getSession().setAttribute("listaJugadoresTotales", jugadores);
             }
@@ -281,6 +283,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 utilServlet.mostrarVista("./jsp/seleccionarNumJugadores.jsp", request, response);
             }
         }
+        //Listo las figuras.
         List <String> figuras = new ArrayList<>();
         figuras.add("barco"); figuras.add("sombrero"); figuras.add("dedal"); figuras.add("zapato"); figuras.add("perro");
         figuras.add("coche"); figuras.add("plancha"); figuras.add("carretilla");
@@ -314,11 +317,13 @@ public class SeleccionarJugadorServlet extends HttpServlet {
         //CPU. Sino, vamos a seleccionarNumCPU        
             if(numJugadores==8){
                 Random rndm = new Random();
+                //Mezclo el arrayList para que sea aleatorio el comienzo.
                 Collections.shuffle(jugadores, rndm);
                 request.getSession().setAttribute("jugadoresTotales", jugadores);
                 utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
             }else{        
                 Random rndm = new Random();
+                //Mezclo el arrayList para que sea aleatorio el comienzo.
                 Collections.shuffle(jugadores, rndm);
                 request.getSession().setAttribute("jugadores", jugadores);
                 utilServlet.mostrarVista("./jsp/seleccionarNumCPU.jsp", request, response);

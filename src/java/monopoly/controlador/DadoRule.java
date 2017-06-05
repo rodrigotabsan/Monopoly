@@ -63,7 +63,7 @@ public class DadoRule {
     }
     
     /**
-     *
+     * Genera un aleatorio con su dado.
      * @param result resultado del dado
      * @return el Dado
      */

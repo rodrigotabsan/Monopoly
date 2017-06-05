@@ -21,7 +21,7 @@ import monopoly.util.UtilesServlets;
 public class TerminarTurnoServlet  extends HttpServlet{
 
     /**
-     *  Procesa la petición
+     * Procesa la petición
      * @param request peticion de la pagina
      * @param response respuesta de la pagina
      */
@@ -54,15 +54,19 @@ public class TerminarTurnoServlet  extends HttpServlet{
         
         int contadorJugador = (int)request.getSession().getAttribute("contadorJugadores");
         List <Jugador> jugadores= (List <Jugador>) request.getSession().getAttribute("listaJugadoresTotales");
-        
+        //Sumo +1 al contador del jugador. Si es superior al tamaño del arraylist, lo regreso a 0
+        //para que cuando haga un arrayList.get(0) obtenga el primer jugador de la lista.
         int contadorNuevoJugador = contadorJugador+1;
         if(contadorNuevoJugador>=jugadores.size()){
             contadorNuevoJugador=0;
         }
-        
+        //Obtengo el siguiente jugador
         Jugador jugadorSiguiente = jugadores.get(contadorNuevoJugador);
+        //y le cambio el estado del turno al lanzamiento de dados
         jugadorSiguiente.setEstadoTurno(1);
+        //al jugador anterior le cambio el estado a finalizado.
         jugador.setEstadoTurno(0);
+        //y ahora los almaceno en el arrayList para devolverselo a partida.jsp
         for(int i = 0; i<jugadores.size();i++){
             if(jugador.getId()==jugadores.get(i).getId()){
                 jugadores.get(i).setEstadoTurno(jugador.getEstadoTurno());

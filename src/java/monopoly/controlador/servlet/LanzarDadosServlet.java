@@ -127,41 +127,57 @@ public class LanzarDadosServlet extends HttpServlet{
                             for(int x=0;x<jugadores.size();x++){
                                 if(jugadores.get(x).getId()==propiedades.get(p).getIdUsuario() &&
                                         jugador.getId()!=propiedades.get(p).getIdUsuario()
-                                        && propiedades.get(p).getIdUsuario()!=0){                          
+                                        && propiedades.get(p).getIdUsuario()!=0){  
+                                    
+                                    //Pasos para cobrar los alquileres en caso de ser estaciones o centrales.
+                                    //Por defecto cobra lo que la propiedad indique en el XML
                                     //Estaciones
                                     for(int r=0; r<propiedades.size();r++){                                        
-                                        
+                                        //Si la propiedad en la que cae el jugador es igual a una de mi listado
+                                        //de propiedades y de ese listado de propiedades se da el caso
+                                        //que su id es 3, 11, 18 o 26 entonces significa que ha caido el jugador
+                                        //en una casilla de estación
                                         if(propiedades.get(p).getId()==propiedades.get(r).getId() && 
                                                 (propiedades.get(r).getId()==3||propiedades.get(r).getId()==11
                                                 ||propiedades.get(r).getId()==18||propiedades.get(r).getId()==26)){
                                             caeEnCasillaEstacion=true;
                                         }
                                         
+                                        //si la propiedad del listado de propiedades es 3 y el id del usuario del listado de propiedades
+                                        //es el mismo id que el del jugador propietario de esa estación, entonces almaceno un true.
                                         if(propiedades.get(r).getId()==3 && jugadores.get(x).getId()==propiedades.get(r).getIdUsuario()
                                                 && caeEnCasillaEstacion==true){
                                             primeraEstacion=true;
                                         }
                                         
+                                        //si la propiedad del listado de propiedades es 11 y el id del usuario del listado de propiedades
+                                        //es el mismo id que el del jugador propietario de esa estación, entonces almaceno un true.
                                         if(propiedades.get(r).getId()==11 && jugadores.get(x).getId()==propiedades.get(r).getIdUsuario()
                                                 && caeEnCasillaEstacion==true){
                                             segundaEstacion=true;
                                         }
                                         
+                                        //si la propiedad del listado de propiedades es 18 y el id del usuario del listado de propiedades
+                                        //es el mismo id que el del jugador propietario de esa estación, entonces almaceno un true.
                                         if(propiedades.get(r).getId()==18 && jugadores.get(x).getId()==propiedades.get(r).getIdUsuario()
                                                 && caeEnCasillaEstacion==true){
                                             terceraEstacion=true;
                                         }
                                         
+                                        //si la propiedad del listado de propiedades es 26 y el id del usuario del listado de propiedades
+                                        //es el mismo id que el del jugador propietario de esa estación, entonces almaceno un true.
                                         if(propiedades.get(r).getId()==26 && jugadores.get(x).getId()==propiedades.get(r).getIdUsuario()
                                                 && caeEnCasillaEstacion==true){
                                             cuartaEstacion=true;
                                         }                                                                                                                        
                                         
+                                        //si cualquiera de los casos es true entonces
                                         if(primeraEstacion==true || segundaEstacion==true
                                                 ||terceraEstacion==true||cuartaEstacion==true){
                                             dinero=propiedades.get(p).getAlquiler();
                                             System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
                                         }
+                                        //si dos de los casos es true
                                         if(segundaEstacion==true && terceraEstacion==true||
                                                 segundaEstacion==true && cuartaEstacion==true||
                                                 segundaEstacion==true && primeraEstacion==true||
@@ -170,13 +186,15 @@ public class LanzarDadosServlet extends HttpServlet{
                                                 primeraEstacion==true && cuartaEstacion==true){
                                             dinero=50;
                                             System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
-                                        }                                        
+                                        }   
+                                        //si tres de los casos es true
                                         if(terceraEstacion==true && segundaEstacion==true && cuartaEstacion==true||
                                                 terceraEstacion==true && segundaEstacion==true && primeraEstacion==true||
                                                 segundaEstacion==true && cuartaEstacion==true && primeraEstacion==true){
                                             dinero=100;
                                             System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
                                         }
+                                        // si los cuatro casos es true
                                         if(cuartaEstacion==true && terceraEstacion==true && segundaEstacion==true &&
                                                 primeraEstacion==true){
                                             dinero=200;
@@ -209,6 +227,8 @@ public class LanzarDadosServlet extends HttpServlet{
                                     System.out.println("El jugador "+jugadores.get(x).getNombre()+" ha cobrado "+dinero+" del alquiler");
                                 }
                             }
+                            //si el id del jugador es igual al id del propietario de la propiedad y no es igual a cero paga alquiler...
+                            //(cero es neutro).
                             if(jugadores.get(i).getId()!=propiedades.get(p).getIdUsuario()
                                     && propiedades.get(p).getIdUsuario()!=0){
                                 jugadores.get(i).setDinero(jugadores.get(i).getDinero()-dinero);
@@ -216,7 +236,7 @@ public class LanzarDadosServlet extends HttpServlet{
                             }                                
                         }                                                
                     }
-                    
+                    //En caso de que sea una casilla de impuestos especiales pagará lo correspondiente el jugador.
                     for(int esp=0; esp<especiales.size();esp++){
                         if(jugadores.get(i).getIdCasilla()==especiales.get(esp).getIdCasilla()
                                 && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)){

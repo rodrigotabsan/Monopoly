@@ -70,6 +70,9 @@
                                     System.out.println("Jugador "+jugadores.get(a).getNombre()+" en la cárcel");
                                     System.out.println("El estado turno es: "+jugadores.get(a).getEstadoTurno());
                                     jugadores.get(a).setTurnoCarcel(jugadores.get(a).getTurnoCarcel()-1);
+                                    if(jugadores.get(a).getTurnoCarcel()==0){
+                                        jugadores.get(a).setDinero(jugadores.get(a).getDinero()-50);
+                                    }
                                     jugadores.get(a).setEstadoTurno(0);
                                     System.out.println("Te quedan "+jugadores.get(a).getTurnoCarcel()+" para salir.");
                                     turnoDeJugador=jugadores.get(a);
