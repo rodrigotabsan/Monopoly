@@ -48,12 +48,14 @@
                     Jugador turnoDeJugador= new Jugador();
                     Jugador siguienteTurnoDeJugador= new Jugador();
                     List<Jugador> jugadores = new ArrayList<Jugador>();
+                    
                     if(request.getSession().getAttribute("jugadores")!=null){
                         jugadores=(List <Jugador>)request.getSession().getAttribute("jugadores");                        
                     }
                     if((List<Jugador>)request.getSession().getAttribute("listaJugadoresPartida")!=null){
                         jugadores=(List <Jugador>)request.getSession().getAttribute("listaJugadoresPartida");                        
                     }                 
+                                        
                     int contadorJugadores=0;
                     for (int a = 0; a < jugadores.size(); a++) {
                         out.print("<div class='puntuaciones'><label id='jugador'>"
@@ -61,6 +63,14 @@
                                 + "</label> <label><strong>" + jugadores.get(a).getDinero() + " €" + "</strong>"
                                 + "</label>"
                                 + "</div><br>");
+                    }
+                    for (int a = 0; a < jugadores.size(); a++) {
+                        if(jugadores.get(a).getEstadoTurno()==1 ||jugadores.get(a).getEstadoTurno()==2){
+                            if(jugadores.get(a).getDinero()<0){
+                                jugadores.remove(a);
+                                System.out.println("El jugador ha perdido");
+                            }
+                        }
                     }
                     //compruebo si jugador está en la cárcel
                     for (int a = 0; a < jugadores.size(); a++) {                       
@@ -137,12 +147,14 @@
                                     }
                                 }
                                 List <TSorpresaSuerte> tarjetas=new ArrayList<TSorpresaSuerte>();
-                                if(casillas.get(j).getNombre().equals("SUERTE")){                                
-                                    int maximoRes = 15;
+                                if(casillas.get(j).getNombre().equals("SUERTE")){  
+                                    //El maximo es 14 porque el array empieza a contar por 0
+                                    int maximoRes = 14;
                                     result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
                                     tarjetas=tarjetasSuerte;
                                 }else{
-                                    int maximoRes = 16;
+                                    //El maximo es 15 porque el array empieza a contar por 0
+                                    int maximoRes = 15;
                                     result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
                                     tarjetas=tarjetasCC;
                                 }
@@ -412,7 +424,8 @@
                         posicionJugador++;					
                     }	
                     if(posicionJugador==40){
-                        posicionJugador=0;                        
+                        posicionJugador=0;     
+                        turnoDeJugador.setDinero(turnoDeJugador.getDinero()+200);
                     }
                    
                     

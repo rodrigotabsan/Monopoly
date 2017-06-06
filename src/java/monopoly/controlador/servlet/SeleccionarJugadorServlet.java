@@ -97,18 +97,22 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 tableroNuevo.setId(1);     
                 System.out.println("pasa por aqui");
                 tableroNuevo.setTurno(1);
+                tableroNuevo.setFondoDinero(0);
+                
             }else{               
                 List<Tablero> listaTableros = tableros.obtenerTodosTableros();
                 if(!listaTableros.isEmpty()){
                     int idUltimoTablero = 0;
                     if(listaTableros.size()>0){
-                        tableroNuevo.setId(listaTableros.size());
+                        tableroNuevo.setId(listaTableros.size()-1);
                         System.out.println("pasa por aqui1");
                         tableroNuevo.setTurno(1);
+                        tableroNuevo.setFondoDinero(0);
                     }else{
                         tableroNuevo.setId(1);
                         System.out.println("pasa por aqui2");
                         tableroNuevo.setTurno(1);
+                        tableroNuevo.setFondoDinero(0);
                     }
                 }                
             }

@@ -14,19 +14,22 @@ public class Tablero implements java.io.Serializable {
     int idCasilla;
     int idTSorpresaSuerte;
     int turno;
+    int fondoDinero;
     
     /**
-     *
+     * Constructor del Tablero
      * @param id id del tablero
      * @param idCasilla id de la casilla 
      * @param idTSorpresaSuerte id de la tarjeta caja de comunidad o suerte
      * @param turno id del turno
+     * @param fondoDinero las multas acumuladas para que el primer jugador que pase por el Parking las reciba
      */
-    public Tablero(int id, int idCasilla, int idTSorpresaSuerte, int turno) {
+    public Tablero(int id, int idCasilla, int idTSorpresaSuerte, int turno, int fondoDinero) {
         this.id = id;
         this.idCasilla = idCasilla;
         this.idTSorpresaSuerte = idTSorpresaSuerte;
         this.turno= turno;
+        this.fondoDinero=fondoDinero;
     }
 
     public Tablero() {
@@ -94,6 +97,22 @@ public class Tablero implements java.io.Serializable {
      */
     public void setTurno(int turno) {
         this.turno = turno;
+    }
+    
+    /**
+     * 
+     * @return devuelve el fondo de dinero que mantiene la banca de las multas de los jugadores
+     */
+    public int getFondoDinero() {
+        return fondoDinero;
+    }
+    
+    /**
+     * 
+     * @param fondoDinero correspondiente a las multas de los jugadores.
+     */
+    public void setFondoDinero(int fondoDinero) {
+        this.fondoDinero = fondoDinero;
     }
     
     

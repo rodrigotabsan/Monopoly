@@ -66,11 +66,16 @@ public class ComprarPropiedadServlet extends HttpServlet{
         for(int i=0; i<jugadores.size();i++){
             for(int j=0; j<propiedades.size();j++){
                 if(jugador.getId()==jugadores.get(i).getId() && 
-                        jugadores.get(i).getIdCasilla()==propiedades.get(j).getIdCasilla()){
+                        jugadores.get(i).getIdCasilla()==propiedades.get(j).getIdCasilla() &&
+                        (jugadores.get(i).getDinero()-propiedades.get(j).getPrecio())>0){
                     propiedades.get(j).setIdUsuario(jugadores.get(i).getId());
                     jugadores.get(i).setDinero(jugadores.get(i).getDinero()-propiedades.get(j).getPrecio());
                     System.out.println("La propiedad "+propiedades.get(j).getNombre()+" ha sido comprada por "+jugadores.get(i).getNombre());
-                }                
+                } else if(jugador.getId()==jugadores.get(i).getId() && 
+                        jugadores.get(i).getIdCasilla()==propiedades.get(j).getIdCasilla() &&
+                        (jugadores.get(i).getDinero()-propiedades.get(j).getPrecio())<0){
+                    System.out.println("El jugador "+jugadores.get(i).getNombre()+" no dispone de tanto dinero.");
+                }               
             }
         }
         request.getSession().setAttribute("listaPropiedades", propiedades);

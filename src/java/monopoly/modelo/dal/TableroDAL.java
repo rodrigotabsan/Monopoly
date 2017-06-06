@@ -90,6 +90,8 @@ public class TableroDAL implements ITableroDAL{
 
              Element nuevoIdSorpresaSuerte = doc.createElement("idsorpresasuerte");
              nuevoIdSorpresaSuerte.setTextContent(String.valueOf(tablero.getIdTSorpresaSuerte()));
+             Element nuevoFondoDinero = doc.createElement("fondodinero");
+             nuevoFondoDinero.setTextContent(String.valueOf(tablero.getFondoDinero()));
 
              Element nuevoTurno = doc.createElement("turno");
              nuevoTurno.setTextContent(String.valueOf(tablero.getTurno()));
@@ -97,6 +99,7 @@ public class TableroDAL implements ITableroDAL{
              nuevoTablero.appendChild(nuevoId);
              nuevoTablero.appendChild(nuevoIdCasilla);
              nuevoTablero.appendChild(nuevoIdSorpresaSuerte);
+             nuevoTablero.appendChild(nuevoFondoDinero);
              nuevoTablero.appendChild(nuevoTurno);
              System.out.println("pasa por aqui4");
              nodoRaiz.appendChild(nuevoTablero);     

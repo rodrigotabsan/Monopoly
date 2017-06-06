@@ -18,6 +18,7 @@ import monopoly.modelo.entidades.Casilla;
 import monopoly.modelo.entidades.Especial;
 import monopoly.modelo.entidades.Jugador;
 import monopoly.modelo.entidades.Propiedad;
+import monopoly.modelo.entidades.Tablero;
 import monopoly.util.UtilesServlets;
 
 /**
@@ -42,8 +43,9 @@ public class LanzarDadosServlet extends HttpServlet{
          List<Casilla> casillas = new ArrayList<Casilla>();
          List<Propiedad> propiedades = new ArrayList<Propiedad>();
          List<Especial> especiales = new ArrayList<Especial>();
+         Tablero tablero = new Tablero();
          if(lanzarDados!=null){                
-           lanzarDados(request, response, jugador, casillas, propiedades, especiales);     
+           lanzarDados(request, response, jugador, casillas, propiedades, especiales,tablero);     
          }
         }catch(IOException ex){
             System.out.println("Error: "+ex);
@@ -57,7 +59,7 @@ public class LanzarDadosServlet extends HttpServlet{
      * @param response respuesta de la pagina
      * @param jugador Jugador que lanza los dados
      */
-    private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador, List <Casilla> casillas, List <Propiedad> propiedades, List<Especial> especiales){
+    private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador, List <Casilla> casillas, List <Propiedad> propiedades, List<Especial> especiales, Tablero tablero){
         try {
             UtilesServlets utilServlet = new UtilesServlets();  
             
@@ -67,7 +69,7 @@ public class LanzarDadosServlet extends HttpServlet{
             casillas=(List<Casilla>) request.getSession().getAttribute("listaCasillas");
             propiedades=(List<Propiedad>)request.getSession().getAttribute("listaPropiedades");
             especiales=(List<Especial>)request.getSession().getAttribute("listaEspeciales");
-            
+            tablero=(Tablero)request.getSession().getAttribute("tablero");
             int resultado1=(Integer)request.getSession().getAttribute("resultado1");
             int resultado2=(Integer)request.getSession().getAttribute("resultado2");
             int numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
@@ -230,18 +232,43 @@ public class LanzarDadosServlet extends HttpServlet{
                             //si el id del jugador es igual al id del propietario de la propiedad y no es igual a cero paga alquiler...
                             //(cero es neutro).
                             if(jugadores.get(i).getId()!=propiedades.get(p).getIdUsuario()
-                                    && propiedades.get(p).getIdUsuario()!=0){
-                                jugadores.get(i).setDinero(jugadores.get(i).getDinero()-dinero);
+                                    && propiedades.get(p).getIdUsuario()!=0 &&
+                                    (jugadores.get(i).getDinero()-dinero>0)){
+                                jugadores.get(i).setDinero(jugadores.get(i).getDinero()-dinero);                                
                                 System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha pagado "+dinero+" del alquiler");                               
+                            }
+                            if(jugadores.get(i).getId()!=propiedades.get(p).getIdUsuario()
+                                    && propiedades.get(p).getIdUsuario()!=0 &&
+                                    (jugadores.get(i).getDinero()-dinero<0)){
+                                System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha perdido");                               
+                                for(int h=0;h<propiedades.size();h++){
+                                    if(propiedades.get(h).getIdUsuario()==jugadores.get(i).getId()){
+                                        propiedades.get(h).setIdUsuario(propiedades.get(p).getIdUsuario());
+                                    }
+                                }
+                                
                             }                                
                         }                                                
                     }
                     //En caso de que sea una casilla de impuestos especiales pagará lo correspondiente el jugador.
                     for(int esp=0; esp<especiales.size();esp++){
                         if(jugadores.get(i).getIdCasilla()==especiales.get(esp).getIdCasilla()
-                                && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)){
-                            jugadores.get(i).setDinero(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()));
+                                && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
+                                &&(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()))>0){
+                            tablero.setFondoDinero(-1*(especiales.get(esp).getBonus()));
+                            jugadores.get(i).setDinero(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()));                            
                             System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha pagado "+especiales.get(esp).getBonus()+" de impuestos");
+                            
+                        }
+                        if(jugadores.get(i).getIdCasilla()==especiales.get(esp).getIdCasilla()
+                                && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
+                                &&(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()))<0){
+                            System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha perdido");
+                            for(int h=0;h<propiedades.size();h++){
+                                if(propiedades.get(h).getIdUsuario()==jugadores.get(i).getId()){
+                                        propiedades.get(h).setIdUsuario(0);
+                                }
+                            }
                         }
                     }
                 }
@@ -249,6 +276,8 @@ public class LanzarDadosServlet extends HttpServlet{
             System.out.println("Estado "+jugador.getEstadoTurno()+ " del jugador "+jugador.getNombre());
             request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);
             request.getSession().setAttribute("listaJugadoresPartida", jugadores);
+            request.getSession().setAttribute("listaPropiedades",propiedades);
+            request.getSession().setAttribute("tablero",tablero);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(LanzarDadosServlet.class.getName()).log(Level.SEVERE, null, ex);
