@@ -69,7 +69,7 @@ public class LanzarDadosServlet extends HttpServlet{
             casillas=(List<Casilla>) request.getSession().getAttribute("listaCasillas");
             propiedades=(List<Propiedad>)request.getSession().getAttribute("listaPropiedades");
             especiales=(List<Especial>)request.getSession().getAttribute("listaEspeciales");
-            tablero=(Tablero)request.getSession().getAttribute("tablero");
+            tablero=(Tablero)request.getSession().getAttribute("tableroNuevo");
             int resultado1=(Integer)request.getSession().getAttribute("resultado1");
             int resultado2=(Integer)request.getSession().getAttribute("resultado2");
             int numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
@@ -85,9 +85,12 @@ public class LanzarDadosServlet extends HttpServlet{
             
             //posicion actual del jugador
             jugador.setIdCasilla(posicionJugador);
+            
             System.out.println("El jugador se encuentra en la casilla "+jugador.getIdCasilla());
             List <Jugador> jugadores= (List <Jugador>)request.getSession().getAttribute("listaJugadoresPartida");
             for(int i = 0; i<jugadores.size();i++){
+                //permito al jugador tras lanzar dados que pueda comprar.
+                //jugadores.get(i).setEstadoParaComprar(1);
                 if(jugador.getId()==jugadores.get(i).getId()){
                     if(resultado1==resultado2){
                         jugadores.get(i).setEstadoTurno(1);
@@ -243,7 +246,10 @@ public class LanzarDadosServlet extends HttpServlet{
                                 System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha perdido");                               
                                 for(int h=0;h<propiedades.size();h++){
                                     if(propiedades.get(h).getIdUsuario()==jugadores.get(i).getId()){
-                                        propiedades.get(h).setIdUsuario(propiedades.get(p).getIdUsuario());
+                                        propiedades.get(h).setIdUsuario(propiedades.get(p).getIdUsuario());                                           
+                                        System.out.println("El jugador entrega sus propiedades");
+                                            request.getSession().setAttribute("jugadorHaPerdido", 
+                                            "El jugador"+jugadores.get(i).getNombre()+" ha perdido.");                                            
                                     }
                                 }
                                 
@@ -267,6 +273,7 @@ public class LanzarDadosServlet extends HttpServlet{
                             for(int h=0;h<propiedades.size();h++){
                                 if(propiedades.get(h).getIdUsuario()==jugadores.get(i).getId()){
                                         propiedades.get(h).setIdUsuario(0);
+                                        request.getSession().setAttribute("jugadorHaPerdido", "El jugador"+jugadores.get(i).getNombre()+" ha perdido. Todas sus pertenencias han pasado a la banca.");
                                 }
                             }
                         }

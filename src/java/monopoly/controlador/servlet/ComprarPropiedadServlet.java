@@ -70,11 +70,18 @@ public class ComprarPropiedadServlet extends HttpServlet{
                         (jugadores.get(i).getDinero()-propiedades.get(j).getPrecio())>0){
                     propiedades.get(j).setIdUsuario(jugadores.get(i).getId());
                     jugadores.get(i).setDinero(jugadores.get(i).getDinero()-propiedades.get(j).getPrecio());
+                    //El jugador puede comprar
+                    jugadores.get(i).setEstadoParaComprar(1);
                     System.out.println("La propiedad "+propiedades.get(j).getNombre()+" ha sido comprada por "+jugadores.get(i).getNombre());
-                } else if(jugador.getId()==jugadores.get(i).getId() && 
+                }
+                if(jugador.getId()==jugadores.get(i).getId() && 
                         jugadores.get(i).getIdCasilla()==propiedades.get(j).getIdCasilla() &&
                         (jugadores.get(i).getDinero()-propiedades.get(j).getPrecio())<0){
                     System.out.println("El jugador "+jugadores.get(i).getNombre()+" no dispone de tanto dinero.");
+                    //El jugador no puede comprar
+                    jugadores.get(i).setEstadoParaComprar(0);
+                    request.getSession().setAttribute("jugadorNoPuedeComprar", 
+                                                    "El jugador "+jugadores.get(i).getNombre()+" no dispone de tanto dinero ("+propiedades.get(j).getPrecio()+" €).");
                 }               
             }
         }

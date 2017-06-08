@@ -142,6 +142,7 @@ public class UtilesXML {
                                 + "\r\n<estadoturno>1</estadoturno>"
                                 + "\r\n<turnoCarcel>0</turnoCarcel>"
                                 + "\r\n<cogetarjeta>0</cogetarjeta>"
+                                + "\r\n<estadoparacomprar>0</estadoparacomprar>"
                                 + "\r\n</usuario>"
                                 + "\r\n</usuarios>");
                         break;

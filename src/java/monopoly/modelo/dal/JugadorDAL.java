@@ -109,6 +109,10 @@ public class JugadorDAL implements IJugadorDAL{
              
              Element nuevoCogeTarjeta = doc.createElement("cogetarjeta");
              nuevoCogeTarjeta.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
+             
+             Element estadoParaComprar = doc.createElement("estadoparacomprar");
+             nuevoCogeTarjeta.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
+             
                      
              nuevoUsuario.appendChild(nuevoId);
              nuevoUsuario.appendChild(nuevoIdCasilla);
@@ -120,6 +124,7 @@ public class JugadorDAL implements IJugadorDAL{
              nuevoUsuario.appendChild(nuevoEstadoTurno);
              nuevoUsuario.appendChild(nuevoTurnoCarcel);
              nuevoUsuario.appendChild(nuevoCogeTarjeta);
+             nuevoUsuario.appendChild(estadoParaComprar);
              nodoRaiz.appendChild(nuevoUsuario);     
 
              util.modificarOEliminarElementoXML(new File ("xml/usuarios.xml"), doc);    
@@ -153,6 +158,7 @@ public class JugadorDAL implements IJugadorDAL{
                  objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("estadoturno", unElemento)));                 
                  objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("turnoCarcel", unElemento)));
                  objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("cogetarjeta", unElemento)));
+                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("estadoparacomprar", unElemento)));
                  listaUsuarios.add(objUsuario);
              }
          }    

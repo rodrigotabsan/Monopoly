@@ -212,6 +212,28 @@ function tarjetaCCSuerte(){
     cajaTarjeta.appendChild(inputAceptar);   
 }
 
+/*Crea los componentes para la pantalla que muestra el mensaje de que el jugador ha perdido.*/
+function jugadorHaPerdido(){
+    var body=document.body;
+    var cajaMensajePerder = document.createElement("form");
+    cajaMensajePerder.id="cajaMensajePerder";         
+    body.appendChild(cajaMensajePerder);
+    
+    var strong = document.createElement("strong");    
+    cajaMensajePerder.appendChild(strong);
+    
+    var labelMensaje = document.createElement("label");    
+    labelMensaje.id="labelMensajeHaPerdido";
+    strong.appendChild(labelMensaje);           
+    
+    var inputNo = document.createElement("input");
+    inputNo.type="button";
+    inputNo.id="inputAceptarPerder";
+    inputNo.name="aceptarPerder";
+    inputNo.value="Aceptar";
+    cajaMensajePerder.appendChild(inputNo);   
+}
+
 /*Crea los componentes para la pantalla de compra.*/
 function comprarPropiedad(){
     var body=document.body;

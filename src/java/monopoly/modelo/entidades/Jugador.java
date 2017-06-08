@@ -22,6 +22,7 @@ public class Jugador implements Serializable{
     int estadoTurno;
     int turnoCarcel;
     int cogeTarjeta;
+    int estadoParaComprar;
     
      /**
      * Constructor del Jugador
@@ -35,8 +36,9 @@ public class Jugador implements Serializable{
      * @param estadoTurno El estado del turno del jugador
      * @param turnoCarcel La cantidad de turnos que tiene que esperar para salir de la cárcel.
      * @param cogeTarjeta Indica si tiene que coger tarjeta cc o suerte.
+     * @param estadoParaComprar Indica la disponibilidad del jugador para comprar.
      */
-    public Jugador(int id, String nombre, String figura, int dinero, int idCasilla, int idPartida, int turno, int estadoTurno, int turnoCarcel, int cogeTarjeta) {
+    public Jugador(int id, String nombre, String figura, int dinero, int idCasilla, int idPartida, int turno, int estadoTurno, int turnoCarcel, int cogeTarjeta, int estadoParaComprar) {
         this.id = id;
         this.nombre = nombre;
         this.figura = figura;
@@ -47,6 +49,7 @@ public class Jugador implements Serializable{
         this.estadoTurno = estadoTurno;
         this.turnoCarcel = turnoCarcel;
         this.cogeTarjeta = cogeTarjeta;
+        this.estadoParaComprar = estadoParaComprar;
     }
 
     /**
@@ -216,6 +219,24 @@ public class Jugador implements Serializable{
      */
     public void setCogeTarjeta(int cogeTarjeta) {
         this.cogeTarjeta = cogeTarjeta;
+    }
+    
+    /**
+     * Indica cual es el estado para comprar del jugador
+     * Con el estado 1 el usuario puede comprar
+     * Con el estado 0 el usuario no puede comprar
+     * @return 
+     */
+    public int getEstadoParaComprar() {
+        return estadoParaComprar;
+    }
+    
+    /**
+     * Se indica cual es el estado del jugador para comprar.
+     * @param estadoParaComprar 
+     */
+    public void setEstadoParaComprar(int estadoParaComprar) {
+        this.estadoParaComprar = estadoParaComprar;
     }
     
     

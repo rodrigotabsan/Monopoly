@@ -105,12 +105,10 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                     int idUltimoTablero = 0;
                     if(listaTableros.size()>0){
                         tableroNuevo.setId(listaTableros.size()-1);
-                        System.out.println("pasa por aqui1");
                         tableroNuevo.setTurno(1);
                         tableroNuevo.setFondoDinero(0);
                     }else{
                         tableroNuevo.setId(1);
-                        System.out.println("pasa por aqui2");
                         tableroNuevo.setTurno(1);
                         tableroNuevo.setFondoDinero(0);
                     }
@@ -218,6 +216,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 jugador.setEstadoTurno(0);     
                 jugador.setTurnoCarcel(0);
                 jugador.setCogeTarjeta(0);
+                jugador.setEstadoParaComprar(1);
                 jugadores.add(jugador);
             }
             IJugadorDAL jugadoresDAL = new JugadorDAL();
@@ -279,7 +278,8 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 jugador.setEstadoTurno(0);
                 jugador.setTurno(1);   
                 jugador.setTurnoCarcel(0);
-                jugador.setCogeTarjeta(0);
+                jugador.setCogeTarjeta(0);                
+                jugador.setEstadoParaComprar(1);
                 jugadores.add(jugador);
             }else{
                 jugadores.clear();
