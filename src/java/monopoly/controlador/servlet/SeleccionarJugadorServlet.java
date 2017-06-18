@@ -41,7 +41,7 @@ import monopoly.util.UtilesServlets;
 import monopoly.util.UtilesXML;
 /**
  * Utilizado para definir qué haran cada uno de los botones utilizados para crear
- * los jugadores-
+ * los jugadores
  * @author Rodrigo
  */
 public class SeleccionarJugadorServlet extends HttpServlet {

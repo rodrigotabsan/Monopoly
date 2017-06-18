@@ -232,7 +232,7 @@ public class LanzarDadosServlet extends HttpServlet{
                                     System.out.println("El jugador "+jugadores.get(x).getNombre()+" ha cobrado "+dinero+" del alquiler");
                                 }
                             }
-                            //si el id del jugador es igual al id del propietario de la propiedad y no es igual a cero paga alquiler...
+                            // si el id del jugador es igual al id del propietario de la propiedad y no es igual a cero paga alquiler...
                             //(cero es neutro).
                             if(jugadores.get(i).getId()!=propiedades.get(p).getIdUsuario()
                                     && propiedades.get(p).getIdUsuario()!=0 &&
@@ -243,7 +243,8 @@ public class LanzarDadosServlet extends HttpServlet{
                             if(jugadores.get(i).getId()!=propiedades.get(p).getIdUsuario()
                                     && propiedades.get(p).getIdUsuario()!=0 &&
                                     (jugadores.get(i).getDinero()-dinero<0)){
-                                System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha perdido");                               
+                                System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha perdido");  
+                                jugadores.get(i).setDinero((jugadores.get(i).getDinero()-dinero));
                                 for(int h=0;h<propiedades.size();h++){
                                     if(propiedades.get(h).getIdUsuario()==jugadores.get(i).getId()){
                                         propiedades.get(h).setIdUsuario(propiedades.get(p).getIdUsuario());                                           
@@ -270,6 +271,7 @@ public class LanzarDadosServlet extends HttpServlet{
                                 && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
                                 &&(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()))<0){
                             System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha perdido");
+                            jugadores.get(i).setDinero(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()));
                             for(int h=0;h<propiedades.size();h++){
                                 if(propiedades.get(h).getIdUsuario()==jugadores.get(i).getId()){
                                         propiedades.get(h).setIdUsuario(0);

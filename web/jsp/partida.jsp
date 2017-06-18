@@ -48,6 +48,7 @@
                     Jugador turnoDeJugador= new Jugador();
                     Jugador siguienteTurnoDeJugador= new Jugador();
                     List<Jugador> jugadores = new ArrayList<Jugador>();
+                    boolean haGanado=false;
                     
                     if(request.getSession().getAttribute("jugadores")!=null){
                         jugadores=(List <Jugador>)request.getSession().getAttribute("jugadores");                        
@@ -57,44 +58,50 @@
                     }                 
                                         
                     int contadorJugadores=0;
+                    
                     for (int a = 0; a < jugadores.size(); a++) {
+                        if(jugadores.get(a).getEstadoTurno()==1 ||jugadores.get(a).getEstadoTurno()==2){
+                            if(jugadores.get(a).getDinero()<0){
+                                if(request.getSession().getAttribute("jugadorHaPerdido")!=null){
+                                    String jugadorHaPerdido=(String)request.getSession().getAttribute("jugadorHaPerdido");
+                                    out.print("<script>"
+                                            + "alert('El jugador "+jugadores.get(a).getNombre()+" ha perdido.');"                                                                                              
+                                        + "</script>");
+                                }
+                                jugadores.remove(a);
+                                if(a+1<jugadores.size()){
+                                    jugadores.get(a+1).setEstadoTurno(1);
+                                }
+                                if(a+1>=jugadores.size() && jugadores.size()!=1){
+                                    jugadores.get(0).setEstadoTurno(1);
+                                }
+                                if(jugadores.size()==1){
+                                    out.print("<script>"
+                                            + "alert('El jugador "+jugadores.get(0).getNombre()+" ha ganado.');"                                                                                       
+                                        + "</script>");
+                                    haGanado=true;
+                                }
+                                System.out.println("El jugador ha perdido2");                                                              
+                            }
+                        }
+                    }
+                    
+                    for (int a = 0; a < jugadores.size(); a++) {
+                        if(haGanado==false){
                         out.print("<div class='puntuaciones'><label id='jugador'>"
                                 + "<strong>" + jugadores.get(a).getNombre() + ":</strong>"
                                 + "</label> <label><strong>" + jugadores.get(a).getDinero() + " €" + "</strong>"
                                 + "</label>"
                                 + "</div><br>");
-                    }
-                    for (int a = 0; a < jugadores.size(); a++) {
-                        if(jugadores.get(a).getEstadoTurno()==1 ||jugadores.get(a).getEstadoTurno()==2){
-                            if(jugadores.get(a).getDinero()<0){
-                                jugadores.remove(a);
-                                System.out.println("El jugador ha perdido");
-                                if(request.getSession().getAttribute("jugadorHaPerdido")!=null){
-                                    String jugadorHaPerdido=(String)request.getSession().getAttribute("jugadorHaPerdido");
-                                    out.print("jugadorHaPerdido();"
-                                            + "document.getElementById('labelMensajeHaPerdido').innerHTML='El jugador "+jugadores.get(a).getNombre()+" ha perdido.';"
-                                            + "document.getElementById('inputAceptarPerder').style.marginTop='10%';"
-                                            + "document.getElementById('inputAceptarPerder').marginLeft='32%';"
-                                            + "document.getElementById('btnLanzarDados').disabled=true;"
-                                            + "document.getElementById('btnNegociar').disabled=true;"
-                                            + "document.getElementById('btnTerminar').disabled=true;"
-                                            + "document.getElementById('btnGuardarPartida').disabled=true;"
-
-                                        + "document.getElementById('inputAceptarPerder').onclick=function(){"
-                                            + "document.getElementById('todoMonopoly').style.zIndex='1001';"
-                                            + "document.getElementById('todoMonopoly').style.opacity='initial';"                                    
-                                            + "document.getElementById('cajaCompraPropiedad').style.visibility='hidden';"  
-                                            + "document.getElementById('cajaCompraPropiedad').style.zIndex='1002';"                                             
-                                            + "document.getElementById('btnLanzarDados').disabled=false;"
-                                            + "document.getElementById('btnNegociar').disabled=true;"
-                                            + "document.getElementById('btnTerminar').disabled=true;"
-                                            + "document.getElementById('btnGuardarPartida').disabled=false;"
-                                            + "}"                                                    
-                                        + "}");
-                                }
-                            }
+                        }
+                        if(haGanado==true){
+                            out.print("<div class='puntuaciones'><label id='jugador'>"
+                                + "<strong>¡" + jugadores.get(a).getNombre() + " HA GANADO!</strong>"
+                                + "</label>"
+                                + "</div><br>");
                         }
                     }
+                    
                     //compruebo si jugador está en la cárcel
                     for (int a = 0; a < jugadores.size(); a++) {                       
                             //En caso de que el jugador esté en la cárcel...   
@@ -142,6 +149,12 @@
                             <input type="button" value="Guardar Partida" id="btnGuardarPartida"/>
                     </div>
                             <% 
+                    if(haGanado==true){
+                        out.print("<script>document.getElementById('btnLanzarDados').disabled=true;"
+                                  + "document.getElementById('btnNegociar').disabled=true;"
+                                  + "document.getElementById('btnTerminar').disabled=true;"
+                                  + "document.getElementById('btnGuardarPartida').disabled=true;</script>");
+                    }
                     List<Casilla> casillas = (ArrayList<Casilla>) 
                            request.getSession().getAttribute("listaCasillas");
                     List<TSorpresaSuerte> tarjetasCCySuerte = (ArrayList<TSorpresaSuerte>) 
@@ -366,49 +379,50 @@
                     if(propiedades.get(i).getIdUsuario()==0 && turnoDeJugador.getIdCasilla()==propiedades.get(i).getIdCasilla()){
                         request.getSession().setAttribute("listaJugadoresPartida", jugadores);
                         request.getSession().setAttribute("jugador", turnoDeJugador);
+                    if(turnoDeJugador!=null){
                         if(turnoDeJugador.getEstadoParaComprar()==1){
                             
-                                out.print("<script>"
-                                            +"comprarPropiedad();"
-                                            +"document.getElementById('cajaCompraPropiedad').style.position= 'absolute';"    
-                                            +"document.getElementById('cajaCompraPropiedad').style.overflow= 'auto';"
-                                            +"document.getElementById('cajaCompraPropiedad').style.visibility='visible';"
-                                            +"document.getElementById('cajaCompraPropiedad').style.zIndex='1001';"
-                                            +"document.body.style.backgroundColor='black';"
-                                            +"document.getElementById('todoMonopoly').style.zIndex='1002';"
-                                            +"document.getElementById('todoMonopoly').style.opacity='0.60';"                                    
-                                            +"document.getElementById('inputSiCompra').style.marginLeft='12%';"
-                                            +"document.getElementById('inputSiCompra').style.marginTop='10%';"
-                                            +"document.getElementById('inputNoCompra').style.marginLeft='57%';"
-                                            +"document.getElementById('inputNoCompra').style.marginTop='10%';"
-                                            + "document.getElementById('btnLanzarDados').disabled=true;"
-                                            + "document.getElementById('btnNegociar').disabled=true;"
-                                            + "document.getElementById('btnTerminar').disabled=true;"
-                                            + "document.getElementById('btnGuardarPartida').disabled=true;"
-
-                                            + "document.getElementById('inputNoCompra').onclick=function(){"
-                                                + "document.getElementById('todoMonopoly').style.zIndex='1001';"
-                                                + "document.getElementById('todoMonopoly').style.opacity='initial';"                                    
-                                                + "document.getElementById('cajaCompraPropiedad').style.visibility='hidden';"  
-                                                + "document.getElementById('cajaCompraPropiedad').style.zIndex='1002';" 
-                                                + "if("+turnoDeJugador.getEstadoTurno()+"==2){"
-                                                    + "document.getElementById('btnLanzarDados').disabled=true;"
-                                                    + "document.getElementById('btnNegociar').disabled=false;"
-                                                    + "document.getElementById('btnTerminar').disabled=false;"
-                                                    + "document.getElementById('btnGuardarPartida').disabled=false;"
-                                                + "}"
-                                                + "if("+turnoDeJugador.getEstadoTurno()+"==1){"
-                                                    + "document.getElementById('btnLanzarDados').disabled=false;"
-                                                    + "document.getElementById('btnNegociar').disabled=true;"
-                                                    + "document.getElementById('btnTerminar').disabled=true;"
-                                                    + "document.getElementById('btnGuardarPartida').disabled=false;"
-                                                + "}"        
-                                                + "document.getElementById('btnLanzarDados').style.cursor = 'pointer';"
-                                                + "document.getElementById('btnNegociar').style.cursor = 'pointer';"
-                                                + "document.getElementById('btnTerminar').style.cursor = 'pointer';"
-                                                + "document.getElementById('btnGuardarPartida').style.cursor = 'pointer';"      
-                                            + "}"
-                                        +"</script>");                                
+                            out.print("<script>"
+                                    +"comprarPropiedad();"
+                                    +"document.getElementById('cajaCompraPropiedad').style.position= 'absolute';"    
+                                    +"document.getElementById('cajaCompraPropiedad').style.overflow= 'auto';"
+                                    +"document.getElementById('cajaCompraPropiedad').style.visibility='visible';"
+                                    +"document.getElementById('cajaCompraPropiedad').style.zIndex='1001';"
+                                    +"document.body.style.backgroundColor='black';"
+                                    +"document.getElementById('todoMonopoly').style.zIndex='1002';"
+                                    +"document.getElementById('todoMonopoly').style.opacity='0.60';"                                    
+                                    +"document.getElementById('inputSiCompra').style.marginLeft='12%';"
+                                    +"document.getElementById('inputSiCompra').style.marginTop='10%';"
+                                    +"document.getElementById('inputNoCompra').style.marginLeft='57%';"
+                                    +"document.getElementById('inputNoCompra').style.marginTop='10%';"
+                                    + "document.getElementById('btnLanzarDados').disabled=true;"
+                                    + "document.getElementById('btnNegociar').disabled=true;"
+                                    + "document.getElementById('btnTerminar').disabled=true;"
+                                    + "document.getElementById('btnGuardarPartida').disabled=true;"
+ 
+                                    + "document.getElementById('inputNoCompra').onclick=function(){"
+                                    + "document.getElementById('todoMonopoly').style.zIndex='1001';"
+                                    + "document.getElementById('todoMonopoly').style.opacity='initial';"                                    
+                                    + "document.getElementById('cajaCompraPropiedad').style.visibility='hidden';"  
+                                    + "document.getElementById('cajaCompraPropiedad').style.zIndex='1002';" 
+                                    + "if("+turnoDeJugador.getEstadoTurno()+"==2){"
+                                        + "document.getElementById('btnLanzarDados').disabled=true;"
+                                        + "document.getElementById('btnNegociar').disabled=false;"
+                                        + "document.getElementById('btnTerminar').disabled=false;"
+                                        + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                    + "}"
+                                    + "if("+turnoDeJugador.getEstadoTurno()+"==1){"
+                                        + "document.getElementById('btnLanzarDados').disabled=false;"
+                                        + "document.getElementById('btnNegociar').disabled=true;"
+                                        + "document.getElementById('btnTerminar').disabled=true;"
+                                        + "document.getElementById('btnGuardarPartida').disabled=false;"
+                                    + "}"        
+                                        + "document.getElementById('btnLanzarDados').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnNegociar').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnTerminar').style.cursor = 'pointer';"
+                                        + "document.getElementById('btnGuardarPartida').style.cursor = 'pointer';"      
+                                    + "}"
+                                    +"</script>");                                
                             } 
                         if(turnoDeJugador.getEstadoParaComprar()==0){
                             if(request.getSession().getAttribute("jugadorNoPuedeComprar")!=null){
@@ -464,82 +478,84 @@
                                 }
                         }
                     }
+                   }
                     
                 }
-                
-		if(turnoDeJugador.getEstadoTurno()==1){
-                    Random random = new Random();            
-                    int numVecesDadosRep=0;
-                    int minimo = 1;
-                    int maximo = 7;
-                    
-                    //Como el jugador ha pasado al nuevo turno, puede volver a comprar
-                    //tras el lanzamiento de dados.
-                    turnoDeJugador.setEstadoParaComprar(1);
-                    result1 = random.nextInt(maximo-minimo) + minimo;
-                    result2 = random.nextInt(maximo-minimo) + minimo; 
-                    System.out.println("Jugador "+turnoDeJugador.getNombre()+" obtiene un resultado de "+result1+" / "+result2);
-                    DadoRule dado1= new DadoRule();
-                    dado1=dado1.resultadoDado(result1);
-                    DadoRule dado2=new DadoRule();
-                    dado2=dado2.resultadoDado(result2);
-                     
-                    out.println("<script>"
-                            + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
-                            + "btnLanzarDados.disabled=false;"
-                            + "document.getElementById('btnNegociar').disabled=true;"
-                            + "document.getElementById('btnTerminar').disabled=true;"
-                            + "btnLanzarDados.addEventListener('click', function(){"
-                            + "document.getElementById('dados1').src='./img/"+dado1.getImagen()+"';"
-                            + "document.getElementById('dados2').src='./img/"+dado2.getImagen()+"';"
-                            + "});"                            
-                            + "</script>");  
-                    System.out.println("Turno de Jugador "+turnoDeJugador.getNombre()+ " estado "+turnoDeJugador.getEstadoTurno());
-                    int resultadoDados=result1+result2;
-                    int posicionJugador=turnoDeJugador.getIdCasilla();
-                    for(int i=1; i<=resultadoDados; i++){
+                if(turnoDeJugador!=null){
+                    if(turnoDeJugador.getEstadoTurno()==1){
+                        Random random = new Random();            
+                        int numVecesDadosRep=0;
+                        int minimo = 1;
+                        int maximo = 7;
+
+                        //Como el jugador ha pasado al nuevo turno, puede volver a comprar
+                        //tras el lanzamiento de dados.
+                        turnoDeJugador.setEstadoParaComprar(1);
+                        result1 = random.nextInt(maximo-minimo) + minimo;
+                        result2 = random.nextInt(maximo-minimo) + minimo; 
+                        System.out.println("Jugador "+turnoDeJugador.getNombre()+" obtiene un resultado de "+result1+" / "+result2);
+                        DadoRule dado1= new DadoRule();
+                        dado1=dado1.resultadoDado(result1);
+                        DadoRule dado2=new DadoRule();
+                        dado2=dado2.resultadoDado(result2);
+
+                        out.println("<script>"
+                                + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
+                                + "btnLanzarDados.disabled=false;"
+                                + "document.getElementById('btnNegociar').disabled=true;"
+                                + "document.getElementById('btnTerminar').disabled=true;"
+                                + "btnLanzarDados.addEventListener('click', function(){"
+                                + "document.getElementById('dados1').src='./img/"+dado1.getImagen()+"';"
+                                + "document.getElementById('dados2').src='./img/"+dado2.getImagen()+"';"
+                                + "});"                            
+                                + "</script>");  
+                        System.out.println("Turno de Jugador "+turnoDeJugador.getNombre()+ " estado "+turnoDeJugador.getEstadoTurno());
+                        int resultadoDados=result1+result2;
+                        int posicionJugador=turnoDeJugador.getIdCasilla();
+                        for(int i=1; i<=resultadoDados; i++){
+                            if(posicionJugador==40){
+                                posicionJugador=0;
+                                //cobra la salida.
+                                turnoDeJugador.setDinero(turnoDeJugador.getDinero()+200);
+                            }
+                            posicionJugador++;					
+                        }	
                         if(posicionJugador==40){
-                            posicionJugador=0;
-                            //cobra la salida.
+                            posicionJugador=0;     
                             turnoDeJugador.setDinero(turnoDeJugador.getDinero()+200);
                         }
-                        posicionJugador++;					
-                    }	
-                    if(posicionJugador==40){
-                        posicionJugador=0;     
-                        turnoDeJugador.setDinero(turnoDeJugador.getDinero()+200);
-                    }
-                   
-                    
-                    if(request.getSession().getAttribute("numVecesDadosRep")!=null){
-                        numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
-                    }
-                    System.out.println("Número de veces que los dados se repiten: "+numVecesDadosRep);
-                    request.getSession().setAttribute("resultado1",result1);
-                    request.getSession().setAttribute("resultado2",result2);
-                    request.getSession().setAttribute("posicionJugador",posicionJugador);
-                    request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);
-                    request.getSession().setAttribute("listaJugadoresPartida", jugadores);
-                    request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);
-                    request.getSession().setAttribute("tableroNuevo", tablero);
-                    request.getSession().setAttribute("listaPropiedades", propiedades);
-                    request.getSession().setAttribute("listaEspeciales", especiales);
-                }                
+
+
+                        if(request.getSession().getAttribute("numVecesDadosRep")!=null){
+                            numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
+                        }
+                        System.out.println("Número de veces que los dados se repiten: "+numVecesDadosRep);
+                        request.getSession().setAttribute("resultado1",result1);
+                        request.getSession().setAttribute("resultado2",result2);
+                        request.getSession().setAttribute("posicionJugador",posicionJugador);
+                        request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);
+                        request.getSession().setAttribute("listaJugadoresPartida", jugadores);
+                        request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);
+                        request.getSession().setAttribute("tableroNuevo", tablero);
+                        request.getSession().setAttribute("listaPropiedades", propiedades);
+                        request.getSession().setAttribute("listaEspeciales", especiales);
+                    }                
+
+                    System.out.println("Turno parte 2 de Jugador "+turnoDeJugador.getNombre()+ " estado "+turnoDeJugador.getEstadoTurno());
                 
-                System.out.println("Turno parte 2 de Jugador "+turnoDeJugador.getNombre()+ " estado "+turnoDeJugador.getEstadoTurno());
-                if(turnoDeJugador.getEstadoTurno()==2){
-                    out.println("<script>"
-                            + "var btnTerminar = document.getElementById('btnTerminar');"
-                            + "var btnNegociar = document.getElementById('btnNegociar');"
-                            + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
-                            + "btnTerminar.disabled=false;"
-                            + "btnNegociar.disabled=false;"
-                            + "btnLanzarDados.disabled=true;"
-                            + "</script>");
-                    
-                    request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);                 
-		}      
-                
+                    if(turnoDeJugador.getEstadoTurno()==2){
+                        out.println("<script>"
+                                + "var btnTerminar = document.getElementById('btnTerminar');"
+                                + "var btnNegociar = document.getElementById('btnNegociar');"
+                                + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
+                                + "btnTerminar.disabled=false;"
+                                + "btnNegociar.disabled=false;"
+                                + "btnLanzarDados.disabled=true;"
+                                + "</script>");
+
+                        request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);                 
+                    }      
+                }
                 request.getSession().setAttribute("listaPropiedades", propiedades);
                 request.getSession().setAttribute("listaEspeciales", especiales);
                 request.getSession().setAttribute("listaCasillas", casillas);
@@ -548,8 +564,18 @@
                 request.getSession().setAttribute("tableroNuevo", tablero);
                 request.getSession().setAttribute("partida", partida);
                 
+                List <String> figuras = new ArrayList<String>();
+                figuras.add("barco"); figuras.add("sombrero"); figuras.add("dedal"); figuras.add("zapato"); figuras.add("perro");
+                figuras.add("coche"); figuras.add("plancha"); figuras.add("carretilla");              
+                
                 for(int i=0; i<jugadores.size();i++){
-                    int contadorFiguras = i+1;
+                    int contadorFiguras = 0;
+                    for(int j=0; j<figuras.size();j++){
+                        if(jugadores.get(i).getFigura().equals(figuras.get(j))){
+                            contadorFiguras=j+1;
+                        }
+                    }
+                    
                     int contadorCasilla=jugadores.get(i).getIdCasilla();
                     System.out.println("El jugador se mueve a la casilla: "+jugadores.get(i).getIdCasilla());
                     out.println("<script>"                            
@@ -576,6 +602,8 @@
                               + "}"                                         
                               + "</script>");
                 }
+                
+           
             %>
             <footer id="piePagina2">
                 <p>(c) 2017 Invest In Andorra Services</p>
