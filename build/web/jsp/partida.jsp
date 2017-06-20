@@ -256,7 +256,7 @@
                             Tablero tablero = (Tablero)
                                     request.getSession().getAttribute("tableroNuevo");
                             Partida partida = (Partida)
-                                    request.getSession().getAttribute("partida");
+                                    request.getSession().getAttribute("partidaNueva");
 
                             for (int z = 19; z >= 11; z--) {
                                 for (int x = 0; x < especiales.size(); x++) {
@@ -373,15 +373,21 @@
             <%  
                 int result1=0;
                 int result2=0;
-                
+                for(int idespecial=0; idespecial<especiales.size();idespecial++){
+                    if(turnoDeJugador.getIdCasilla()==especiales.get(idespecial).getIdCasilla() && 
+                        (especiales.get(idespecial).getId()==6) && turnoDeJugador.getEstadoTurno()==2){
+                            out.print("<script>alert('El jugador "+turnoDeJugador.getNombre()+" ha ganado "+tablero.getFondoDinero()+" €');</script>");
+                            turnoDeJugador.setDinero(turnoDeJugador.getDinero()+tablero.getFondoDinero());
+                            tablero.setFondoDinero(0);
+                    }                    
+                }
                 for(int i=0; i<propiedades.size();i++){
                     //Si el id del usuario es = 0 quiere decir que no tiene propietario.
                     if(propiedades.get(i).getIdUsuario()==0 && turnoDeJugador.getIdCasilla()==propiedades.get(i).getIdCasilla()){
                         request.getSession().setAttribute("listaJugadoresPartida", jugadores);
                         request.getSession().setAttribute("jugador", turnoDeJugador);
                     if(turnoDeJugador!=null){
-                        if(turnoDeJugador.getEstadoParaComprar()==1){
-                            
+                        if(turnoDeJugador.getEstadoParaComprar()==1){                            
                             out.print("<script>"
                                     +"comprarPropiedad();"
                                     +"document.getElementById('cajaCompraPropiedad').style.position= 'absolute';"    
@@ -562,7 +568,7 @@
                 request.getSession().setAttribute("listaJugadoresTotales", jugadores);
                 request.getSession().setAttribute("listaTarjetaCCySuerte", tarjetasCCySuerte);
                 request.getSession().setAttribute("tableroNuevo", tablero);
-                request.getSession().setAttribute("partida", partida);
+                request.getSession().setAttribute("partidaNueva", partida);
                 
                 List <String> figuras = new ArrayList<String>();
                 figuras.add("barco"); figuras.add("sombrero"); figuras.add("dedal"); figuras.add("zapato"); figuras.add("perro");

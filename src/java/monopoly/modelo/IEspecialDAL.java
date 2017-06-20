@@ -5,6 +5,7 @@
  */
 package monopoly.modelo;
 
+import java.io.File;
 import java.util.List;
 import monopoly.modelo.entidades.Especial;
 
@@ -12,8 +13,15 @@ import monopoly.modelo.entidades.Especial;
  * Interface para acceder a las funciones de EspecialDAL
  * @author Rodrigo
  */
-@FunctionalInterface
 public interface IEspecialDAL {
+    
+    /**
+     * Guardar un listado de especiales pasándole un listado de objetos Especial.
+     * @param fichero fichero donde se va a guardar     
+     * @param especiales  Especiales que se desean guardar
+     * @see Especial
+     */
+    public void guardarEspecial(String fichero,List<Especial> especiales);
     
     /**
      * Obtiene todas las casillas especiales del tablero.

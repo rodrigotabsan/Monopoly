@@ -5,6 +5,7 @@
  */
 package monopoly.modelo;
 
+import java.io.File;
 import java.util.List;
 import monopoly.modelo.entidades.Casilla;
 
@@ -12,8 +13,17 @@ import monopoly.modelo.entidades.Casilla;
  * Interface para acceder a las funciones de CasillaDAL
  * @author Rodrigo
  */
-@FunctionalInterface
+
 public interface ICasillaDAL {
+    
+    
+    /**
+     * Guardar un listado de casillas pasándole un listado de objetos Casilla.
+     * @param fichero fichero donde se va a guardar     
+     * @param casillas  Casillas que se desean guardar
+     * @see Casilla
+     */
+    public void guardarCasilla(String fichero,List<Casilla> casillas);
     
     /**
      * Obtiene todas las casillas del tablero.

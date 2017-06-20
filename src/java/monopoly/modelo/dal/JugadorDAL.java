@@ -131,6 +131,76 @@ public class JugadorDAL implements IJugadorDAL{
         }         
     }
     
+    
+    /**
+     * Crea un Jugador pasándole el objeto Jugador
+     * @param fichero donde quiero guardarlo
+     * @param jugadores listado de jugadores
+     * @see Jugador
+     */
+    @Override
+    public void guardarUsuario(String fichero,List<Jugador> jugadores) {                       
+             UtilesXML util = new UtilesXML(new File(fichero));
+                
+                Document doc =util.accesoAlDocument();
+
+                Node nodoRaiz = util.accesoANodoXML();
+             for(Jugador usuario:jugadores){
+                          
+                Element nuevoUsuario = doc.createElement("usuario");
+                
+                
+                Element nuevoId = doc.createElement("id"); 
+                nuevoId.setTextContent(String.valueOf(usuario.getId()));
+                 
+                Element nuevoIdCasilla = doc.createElement("idcasilla"); 
+                nuevoIdCasilla.setTextContent(String.valueOf(usuario.getIdCasilla()));
+
+                Element nuevoDinero = doc.createElement("dinero");
+                nuevoDinero.setTextContent(String.valueOf(usuario.getDinero()));
+
+                Element nuevaFigura = doc.createElement("figura");
+                nuevaFigura.setTextContent(usuario.getFigura());
+
+                Element nuevoNombre = doc.createElement("nombre");
+                nuevoNombre.setTextContent(usuario.getNombre());
+
+                Element nuevaIdPartida = doc.createElement("idpartida");
+                nuevaIdPartida.setTextContent(String.valueOf(usuario.getIdPartida()));
+
+                Element nuevoTurno = doc.createElement("turno");
+                nuevoTurno.setTextContent(String.valueOf(usuario.getTurno()));
+
+                Element nuevoEstadoTurno = doc.createElement("estadoturno");
+                nuevoEstadoTurno.setTextContent(String.valueOf(usuario.getEstadoTurno()));
+
+                Element nuevoTurnoCarcel = doc.createElement("turnoCarcel");
+                nuevoTurnoCarcel.setTextContent(String.valueOf(usuario.getTurnoCarcel()));
+
+                Element nuevoCogeTarjeta = doc.createElement("cogetarjeta");
+                nuevoCogeTarjeta.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
+
+                Element estadoParaComprar = doc.createElement("estadoparacomprar");
+                nuevoCogeTarjeta.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
+                
+                nuevoUsuario.appendChild(nuevoId);
+                nuevoUsuario.appendChild(nuevoIdCasilla);
+                nuevoUsuario.appendChild(nuevoDinero);
+                nuevoUsuario.appendChild(nuevaFigura);
+                nuevoUsuario.appendChild(nuevoNombre);
+                nuevoUsuario.appendChild(nuevaIdPartida);
+                nuevoUsuario.appendChild(nuevoTurno);
+                nuevoUsuario.appendChild(nuevoEstadoTurno);
+                nuevoUsuario.appendChild(nuevoTurnoCarcel);
+                nuevoUsuario.appendChild(nuevoCogeTarjeta);
+                nuevoUsuario.appendChild(estadoParaComprar);
+                nodoRaiz.appendChild(nuevoUsuario);     
+
+                util.modificarOEliminarElementoXML(new File(fichero), doc);    
+             }
+                 
+    }
+    
     /**
      * Obtiene un listado de todos los Jugadores
      * @return El listado de jugadores

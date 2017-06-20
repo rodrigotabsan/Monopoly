@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import monopoly.modelo.entidades.Especial;
 import monopoly.modelo.IEspecialDAL;
 import monopoly.util.UtilesXML;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -33,8 +34,8 @@ public class EspecialDAL implements IEspecialDAL{
     /**
      * Obtiene el valor del nodo. Básicamente coge del tag o pestaña que se le pase,
      * en el parámetro strTag, el valor que le corresponde en el fichero XML.
-     * @param strTag
-     * @param eCasilla
+     * @param strTag string del tag
+     * @param eEspecial eEspecial
      * @return 
      */ 
     private static String obtenerNodoValor(String strTag, Element eEspecial){
@@ -70,4 +71,52 @@ public class EspecialDAL implements IEspecialDAL{
           
         return listaEspeciales;
     }
+
+    /**
+     * Crea una Especial pasándole el objeto Especial
+     * @param fichero donde quiero guardarlo
+     * @param especiales listado de casillas especiales
+     * @see Casilla
+     */
+    @Override
+    public void guardarEspecial(String fichero, List<Especial> especiales) {
+                              
+            UtilesXML util = new UtilesXML(new File(fichero));
+                
+             Document doc =util.accesoAlDocument();
+
+             Node nodoRaiz = util.accesoANodoXML();          
+                
+             for(Especial especial:especiales){
+                 
+                Element nuevaEspecial = doc.createElement("especial");
+                
+                Element nuevoId = doc.createElement("id"); 
+                nuevoId.setTextContent(String.valueOf(especial.getId()));
+                 
+                Element nuevoNombre = doc.createElement("nombre"); 
+                nuevoNombre.setTextContent(String.valueOf(especial.getNombre()));
+
+                Element nuevoTipo = doc.createElement("tipo");
+                nuevoTipo.setTextContent(String.valueOf(especial.getTipo()));
+                
+                Element nuevoBonus = doc.createElement("bonus"); 
+                nuevoBonus.setTextContent(String.valueOf(especial.getBonus()));
+
+                Element nuevoIdCasilla = doc.createElement("idcasilla");
+                nuevoIdCasilla.setTextContent(String.valueOf(especial.getIdCasilla()));
+                                
+                nuevaEspecial.appendChild(nuevoId);
+                nuevaEspecial.appendChild(nuevoNombre);
+                nuevaEspecial.appendChild(nuevoTipo);
+                nuevaEspecial.appendChild(nuevoBonus);
+                nuevaEspecial.appendChild(nuevoIdCasilla);
+                
+                nodoRaiz.appendChild(nuevaEspecial);     
+
+                util.modificarOEliminarElementoXML(new File(fichero), doc);    
+             }
+                 
+    }
+    
 }

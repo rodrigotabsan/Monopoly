@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import monopoly.modelo.entidades.Propiedad;
 import monopoly.modelo.IPropiedadDAL;
+import monopoly.modelo.entidades.Jugador;
 import monopoly.util.UtilesXML;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -79,5 +81,100 @@ public class PropiedadDAL implements IPropiedadDAL{
              }
          }   
         return listaPropiedades;
+    }
+    
+    /**
+     * Guardo las propiedades
+     * @param fichero fichero donde lo guardo
+     * @param propiedades lista de propiedades
+     */
+    @Override
+    public void guardarPropiedades(String fichero, List<Propiedad> propiedades) {
+            UtilesXML util = new UtilesXML(new File(fichero));
+                
+                Document doc =util.accesoAlDocument();
+
+                Node nodoRaiz = util.accesoANodoXML();
+               
+             for(Propiedad propiedad:propiedades){
+                
+                Element nuevoPropiedad = doc.createElement("propiedad");             
+                
+                
+                Element nuevoId = doc.createElement("id"); 
+                nuevoId.setTextContent(String.valueOf(propiedad.getId()));
+                
+                Element nuevoNombre = doc.createElement("nombre");
+                nuevoNombre.setTextContent(String.valueOf(propiedad.getNombre()));
+
+                Element nuevoTipo = doc.createElement("tipo");
+                nuevoTipo.setTextContent(propiedad.getTipo());
+
+                Element nuevoPrecio = doc.createElement("precio");
+                nuevoPrecio.setTextContent(String.valueOf(propiedad.getPrecio()));
+
+                Element nuevaIdUsuario = doc.createElement("idusuario");
+                nuevaIdUsuario.setTextContent(String.valueOf(propiedad.getIdUsuario()));
+
+                Element nuevoDescripcion = doc.createElement("descripcion");
+                nuevoDescripcion.setTextContent(String.valueOf(propiedad.getDescripcion()));
+
+                Element nuevoColor = doc.createElement("color");
+                nuevoColor.setTextContent(String.valueOf(propiedad.getColor()));
+                
+                Element nuevoIdCasilla = doc.createElement("idcasilla"); 
+                nuevoIdCasilla.setTextContent(String.valueOf(propiedad.getIdCasilla()));
+
+                Element nuevaHipoteca = doc.createElement("hipoteca");
+                nuevaHipoteca.setTextContent(String.valueOf(propiedad.getHipoteca()));
+
+                Element nuevoAlquiler = doc.createElement("alquiler");
+                nuevoAlquiler.setTextContent(String.valueOf(propiedad.getAlquiler()));
+
+                Element nuevaCasa = doc.createElement("casa");
+                nuevaCasa.setTextContent(String.valueOf(propiedad.getCasa()));
+                
+                Element nuevaAlquilerPrimeraCasa = doc.createElement("alquilerprimeracasa");
+                nuevaAlquilerPrimeraCasa.setTextContent(String.valueOf(propiedad.getAlquilerPrimeraCasa()));
+                
+                Element nuevaAlquilerSegundaCasa = doc.createElement("alquilersegundacasa");
+                nuevaAlquilerSegundaCasa.setTextContent(String.valueOf(propiedad.getAlquilerSegundaCasa()));
+                
+                Element nuevaAlquilerTerceraCasa = doc.createElement("alquilerprimeracasa");
+                nuevaAlquilerTerceraCasa.setTextContent(String.valueOf(propiedad.getAlquilerTerceraCasa()));
+                
+                Element nuevaAlquilerCuartaCasa = doc.createElement("alquilerprimeracasa");
+                nuevaAlquilerCuartaCasa.setTextContent(String.valueOf(propiedad.getAlquilerCuartaCasa()));
+                
+                Element nuevoHotel = doc.createElement("hotel");
+                nuevoHotel.setTextContent(String.valueOf(propiedad.getHotel()));
+                
+                Element nuevoAlquilerHotel = doc.createElement("alquilerhotel");
+                nuevoAlquilerHotel.setTextContent(String.valueOf(propiedad.getAlquilerHotel()));
+     
+                nuevoPropiedad.appendChild(nuevoId);
+                nuevoPropiedad.appendChild(nuevoNombre);
+                nuevoPropiedad.appendChild(nuevoTipo);
+                nuevoPropiedad.appendChild(nuevoPrecio);
+                nuevoPropiedad.appendChild(nuevaIdUsuario);
+                
+                nuevoPropiedad.appendChild(nuevoDescripcion);
+                nuevoPropiedad.appendChild(nuevoColor);
+                nuevoPropiedad.appendChild(nuevoIdCasilla);
+                nuevoPropiedad.appendChild(nuevaHipoteca);
+                nuevoPropiedad.appendChild(nuevoAlquiler);
+                nuevoPropiedad.appendChild(nuevaCasa);
+                
+                nuevoPropiedad.appendChild(nuevaAlquilerPrimeraCasa);
+                nuevoPropiedad.appendChild(nuevaAlquilerSegundaCasa);
+                nuevoPropiedad.appendChild(nuevaAlquilerTerceraCasa);
+                nuevoPropiedad.appendChild(nuevaAlquilerCuartaCasa);
+                
+                nuevoPropiedad.appendChild(nuevoHotel);
+                nuevoPropiedad.appendChild(nuevoAlquilerHotel);
+                nodoRaiz.appendChild(nuevoPropiedad);     
+
+                util.modificarOEliminarElementoXML(new File(fichero), doc);    
+             }
     }
 }

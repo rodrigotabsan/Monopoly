@@ -5,6 +5,7 @@
  */
 package monopoly.modelo;
 
+import java.io.File;
 import java.util.List;
 import monopoly.modelo.entidades.Tablero;
 
@@ -13,6 +14,14 @@ import monopoly.modelo.entidades.Tablero;
  * @author Rodrigo
  */
 public interface ITableroDAL {
+    
+    /**
+     * Guardar un tablero pasándole un objeto Tablero.
+     * @param fichero fichero donde se va a guardar     
+     * @param tablero  Tablero que se desea guardar
+     * @see Tablero
+     */
+    public void guardarTablero(String fichero,Tablero tablero);
     
     /**
      * Elimina un tablero pasándole un objeto Tablero

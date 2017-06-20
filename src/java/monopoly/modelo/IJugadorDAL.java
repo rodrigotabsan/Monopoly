@@ -5,6 +5,7 @@
  */
 package monopoly.modelo;
 
+import java.io.File;
 import java.util.List;
 import monopoly.modelo.entidades.Jugador;
 
@@ -27,6 +28,14 @@ public interface IJugadorDAL {
      * @param usuario  Jugador que se desea crear
      */
     public void crearUsuario(Jugador usuario);
+    
+    /**
+     * Guardar un listado de jugadores pasándole un listado de objetos Jugador.
+     * @param fichero fichero donde se va a guardar     
+     * @param jugadores  Jugadores que se desean guardar
+     * @see Jugador
+     */
+    public void guardarUsuario(String fichero,List<Jugador> jugadores);
     
     /**
      * Obtiene un listado de todos los jugadores

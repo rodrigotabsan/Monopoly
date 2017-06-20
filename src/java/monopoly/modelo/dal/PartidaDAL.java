@@ -122,4 +122,40 @@ public class PartidaDAL implements IPartidaDAL{
          
         return listaPartidas;
     }
+    
+    
+    /**
+     * Crea una Partida pasándole el objeto Partida
+     * @param fichero donde quiero guardarlo
+     * @param partida partida
+     * @see Partida
+     */
+    @Override
+    public void guardarPartida(String fichero, Partida partida) {
+        UtilesXML util = new UtilesXML(new File(fichero));
+                
+             Document doc =util.accesoAlDocument();
+
+             Node nodoRaiz = util.accesoANodoXML();          
+                             
+                Element nuevaPartida = doc.createElement("partida");
+                
+                Element nuevoId = doc.createElement("id"); 
+                nuevoId.setTextContent(String.valueOf(partida.getId()));
+                 
+                Element nuevoNombre = doc.createElement("nombre"); 
+                nuevoNombre.setTextContent(String.valueOf(partida.getNombre()));
+
+                Element nuevoIdTablero = doc.createElement("idtablero");
+                nuevoIdTablero.setTextContent(String.valueOf(partida.getIdTablero()));
+                                                
+                nuevaPartida.appendChild(nuevoId);
+                nuevaPartida.appendChild(nuevoNombre);
+                nuevaPartida.appendChild(nuevoIdTablero);
+                
+                nodoRaiz.appendChild(nuevaPartida);     
+
+                util.modificarOEliminarElementoXML(new File(fichero), doc);    
+          
+    }
 }

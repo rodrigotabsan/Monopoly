@@ -5,13 +5,31 @@
  */
 package monopoly.controlador.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import monopoly.modelo.ICasillaDAL;
+import monopoly.modelo.IEspecialDAL;
+import monopoly.modelo.IJugadorDAL;
+import monopoly.modelo.IPartidaDAL;
+import monopoly.modelo.IPropiedadDAL;
+import monopoly.modelo.ITSorpresaSuerteDAL;
+import monopoly.modelo.ITableroDAL;
+import monopoly.modelo.dal.CasillaDAL;
+import monopoly.modelo.dal.EspecialDAL;
+import monopoly.modelo.dal.JugadorDAL;
+import monopoly.modelo.dal.PartidaDAL;
+import monopoly.modelo.dal.PropiedadDAL;
+import monopoly.modelo.dal.TSorpresaSuerteDAL;
+import monopoly.modelo.dal.TableroDAL;
 import monopoly.modelo.entidades.Casilla;
 import monopoly.modelo.entidades.Especial;
 import monopoly.modelo.entidades.Jugador;
@@ -20,6 +38,7 @@ import monopoly.modelo.entidades.Propiedad;
 import monopoly.modelo.entidades.TSorpresaSuerte;
 import monopoly.modelo.entidades.Tablero;
 import monopoly.util.UtilesServlets;
+import monopoly.util.UtilesXML;
 
 /**
  *
@@ -68,8 +87,60 @@ public class GuardarPartidaServlet extends HttpServlet{
             request.getSession().getAttribute("listaJugadoresPartida");
         List<TSorpresaSuerte> tarjetasCCySuerte = (ArrayList<TSorpresaSuerte>) 
             request.getSession().getAttribute("listaTarjetaCCySuerte");
-        Tablero tablero = (Tablero)request.getSession().getAttribute("tablero");
-        Partida partida = (Partida)request.getSession().getAttribute("partida");
+        Tablero tablero = (Tablero)request.getSession().getAttribute("tableroNuevo");
+        Partida partida = (Partida)request.getSession().getAttribute("partidaNueva");
+              
+        Locale locale = Locale.GERMAN;
+        Calendar hoy = Calendar.getInstance();
+        //Se utiliza la fecha para guardar la partida
+        File directorio=new File((hoy.get(Calendar.DATE)+""+(hoy.get(Calendar.MONTH) + 1)+""+hoy.get(Calendar.YEAR))+""+hoy.get(Calendar.HOUR)+""+hoy.get(Calendar.MINUTE)); 
+        directorio.mkdir(); 
+        
+        //Se guarda fichero a fichero.
+        String propiedadesString="propiedades.xml";
+        String ficheroPropiedades = directorio+"/"+propiedadesString;
+        String especialesString="especiales.xml";
+        String ficheroEspeciales = directorio+"/"+especialesString;
+        String casillasString="casillas.xml";
+        String ficheroCasillas = directorio+"/"+casillasString;
+        String usuariosString="usuarios.xml";
+        String ficheroUsuarios = directorio+"/"+usuariosString;
+        String tsorpresasuerteString="tsorpresasuerte.xml";
+        String ficheroTSorpresaSuerte = directorio+"/"+tsorpresasuerteString;
+        String tablerosString="tableros.xml";
+        String ficheroTableros = directorio+"/"+tablerosString;
+        String partidasString="partidas.xml";
+        String ficheroPartidas = directorio+"/"+partidasString;
+        
+        UtilesXML utilXML = new UtilesXML();
+        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),propiedadesString);
+        IPropiedadDAL ipropiedades = new PropiedadDAL();
+        ipropiedades.guardarPropiedades(ficheroPropiedades,propiedades);
+        
+        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),especialesString);
+        IEspecialDAL iespeciales = new EspecialDAL();
+        iespeciales.guardarEspecial(ficheroEspeciales, especiales);
+        
+        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),casillasString);
+        ICasillaDAL icasillas = new CasillaDAL();
+        icasillas.guardarCasilla(ficheroCasillas, casillas);
+        
+        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),usuariosString);
+        IJugadorDAL ijugadores = new JugadorDAL();
+        ijugadores.guardarUsuario(ficheroUsuarios, jugadores);
+            
+        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),tsorpresasuerteString);
+        ITSorpresaSuerteDAL itsorpresasuerte = new TSorpresaSuerteDAL();
+        itsorpresasuerte.guardarITSorpresaSuerte(ficheroTSorpresaSuerte, tarjetasCCySuerte);
+        
+        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),tablerosString);
+        ITableroDAL itablero = new TableroDAL();
+        itablero.guardarTablero(ficheroTableros, tablero);
+            
+        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),partidasString);
+        IPartidaDAL ipartida = new PartidaDAL();
+        ipartida.guardarPartida(ficheroPartidas, partida);
+        
         
         utilServlet.mostrarVista("./jsp/partida.jsp", request, response);             
     }

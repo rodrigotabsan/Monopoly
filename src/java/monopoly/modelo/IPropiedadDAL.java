@@ -5,6 +5,7 @@
  */
 package monopoly.modelo;
 
+import java.io.File;
 import java.util.List;
 import monopoly.modelo.entidades.Propiedad;
 
@@ -12,8 +13,15 @@ import monopoly.modelo.entidades.Propiedad;
  * Interface para acceder a las funciones de PropiedadDAL
  * @author Rodrigo
  */
-@FunctionalInterface
 public interface IPropiedadDAL {
+    
+    
+    /**
+     * Guardo las propiedades
+     * @param ficheroPropiedades fichero donde lo quiero guardar
+     * @param propiedades lista de las propiedades
+     */
+    public void guardarPropiedades(String ficheroPropiedades, List <Propiedad> propiedades);
     
     /**
      * Obtiene todas las propiedades.

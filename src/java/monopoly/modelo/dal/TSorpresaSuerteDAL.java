@@ -11,6 +11,7 @@ import java.util.List;
 import monopoly.modelo.entidades.TSorpresaSuerte;
 import monopoly.modelo.ITSorpresaSuerteDAL;
 import monopoly.util.UtilesXML;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -58,7 +59,7 @@ public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
                  Element unElemento = (Element) tsorepsasuerte;                 
                  TSorpresaSuerte objTSorpresaSuerte = new TSorpresaSuerte();
                  objTSorpresaSuerte.setId(Integer.parseInt(obtenerNodoValor("id", unElemento)));
-                 objTSorpresaSuerte.setBonus(Integer.parseInt(obtenerNodoValor("id", unElemento)));
+                 objTSorpresaSuerte.setBonus(Integer.parseInt(obtenerNodoValor("bonus", unElemento)));
                  objTSorpresaSuerte.setDescripcion(obtenerNodoValor("descripcion", unElemento));
                  objTSorpresaSuerte.setTipo(obtenerNodoValor("tipo", unElemento));
                  
@@ -66,5 +67,45 @@ public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
              }
          }  
         return listaTsSorpresaSuerte;
+    }
+    
+    /**
+     * Guardo las tarjetasSorpresaSuerte
+     * @param fichero fichero donde lo guardo
+     * @param tarjetasSorpresaSuerte lista de tarjetasSorpresaSuerte
+     */
+    @Override
+    public void guardarITSorpresaSuerte(String fichero, List<TSorpresaSuerte> tarjetasSorpresaSuerte) {
+        UtilesXML util = new UtilesXML(new File(fichero));
+                
+             Document doc =util.accesoAlDocument();
+
+             Node nodoRaiz = util.accesoANodoXML();          
+             
+             for(TSorpresaSuerte tSorpresaSuerte:tarjetasSorpresaSuerte){
+                 
+                Element nuevaTarjeta = doc.createElement("tarjeta");
+                
+                Element nuevoId = doc.createElement("id"); 
+                nuevoId.setTextContent(String.valueOf(tSorpresaSuerte.getId()));
+                 
+                Element nuevoTipo = doc.createElement("tipo"); 
+                nuevoTipo.setTextContent(String.valueOf(tSorpresaSuerte.getTipo()));
+
+                Element nuevoDescripcion = doc.createElement("descripcion");
+                nuevoDescripcion.setTextContent(String.valueOf(tSorpresaSuerte.getDescripcion()));
+                
+                Element nuevoBonus = doc.createElement("bonus");
+                nuevoBonus.setTextContent(String.valueOf(tSorpresaSuerte.getBonus()));
+                
+                nuevaTarjeta.appendChild(nuevoId);
+                nuevaTarjeta.appendChild(nuevoTipo);
+                nuevaTarjeta.appendChild(nuevoDescripcion);
+                nuevaTarjeta.appendChild(nuevoBonus);
+                
+                nodoRaiz.appendChild(nuevaTarjeta);     
+
+                util.modificarOEliminarElementoXML(new File(fichero), doc);    
+             }
     }
 }

@@ -5,6 +5,7 @@
  */
 package monopoly.modelo;
 
+import java.io.File;
 import java.util.List;
 import monopoly.modelo.entidades.Partida;
 
@@ -13,6 +14,14 @@ import monopoly.modelo.entidades.Partida;
  * @author Rodrigo
  */
 public interface IPartidaDAL {
+    
+    /**
+     * Guardar una partida pasándole un objeto Partida.
+     * @param fichero fichero donde se va a guardar     
+     * @param partida  Partida que se desea guardar
+     * @see Jugador
+     */
+    public void guardarPartida(String fichero,Partida partida);
     
     /**
      * Obtiene todas las partidas

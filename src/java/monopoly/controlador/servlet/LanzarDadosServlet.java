@@ -280,7 +280,7 @@ public class LanzarDadosServlet extends HttpServlet{
                             }
                         }
                     }
-                }
+                }                
             }
             System.out.println("Estado "+jugador.getEstadoTurno()+ " del jugador "+jugador.getNombre());
             request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);

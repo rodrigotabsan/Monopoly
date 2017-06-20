@@ -153,6 +153,7 @@ public class UtilesXML {
                                 + "\r\n<idcasilla>0</idcasilla>"
                                 + "\r\n<idtsorpresasuerte>0</idtsorpresasuerte>"
                                 + "\r\n<turno>1</turno>"
+                                + "\r\n<fondodinero>0</fondodinero>"
                                 + "\r\n</tablero>"
                                 + "\r\n</tableros>");
                         break;
@@ -180,6 +181,64 @@ public class UtilesXML {
         return false;
     }
     
+    
+    /**
+     * Comprueba si el XML existe. En caso negativo, crea un XML con el nombre 
+     * dado, y devuelve true. Sino devuelve false.
+     * @param nombreXML Fichero XML al que se quiere acceder.
+     * @return Un booleano para saber si es necesario crearlo o no.
+     */
+    public boolean crearXMLGuardar(String directorio,String nombreXML){
+        try {
+            File xml = new File(directorio+"/"+nombreXML);
+            
+            if(!xml.exists()) {
+                BufferedWriter bw;
+                bw = new BufferedWriter(new FileWriter(xml));
+                bw.write("<?xml version='1.0' encoding='UTF-8'?>");
+                switch (nombreXML){
+                    case "usuarios.xml":
+                        bw.write("\r\n<usuarios>"                                
+                                + "\r\n</usuarios>");
+                        break;
+                    case "tableros.xml":
+                        bw.write("\r\n<tableros>"                                
+                                + "\r\n</tableros>");
+                        break;
+                    case "partidas.xml":
+                        bw.write("\r\n<partidas>"                                
+                                + "\r\n</partidas>");
+                        break;
+                    case "especiales.xml":
+                        bw.write("\r\n<especiales>"                                
+                                + "\r\n</especiales>");
+                        break;
+                    case "propiedades.xml":
+                        bw.write("\r\n<propiedades>"                                
+                                + "\r\n</propiedades>");
+                        break;
+                    case "tsorpresasuerte.xml":
+                        bw.write("\r\n<tarjetas>"                                
+                                + "\r\n</tarjetas>");
+                        break;
+                    case "casillas.xml":
+                        bw.write("\r\n<casillas>"                                
+                                + "\r\n</casillas>");
+                        break;
+                        
+                    default:                        
+                        System.out.println("Parece un caso de XML no contemplado: "+nombreXML);
+                        break;
+                }
+                bw.close();
+                return true;
+            }        
+                
+        } catch (IOException ex) {
+            System.out.println("Parece que ha habido un error al generar las etiquetas del XML. Error: "+ ex);
+        }
+        return false;
+    }
     
     
 }

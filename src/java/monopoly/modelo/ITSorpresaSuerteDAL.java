@@ -5,6 +5,7 @@
  */
 package monopoly.modelo;
 
+import java.io.File;
 import java.util.List;
 import monopoly.modelo.entidades.TSorpresaSuerte;
 
@@ -12,8 +13,15 @@ import monopoly.modelo.entidades.TSorpresaSuerte;
  * Interface para acceder a las funciones de TSorpresaSuerteDAL
  * @author Rodrigo
  */
-@FunctionalInterface
 public interface ITSorpresaSuerteDAL {
+    
+    /**
+     * Guardar un listado de itSorpresaSuerteDAL pasándole un listado de objetos itSorpresaSuerteDAL.
+     * @param fichero fichero donde se va a guardar     
+     * @param itSorpresaSuerte  itSorpresaSuerte que se desean guardar
+     * @see ITSorpresaSuerte
+     */
+    public void guardarITSorpresaSuerte(String fichero, List<TSorpresaSuerte> itSorpresaSuerte);
     
     /**
      * Obtiene todas las tarjetas de Caja Comunidad y Suerte.

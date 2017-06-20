@@ -130,10 +130,53 @@ public class TableroDAL implements ITableroDAL{
                  objTablero.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla", unElemento)));
                  objTablero.setIdTSorpresaSuerte(Integer.parseInt(obtenerNodoValor("idtsorpresasuerte", unElemento)));
                  objTablero.setTurno(Integer.parseInt(obtenerNodoValor("turno", unElemento)));
+                 objTablero.setFondoDinero(Integer.parseInt(obtenerNodoValor("fondodinero", unElemento)));
                  listaTableros.add(objTablero);
              }
          }                 
           
         return listaTableros;
+    }
+    
+    /**
+     * Guardo el tablero
+     * @param fichero fichero donde lo guardo
+     * @param tablero tablero
+     */
+    @Override
+    public void guardarTablero(String fichero, Tablero tablero) {
+            UtilesXML util = new UtilesXML(new File(fichero));
+                
+            Document doc =util.accesoAlDocument();
+
+            Node nodoRaiz = util.accesoANodoXML();          
+                 
+                Element nuevoTablero = doc.createElement("tablero");
+                
+                Element nuevoId = doc.createElement("id"); 
+                nuevoId.setTextContent(String.valueOf(tablero.getId()));
+                 
+                Element nuevoIdCasilla = doc.createElement("idcasilla"); 
+                nuevoIdCasilla.setTextContent(String.valueOf(tablero.getIdCasilla()));
+
+                Element nuevoIdTSorpresaSuerte = doc.createElement("idtsorpresasuerte");
+                nuevoIdTSorpresaSuerte.setTextContent(String.valueOf(tablero.getIdTSorpresaSuerte()));
+                
+                Element nuevoTurno = doc.createElement("turno");
+                nuevoTurno.setTextContent(String.valueOf(tablero.getTurno()));
+                
+                Element nuevoFondoDinero = doc.createElement("fondodinero");
+                nuevoFondoDinero.setTextContent(String.valueOf(tablero.getFondoDinero()));
+                
+                nuevoTablero.appendChild(nuevoId);
+                nuevoTablero.appendChild(nuevoIdCasilla);
+                nuevoTablero.appendChild(nuevoIdTSorpresaSuerte);
+                nuevoTablero.appendChild(nuevoTurno);
+                nuevoTablero.appendChild(nuevoFondoDinero);
+                
+                nodoRaiz.appendChild(nuevoTablero);     
+
+                util.modificarOEliminarElementoXML(new File(fichero), doc);    
+             
     }
 }
