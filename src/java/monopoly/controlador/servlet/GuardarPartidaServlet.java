@@ -90,58 +90,59 @@ public class GuardarPartidaServlet extends HttpServlet{
         Tablero tablero = (Tablero)request.getSession().getAttribute("tableroNuevo");
         Partida partida = (Partida)request.getSession().getAttribute("partidaNueva");
               
-        Locale locale = Locale.GERMAN;
-        Calendar hoy = Calendar.getInstance();
-        //Se utiliza la fecha para guardar la partida
-        File directorio=new File((hoy.get(Calendar.DATE)+""+(hoy.get(Calendar.MONTH) + 1)+""+hoy.get(Calendar.YEAR))+""+hoy.get(Calendar.HOUR)+""+hoy.get(Calendar.MINUTE)); 
-        directorio.mkdir(); 
         
-        //Se guarda fichero a fichero.
-        String propiedadesString="propiedades.xml";
-        String ficheroPropiedades = directorio+"/"+propiedadesString;
-        String especialesString="especiales.xml";
-        String ficheroEspeciales = directorio+"/"+especialesString;
-        String casillasString="casillas.xml";
-        String ficheroCasillas = directorio+"/"+casillasString;
-        String usuariosString="usuarios.xml";
-        String ficheroUsuarios = directorio+"/"+usuariosString;
-        String tsorpresasuerteString="tsorpresasuerte.xml";
-        String ficheroTSorpresaSuerte = directorio+"/"+tsorpresasuerteString;
-        String tablerosString="tableros.xml";
-        String ficheroTableros = directorio+"/"+tablerosString;
-        String partidasString="partidas.xml";
-        String ficheroPartidas = directorio+"/"+partidasString;
-        
-        UtilesXML utilXML = new UtilesXML();
-        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),propiedadesString);
-        IPropiedadDAL ipropiedades = new PropiedadDAL();
-        ipropiedades.guardarPropiedades(ficheroPropiedades,propiedades);
-        
-        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),especialesString);
-        IEspecialDAL iespeciales = new EspecialDAL();
-        iespeciales.guardarEspecial(ficheroEspeciales, especiales);
-        
-        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),casillasString);
-        ICasillaDAL icasillas = new CasillaDAL();
-        icasillas.guardarCasilla(ficheroCasillas, casillas);
-        
-        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),usuariosString);
-        IJugadorDAL ijugadores = new JugadorDAL();
-        ijugadores.guardarUsuario(ficheroUsuarios, jugadores);
-            
-        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),tsorpresasuerteString);
-        ITSorpresaSuerteDAL itsorpresasuerte = new TSorpresaSuerteDAL();
-        itsorpresasuerte.guardarITSorpresaSuerte(ficheroTSorpresaSuerte, tarjetasCCySuerte);
-        
-        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),tablerosString);
-        ITableroDAL itablero = new TableroDAL();
-        itablero.guardarTablero(ficheroTableros, tablero);
-            
-        utilXML.crearXMLGuardar(directorio.getAbsolutePath(),partidasString);
-        IPartidaDAL ipartida = new PartidaDAL();
-        ipartida.guardarPartida(ficheroPartidas, partida);
-        
-        
+        System.out.println("TRAE "+request.getParameter("nombreAGuardar"));
+        if(request.getParameter("nombreAGuardar")!=null && !request.getParameter("nombreAGuardar").isEmpty()){
+            //Se utiliza la fecha para guardar la partida
+            File directorio=new File(request.getParameter("nombreAGuardar")); 
+            directorio.mkdir(); 
+
+            //Se guarda fichero a fichero.
+            String propiedadesString="propiedades.xml";
+            String ficheroPropiedades = directorio+"/"+propiedadesString;
+            String especialesString="especiales.xml";
+            String ficheroEspeciales = directorio+"/"+especialesString;
+            String casillasString="casillas.xml";
+            String ficheroCasillas = directorio+"/"+casillasString;
+            String usuariosString="usuarios.xml";
+            String ficheroUsuarios = directorio+"/"+usuariosString;
+            String tsorpresasuerteString="tsorpresasuerte.xml";
+            String ficheroTSorpresaSuerte = directorio+"/"+tsorpresasuerteString;
+            String tablerosString="tableros.xml";
+            String ficheroTableros = directorio+"/"+tablerosString;
+            String partidasString="partidas.xml";
+            String ficheroPartidas = directorio+"/"+partidasString;
+
+            UtilesXML utilXML = new UtilesXML();
+            utilXML.crearXMLGuardar(directorio.getAbsolutePath(),propiedadesString);
+            IPropiedadDAL ipropiedades = new PropiedadDAL();
+            ipropiedades.guardarPropiedades(ficheroPropiedades,propiedades);
+
+            utilXML.crearXMLGuardar(directorio.getAbsolutePath(),especialesString);
+            IEspecialDAL iespeciales = new EspecialDAL();
+            iespeciales.guardarEspecial(ficheroEspeciales, especiales);
+
+            utilXML.crearXMLGuardar(directorio.getAbsolutePath(),casillasString);
+            ICasillaDAL icasillas = new CasillaDAL();
+            icasillas.guardarCasilla(ficheroCasillas, casillas);
+
+            utilXML.crearXMLGuardar(directorio.getAbsolutePath(),usuariosString);
+            IJugadorDAL ijugadores = new JugadorDAL();
+            ijugadores.guardarUsuario(ficheroUsuarios, jugadores);
+
+            utilXML.crearXMLGuardar(directorio.getAbsolutePath(),tsorpresasuerteString);
+            ITSorpresaSuerteDAL itsorpresasuerte = new TSorpresaSuerteDAL();
+            itsorpresasuerte.guardarITSorpresaSuerte(ficheroTSorpresaSuerte, tarjetasCCySuerte);
+
+            utilXML.crearXMLGuardar(directorio.getAbsolutePath(),tablerosString);
+            ITableroDAL itablero = new TableroDAL();
+            itablero.guardarTablero(ficheroTableros, tablero);
+
+            utilXML.crearXMLGuardar(directorio.getAbsolutePath(),partidasString);
+            IPartidaDAL ipartida = new PartidaDAL();
+            ipartida.guardarPartida(ficheroPartidas, partida);
+
+        }
         utilServlet.mostrarVista("./jsp/partida.jsp", request, response);             
     }
     

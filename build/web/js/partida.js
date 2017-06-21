@@ -160,7 +160,8 @@ function guardarPartida(){
     
     var inputNombre = document.createElement("input");
     inputNombre.type="text";
-    inputNombre.id="inputNombreMensaje";    
+    inputNombre.id="inputNombreMensaje"; 
+    inputNombre.name="nombreAGuardar";
     inputNombre.value=hoy;      
     cajaMensaje.appendChild(inputNombre);
     
