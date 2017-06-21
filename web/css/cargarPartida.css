@@ -1,0 +1,39 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-jun-2017, 0:17:53
+    Author     : Rodrigo
+*/
+h2{
+    margin-left:42%;
+}
+
+#seleccionPartidas{
+    background-color:#CDE6D0;
+    border-style: solid;
+    border-width: 2px;
+    width:20%;
+    margin-left:40%;
+    margin-top:3%;
+}
+#botonesCargaPartida{
+    margin-left:39%;
+    margin-top:5%;
+    margin-bottom: 9%;
+}
+#botonesCargaPartida input{
+    margin-top:5%;
+    padding: 3%;
+    background-color:#AC1528;
+    color:white;
+    font-weight: bold;
+}
+#botonesCargaPartida input:hover {
+    color:#AC1528;
+    background-color:white;
+    cursor:pointer;
+}
+

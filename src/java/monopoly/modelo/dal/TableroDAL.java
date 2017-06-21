@@ -139,6 +139,36 @@ public class TableroDAL implements ITableroDAL{
     }
     
     /**
+     * Obtiene un listado con todos los tableros
+     * @param partida String de partida guardada
+     * @return Devuelve un listado de Tableros
+     * @see Tablero
+     */
+    @Override
+    public List<Tablero> obtenerTodosTableros(String partida){
+        List<Tablero> listaTableros= new ArrayList<Tablero>();
+        UtilesXML util = new UtilesXML(new File("xml/"+partida+"/tableros.xml"));
+               
+         NodeList nodosTableros = util.accesoAXML("tablero");
+         
+         for(int i = 0; i < nodosTableros.getLength(); i++){
+             Node tablero = nodosTableros.item(i);
+             if(tablero.getNodeType()== Node.ELEMENT_NODE){
+                 Element unElemento = (Element) tablero;                 
+                 Tablero objTablero = new Tablero();
+                 objTablero.setId(Integer.parseInt(obtenerNodoValor("id", unElemento)));               
+                 objTablero.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla", unElemento)));
+                 objTablero.setIdTSorpresaSuerte(Integer.parseInt(obtenerNodoValor("idtsorpresasuerte", unElemento)));
+                 objTablero.setTurno(Integer.parseInt(obtenerNodoValor("turno", unElemento)));
+                 objTablero.setFondoDinero(Integer.parseInt(obtenerNodoValor("fondodinero", unElemento)));
+                 listaTableros.add(objTablero);
+             }
+         }                 
+          
+        return listaTableros;
+    }
+    
+    /**
      * Guardo el tablero
      * @param fichero fichero donde lo guardo
      * @param tablero tablero

@@ -145,8 +145,8 @@ public class JugadorDAL implements IJugadorDAL{
                 Document doc =util.accesoAlDocument();
 
                 Node nodoRaiz = util.accesoANodoXML();
-             for(Jugador usuario:jugadores){
-                          
+             for(int i=0; i<jugadores.size();i++){
+                Jugador usuario=jugadores.get(i);
                 Element nuevoUsuario = doc.createElement("usuario");
                 
                 
@@ -181,7 +181,7 @@ public class JugadorDAL implements IJugadorDAL{
                 nuevoCogeTarjeta.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
 
                 Element estadoParaComprar = doc.createElement("estadoparacomprar");
-                nuevoCogeTarjeta.setTextContent(String.valueOf(usuario.getCogeTarjeta()));
+                estadoParaComprar.setTextContent(String.valueOf(usuario.getEstadoParaComprar()));
                 
                 nuevoUsuario.appendChild(nuevoId);
                 nuevoUsuario.appendChild(nuevoIdCasilla);
@@ -223,15 +223,51 @@ public class JugadorDAL implements IJugadorDAL{
                  objUsuario.setFigura(obtenerNodoValor("figura", unElemento)); 
                  objUsuario.setDinero(Integer.parseInt(obtenerNodoValor("dinero",unElemento)));
                  objUsuario.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla", unElemento)));
-                 objUsuario.setIdCasilla(Integer.parseInt(obtenerNodoValor("idpartida", unElemento)));
+                 objUsuario.setIdPartida(Integer.parseInt(obtenerNodoValor("idpartida", unElemento)));
                  objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("turno", unElemento)));
-                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("estadoturno", unElemento)));                 
-                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("turnoCarcel", unElemento)));
-                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("cogetarjeta", unElemento)));
-                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("estadoparacomprar", unElemento)));
+                 objUsuario.setEstadoTurno(Integer.parseInt(obtenerNodoValor("estadoturno", unElemento)));                 
+                 objUsuario.setTurnoCarcel(Integer.parseInt(obtenerNodoValor("turnoCarcel", unElemento)));
+                 objUsuario.setCogeTarjeta(Integer.parseInt(obtenerNodoValor("cogetarjeta", unElemento)));
+                 objUsuario.setEstadoParaComprar(Integer.parseInt(obtenerNodoValor("estadoparacomprar", unElemento)));
                  listaUsuarios.add(objUsuario);
              }
          }    
         return listaUsuarios;
     }
+    
+    /**
+     * Obtiene un listado de todos los Jugadores
+     * @param partida String de una partida
+     * @return El listado de jugadores
+     * @see Jugador
+     */   
+    @Override
+    public List<Jugador> obtenerTodosUsuarios(String partida){
+        List<Jugador> listaUsuarios= new ArrayList<Jugador>();
+        UtilesXML util=new UtilesXML(new File("xml/"+partida+"/usuarios.xml"));
+           
+         NodeList nodosUsuarios = util.accesoAXML("usuario");
+         
+         for(int i = 0; i < nodosUsuarios.getLength(); i++){
+             Node usuario = nodosUsuarios.item(i);
+             if(usuario.getNodeType()== Node.ELEMENT_NODE){
+                 Element unElemento = (Element) usuario;
+                 Jugador objUsuario = new Jugador();
+                 objUsuario.setId(Integer.parseInt(obtenerNodoValor("id", unElemento)));
+                 objUsuario.setNombre(obtenerNodoValor("nombre", unElemento));                 
+                 objUsuario.setFigura(obtenerNodoValor("figura", unElemento)); 
+                 objUsuario.setDinero(Integer.parseInt(obtenerNodoValor("dinero",unElemento)));
+                 objUsuario.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla", unElemento)));
+                 objUsuario.setIdPartida(Integer.parseInt(obtenerNodoValor("idpartida", unElemento)));
+                 objUsuario.setTurno(Integer.parseInt(obtenerNodoValor("turno", unElemento)));
+                 objUsuario.setEstadoTurno(Integer.parseInt(obtenerNodoValor("estadoturno", unElemento)));                 
+                 objUsuario.setTurnoCarcel(Integer.parseInt(obtenerNodoValor("turnoCarcel", unElemento)));
+                 objUsuario.setCogeTarjeta(Integer.parseInt(obtenerNodoValor("cogetarjeta", unElemento)));
+                 objUsuario.setEstadoParaComprar(Integer.parseInt(obtenerNodoValor("estadoparacomprar", unElemento)));
+                 listaUsuarios.add(objUsuario);
+             }
+         }    
+        return listaUsuarios;
+    }
+    
 }

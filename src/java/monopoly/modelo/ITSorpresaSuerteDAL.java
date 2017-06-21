@@ -29,4 +29,12 @@ public interface ITSorpresaSuerteDAL {
      * @return Un listado de TSorpresaSuerteDAL
      */
     public List<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte();
+    
+    /**
+     * Obtiene todas las tarjetas de Caja Comunidad y Suerte.
+     * @param partida String de una partida guardada
+     * @see TSorpresaSuerte
+     * @return Un listado de TSorpresaSuerteDAL
+     */
+    public List<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte(String partida);
 }

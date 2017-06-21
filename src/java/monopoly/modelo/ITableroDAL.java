@@ -36,6 +36,13 @@ public interface ITableroDAL {
      */
     public List<Tablero> obtenerTodosTableros();
     
+     /**
+     * Obtiene todos los tableros del XML tableros.xml
+     * @param partida String de una partida guardada
+     * @return Un listado de Tablero
+     */
+    public List<Tablero> obtenerTodosTableros(String partida);
+    
     /**
      * Añade una etiqueta tablero nueva al XML tableros.xml 
      * @param tablero Tablero que se desea crear

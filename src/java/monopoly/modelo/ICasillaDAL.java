@@ -31,4 +31,12 @@ public interface ICasillaDAL {
      * @return Un listado de Casilla
      */
     public List<Casilla> obtenerTodasCasillas();
+    
+    /**
+     * Obtiene todas las casillas del tablero.
+     * @param partida String de una partida guardada
+     * @see Casilla
+     * @return Un listado de Casilla
+     */
+    public List<Casilla> obtenerTodasCasillas(String partida);
 }

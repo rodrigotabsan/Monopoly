@@ -29,10 +29,12 @@ public class InicioServlet extends HttpServlet{
          UtilesServlets utilServlet = new UtilesServlets();
          utilServlet.eliminarMensajesDeError(request, response); 
          String comenzarPartida=request.getParameter("comenzarPartida");         
-         if(comenzarPartida!=null){
-                
-                utilServlet.mostrarVista("./jsp/seleccionarNumJugadores.jsp", request, response);
-             
+         if(comenzarPartida!=null){                
+            utilServlet.mostrarVista("./jsp/seleccionarNumJugadores.jsp", request, response);             
+         }
+         String cargarPartida=request.getParameter("cargarPartida");         
+         if(cargarPartida!=null){
+             utilServlet.mostrarVista("./jsp/cargarPartida.jsp", request, response);
          }
         }catch(ServletException | IOException ex){
             System.out.println("Error: "+ex);

@@ -71,6 +71,36 @@ public class EspecialDAL implements IEspecialDAL{
           
         return listaEspeciales;
     }
+    
+    /**
+     * Obtiene un listado de todas las casillas especiales.
+     * @param partidaGuardada nombre de una partida guardada
+     * @return Listado de Especial
+     * @see Especial
+     */
+    @Override
+    public List<Especial> obtenerTodasEspeciales(String partidaGuardada){
+        List<Especial> listaEspeciales= new ArrayList<Especial>();
+        UtilesXML util = new UtilesXML(new File("xml/"+partidaGuardada+"/especiales.xml"));
+                 
+         NodeList nodosEspeciales =  util.accesoAXML("especial");
+         
+         for(int i = 0; i < nodosEspeciales.getLength(); i++){
+             Node especial = nodosEspeciales.item(i);
+             if(especial.getNodeType()== Node.ELEMENT_NODE){
+                 Element unElemento = (Element) especial;  
+                 Especial objEspecial = new Especial();
+                 objEspecial.setId(Integer.parseInt(obtenerNodoValor("id", unElemento)));
+                 objEspecial.setNombre(obtenerNodoValor("nombre", unElemento));
+                 objEspecial.setTipo(obtenerNodoValor("tipo", unElemento));
+                 objEspecial.setBonus(Integer.parseInt(obtenerNodoValor("bonus", unElemento)));
+                 objEspecial.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla",unElemento)));
+                 listaEspeciales.add(objEspecial);
+             }
+         }                 
+          
+        return listaEspeciales;
+    }
 
     /**
      * Crea una Especial pasándole el objeto Especial

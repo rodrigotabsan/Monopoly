@@ -29,4 +29,12 @@ public interface IPropiedadDAL {
      * @return Un listado de Propiedad
      */
     public List<Propiedad> obtenerTodasPropiedades();
+    
+    /**
+     * Obtiene todas las propiedades.
+     * @param partida String de una partida guardada
+     * @see Propiedad
+     * @return Un listado de Propiedad
+     */
+    public List<Propiedad> obtenerTodasPropiedades(String partida);
 }

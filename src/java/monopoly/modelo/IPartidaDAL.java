@@ -30,6 +30,15 @@ public interface IPartidaDAL {
      */
     public List<Partida> obtenerTodasPartidas();
     
+    
+    /**
+     * Obtiene todas las partidas
+     * @param partida String de una partida guardada
+     * @see Partida
+     * @return Un listado de las partidas
+     */
+    public List<Partida> obtenerTodasPartidas(String partida);
+    
     /**
      * Elimina una partida. Hay que pasarle un objeto Partida
      * @see Partida

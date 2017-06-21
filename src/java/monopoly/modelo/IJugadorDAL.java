@@ -43,4 +43,12 @@ public interface IJugadorDAL {
      * @return Un listado de Jugador
      */
     public List <Jugador> obtenerTodosUsuarios();
+    
+    /**
+     * Obtiene un listado de todos los jugadores
+     * @param partida string de una partida guardada
+     * @see Jugador
+     * @return Un listado de Jugador
+     */
+    public List <Jugador> obtenerTodosUsuarios(String partida);
 }

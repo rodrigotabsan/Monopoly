@@ -128,7 +128,11 @@
                             }
                     }
                     
-                    for (int a = 0; a < jugadores.size(); a++) {     
+                           
+
+                    if(request.getSession().getAttribute("cargarPartida")!=null){
+                        for (int a = 0; a < jugadores.size(); a++) {    
+                            System.out.println("EL JUGADOR ES "+jugadores.get(a).getNombre()+ " y tiene estado "+jugadores.get(a).getEstadoTurno());
                             if(jugadores.get(a).getEstadoTurno()==1){
                                 contadorJugadores=a;
                                 turnoDeJugador=jugadores.get(a);	                            
@@ -137,7 +141,20 @@
                             if(jugadores.get(a).getEstadoTurno()==2){
                                 turnoDeJugador=jugadores.get(a);	
                             }                        
-                    }                     
+                        }
+                    }else{
+                        for (int a = 0; a < jugadores.size(); a++) {    
+                            System.out.println("EL JUGADOR ES "+jugadores.get(a).getNombre());
+                            if(jugadores.get(a).getEstadoTurno()==1){
+                                contadorJugadores=a;
+                                turnoDeJugador=jugadores.get(a);	                            
+                                request.getSession().setAttribute("contadorJugadores", contadorJugadores);   
+                            }    
+                            if(jugadores.get(a).getEstadoTurno()==2){
+                                turnoDeJugador=jugadores.get(a);	
+                            }                        
+                        }
+                    }
                 %>
             </section>
             <section>

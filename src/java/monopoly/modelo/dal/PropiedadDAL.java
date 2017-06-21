@@ -84,6 +84,51 @@ public class PropiedadDAL implements IPropiedadDAL{
     }
     
     /**
+     * Obtiene un listado con todas las propiedades
+     * @param partida String de una partida guardada
+     * @return El listado de Propiedades
+     * @see Propiedad
+     */
+    @Override
+    public List<Propiedad> obtenerTodasPropiedades(String partida){
+        List<Propiedad> listaPropiedades= new ArrayList<Propiedad>();
+        
+        UtilesXML util = new UtilesXML(new File("xml/"+partida+"/propiedades.xml"));
+              
+         NodeList nodosPropiedades = util.accesoAXML("propiedad");
+         
+         for(int i = 0; i < nodosPropiedades.getLength(); i++){
+             Node propiedad = nodosPropiedades.item(i);
+             if(propiedad.getNodeType()== Node.ELEMENT_NODE){
+                 Element unElemento = (Element) propiedad;
+                 Propiedad objPropiedad = new Propiedad();
+                 objPropiedad.setId(Integer.parseInt(obtenerNodoValor("id", unElemento)));
+                 objPropiedad.setNombre(obtenerNodoValor("nombre", unElemento));    
+                 objPropiedad.setTipo(obtenerNodoValor("tipo", unElemento));  
+                 objPropiedad.setPrecio(Integer.parseInt(obtenerNodoValor("precio", unElemento)));  
+                 objPropiedad.setIdUsuario(Integer.parseInt(obtenerNodoValor("idusuario",unElemento))); 
+                 objPropiedad.setDescripcion(obtenerNodoValor("descripcion", unElemento));
+                 objPropiedad.setColor(obtenerNodoValor("color", unElemento));        
+                 objPropiedad.setIdCasilla(Integer.parseInt(obtenerNodoValor("idcasilla", unElemento)));
+                 objPropiedad.setHipoteca(Integer.parseInt(obtenerNodoValor("hipoteca", unElemento)));
+                 objPropiedad.setAlquiler(Integer.parseInt(obtenerNodoValor("alquiler", unElemento)));
+                 objPropiedad.setCasa(Integer.parseInt(obtenerNodoValor("casa", unElemento)));
+                 objPropiedad.setAlquilerPrimeraCasa(Integer.parseInt(obtenerNodoValor("alquilerprimeracasa", unElemento)));
+                 objPropiedad.setAlquilerSegundaCasa(Integer.parseInt(obtenerNodoValor("alquilersegundacasa", unElemento)));
+                 objPropiedad.setAlquilerTerceraCasa(Integer.parseInt(obtenerNodoValor("alquilerterceracasa", unElemento)));
+                 objPropiedad.setAlquilerCuartaCasa(Integer.parseInt(obtenerNodoValor("alquilercuartacasa", unElemento)));
+                 objPropiedad.setHotel(Integer.parseInt(obtenerNodoValor("hotel", unElemento)));
+                 objPropiedad.setAlquilerHotel(Integer.parseInt(obtenerNodoValor("alquilerhotel", unElemento)));
+                 
+                 listaPropiedades.add(objPropiedad);
+             }
+         }   
+        return listaPropiedades;
+    }
+    
+    
+    
+    /**
      * Guardo las propiedades
      * @param fichero fichero donde lo guardo
      * @param propiedades lista de propiedades
@@ -140,10 +185,10 @@ public class PropiedadDAL implements IPropiedadDAL{
                 Element nuevaAlquilerSegundaCasa = doc.createElement("alquilersegundacasa");
                 nuevaAlquilerSegundaCasa.setTextContent(String.valueOf(propiedad.getAlquilerSegundaCasa()));
                 
-                Element nuevaAlquilerTerceraCasa = doc.createElement("alquilerprimeracasa");
+                Element nuevaAlquilerTerceraCasa = doc.createElement("alquilerterceracasa");
                 nuevaAlquilerTerceraCasa.setTextContent(String.valueOf(propiedad.getAlquilerTerceraCasa()));
                 
-                Element nuevaAlquilerCuartaCasa = doc.createElement("alquilerprimeracasa");
+                Element nuevaAlquilerCuartaCasa = doc.createElement("alquilercuartacasa");
                 nuevaAlquilerCuartaCasa.setTextContent(String.valueOf(propiedad.getAlquilerCuartaCasa()));
                 
                 Element nuevoHotel = doc.createElement("hotel");

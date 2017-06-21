@@ -70,6 +70,35 @@ public class TSorpresaSuerteDAL implements ITSorpresaSuerteDAL{
     }
     
     /**
+     * Obtiene un listado de todas las tarjetas de Caja de Comunidad y Suerte.
+     * @param partida String de una partida guardada
+     * @return El listado de TSorpresaSuerte 
+     * @see TSorpresaSuerte
+     */
+    @Override
+    public List<TSorpresaSuerte> obtenerTodasTsSorpresaSuerte(String partida){
+        List<TSorpresaSuerte> listaTsSorpresaSuerte= new ArrayList<TSorpresaSuerte>();
+        UtilesXML util = new UtilesXML(new File("xml/"+partida+"/tsorpresasuerte.xml"));
+           
+         NodeList nodosTsSorpresaSuerte = util.accesoAXML("tarjeta");
+         
+         for(int i = 0; i < nodosTsSorpresaSuerte.getLength(); i++){
+             Node tsorepsasuerte = nodosTsSorpresaSuerte.item(i);
+             if(tsorepsasuerte.getNodeType()== Node.ELEMENT_NODE){
+                 Element unElemento = (Element) tsorepsasuerte;                 
+                 TSorpresaSuerte objTSorpresaSuerte = new TSorpresaSuerte();
+                 objTSorpresaSuerte.setId(Integer.parseInt(obtenerNodoValor("id", unElemento)));
+                 objTSorpresaSuerte.setBonus(Integer.parseInt(obtenerNodoValor("bonus", unElemento)));
+                 objTSorpresaSuerte.setDescripcion(obtenerNodoValor("descripcion", unElemento));
+                 objTSorpresaSuerte.setTipo(obtenerNodoValor("tipo", unElemento));
+                 
+                 listaTsSorpresaSuerte.add(objTSorpresaSuerte);
+             }
+         }  
+        return listaTsSorpresaSuerte;
+    }
+    
+    /**
      * Guardo las tarjetasSorpresaSuerte
      * @param fichero fichero donde lo guardo
      * @param tarjetasSorpresaSuerte lista de tarjetasSorpresaSuerte

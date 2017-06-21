@@ -9,6 +9,14 @@
         <url-pattern>/inicioServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>CargarPartidaServlet</servlet-name>
+        <servlet-class>monopoly.controlador.servlet.CargarPartidaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CargarPartidaServlet</servlet-name>
+        <url-pattern>/cargarPartidaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>SeleccionarJugadorServlet</servlet-name>
         <servlet-class>monopoly.controlador.servlet.SeleccionarJugadorServlet</servlet-class>
     </servlet>

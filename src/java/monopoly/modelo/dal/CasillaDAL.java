@@ -106,4 +106,32 @@ public class CasillaDAL implements ICasillaDAL{
            
         return listaCasillas;
     }
+    
+    /**
+     * Obtiene un listado de todas las casillas
+     * @return Listado de Casilla
+     * @param partida String de una partida guardada
+     * @see Casilla
+     */
+    @Override
+    public List<Casilla> obtenerTodasCasillas(String partida){
+        List<Casilla> listaCasillas= new ArrayList<Casilla>();
+        UtilesXML util = new UtilesXML(new File("xml/"+partida+"/casillas.xml"));
+                 
+         NodeList nodosCasillas = util.accesoAXML("casilla");
+         
+         for(int i = 0; i < nodosCasillas.getLength(); i++){
+             Node casilla = nodosCasillas.item(i);
+             if(casilla.getNodeType()== Node.ELEMENT_NODE){
+                 Element unElemento = (Element) casilla;                 
+                 Casilla objCasilla = new Casilla();
+                 objCasilla.setId(Integer.parseInt(obtenerNodoValor("id", unElemento)));
+                 objCasilla.setNombre(obtenerNodoValor("nombre", unElemento));
+                 objCasilla.setTipo(obtenerNodoValor("tipo", unElemento));
+                 listaCasillas.add(objCasilla);
+             }
+         }                 
+           
+        return listaCasillas;
+    }
 }

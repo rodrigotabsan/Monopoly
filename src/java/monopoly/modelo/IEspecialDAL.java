@@ -29,4 +29,13 @@ public interface IEspecialDAL {
      * @return Un listado de Especial
      */
      public List<Especial> obtenerTodasEspeciales();
+     
+     
+     /**
+     * Obtiene todas las casillas especiales del tablero de una partida guardada.
+     * @param partida String de una partida guardada
+     * @see Especial
+     * @return Un listado de Especial
+     */
+     public List<Especial> obtenerTodasEspeciales(String partida);
 }

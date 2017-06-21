@@ -8,10 +8,7 @@ package monopoly.controlador.servlet;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -89,14 +86,25 @@ public class GuardarPartidaServlet extends HttpServlet{
             request.getSession().getAttribute("listaTarjetaCCySuerte");
         Tablero tablero = (Tablero)request.getSession().getAttribute("tableroNuevo");
         Partida partida = (Partida)request.getSession().getAttribute("partidaNueva");
-              
-        
+        int contadorDirectorio=1;
+        boolean directorioExiste=true;
         System.out.println("TRAE "+request.getParameter("nombreAGuardar"));
         if(request.getParameter("nombreAGuardar")!=null && !request.getParameter("nombreAGuardar").isEmpty()){
-            //Se utiliza la fecha para guardar la partida
-            File directorio=new File(request.getParameter("nombreAGuardar")); 
-            directorio.mkdir(); 
-
+            //Se utiliza la fecha para guardar la partida. No puede ser con la / porque estaría buscando entre directorios que no existen...
+            File directorio=new File("xml/"+request.getParameter("nombreAGuardar").replace("/", "-")); 
+            if(!directorio.exists()){
+                directorio.mkdir(); 
+            }else{
+            //si existe se creará un nuevo directorio con la partida guardada.
+                while(directorioExiste){                                
+                        directorio=new File("xml/"+request.getParameter("nombreAGuardar").replace("/", "-")+"("+contadorDirectorio+")");
+                        if(!directorio.exists()){
+                            directorio.mkdir();
+                            directorioExiste=false;
+                        }                
+                    contadorDirectorio++;              
+                }
+            }
             //Se guarda fichero a fichero.
             String propiedadesString="propiedades.xml";
             String ficheroPropiedades = directorio+"/"+propiedadesString;
