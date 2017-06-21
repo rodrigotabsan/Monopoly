@@ -41,7 +41,7 @@ and open the template in the editor.
         <id>6</id>
         <tipo>CARTA SUERTE</tipo>
         <descripcion>El banco paga un dividendo de 50€.</descripcion>
-        <bonus>50€</bonus>
+        <bonus>50</bonus>
     </tarjeta>
     <tarjeta>
         <id>7</id>

@@ -11,7 +11,7 @@ and open the template in the editor.
         <id>1</id>
         <nombre>RONDA DE VALENCIA</nombre>
         <tipo>CALLE</tipo>
-        <precio>60</precio>
+        <precio>6000</precio>
         <idusuario>0</idusuario>
         <descripcion>No hipotecado</descripcion>
         <color>BlueViolet</color>
@@ -30,7 +30,7 @@ and open the template in the editor.
         <id>2</id>
         <nombre>PLAZA LAVAPIÉS</nombre>
         <tipo>CALLE</tipo>
-        <precio>60</precio>
+        <precio>6000</precio>
         <idusuario>0</idusuario>
         <descripcion>No hipotecado</descripcion>
         <color>BlueViolet</color>
