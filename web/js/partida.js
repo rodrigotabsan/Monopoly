@@ -66,41 +66,6 @@ function lanzarDados(){
 /*
  * Crea los componentes para la pantalla del botón Terminar Turno 
  */
-function negociar(){
-    
-    var body=document.body;
-    var cajaTerminarTurno = document.createElement("form");
-    cajaTerminarTurno.id="cajaTerminarTurno";    
-    cajaTerminarTurno.action="terminarTurnoServlet";
-    cajaTerminarTurno.method="POST";
-    body.appendChild(cajaTerminarTurno);
-    
-    var strong = document.createElement("strong");    
-    cajaTerminarTurno.appendChild(strong);
-    
-    var labelMensaje = document.createElement("label");
-    labelMensaje.innerHTML="¿Seguro que quieres terminar tu turno?"; 
-    labelMensaje.id="labelTerminarTurno";
-    strong.appendChild(labelMensaje);
-    
-    var inputAceptar = document.createElement("input");
-    inputAceptar.type="submit";
-    inputAceptar.id="inputAceptarTerminarTurno";
-    inputAceptar.name="terminarTurno";
-    inputAceptar.value="Aceptar";
-    cajaTerminarTurno.appendChild(inputAceptar);
-    
-    var inputCancelar = document.createElement("input");
-    inputCancelar.type="button";
-    inputCancelar.id="inputCancelarTerminarTurno";    
-    inputCancelar.value="Cancelar";
-    cajaTerminarTurno.appendChild(inputCancelar);
-    
-}
-
-/*
- * Crea los componentes para la pantalla del botón Terminar Turno 
- */
 function terminarTurno(){
      
     var body=document.body;

@@ -38,7 +38,8 @@
         
         <title>Monopoly</title>
     </head>
-    <body>     
+    <body>   
+                
         <div id="todoMonopoly">
             <header id="cabecera">
                 <img src="./img/monopoly-logo.jpg">
@@ -128,33 +129,17 @@
                             }
                     }
                     
-                           
-
-                    if(request.getSession().getAttribute("cargarPartida")!=null){
-                        for (int a = 0; a < jugadores.size(); a++) {    
-                            System.out.println("EL JUGADOR ES "+jugadores.get(a).getNombre()+ " y tiene estado "+jugadores.get(a).getEstadoTurno());
-                            if(jugadores.get(a).getEstadoTurno()==1){
-                                contadorJugadores=a;
-                                turnoDeJugador=jugadores.get(a);	                            
-                                request.getSession().setAttribute("contadorJugadores", contadorJugadores);   
-                            }    
-                            if(jugadores.get(a).getEstadoTurno()==2){
-                                turnoDeJugador=jugadores.get(a);	
-                            }                        
-                        }
-                    }else{
-                        for (int a = 0; a < jugadores.size(); a++) {    
-                            System.out.println("EL JUGADOR ES "+jugadores.get(a).getNombre());
-                            if(jugadores.get(a).getEstadoTurno()==1){
-                                contadorJugadores=a;
-                                turnoDeJugador=jugadores.get(a);	                            
-                                request.getSession().setAttribute("contadorJugadores", contadorJugadores);   
-                            }    
-                            if(jugadores.get(a).getEstadoTurno()==2){
-                                turnoDeJugador=jugadores.get(a);	
-                            }                        
-                        }
+                    for (int a = 0; a < jugadores.size(); a++) {    
+                        if(jugadores.get(a).getEstadoTurno()==1){
+                            contadorJugadores=a;
+                            turnoDeJugador=jugadores.get(a);	                            
+                            request.getSession().setAttribute("contadorJugadores", contadorJugadores);   
+                        }    
+                        if(jugadores.get(a).getEstadoTurno()==2){
+                            turnoDeJugador=jugadores.get(a);	
+                        }                        
                     }
+                    
                 %>
             </section>
             <section>
@@ -259,7 +244,9 @@
                                 turnoDeJugador.setCogeTarjeta(0);
                             }
                         }
-                    }%>
+                    }
+                            
+                            %>
                 </section>
             <section id="tapete">
                 <div id="tablero">
@@ -274,6 +261,134 @@
                                     request.getSession().getAttribute("tableroNuevo");
                             Partida partida = (Partida)
                                     request.getSession().getAttribute("partidaNueva");
+                            
+                            /*
+                            * Crea los componentes para la pantalla del botón Terminar Turno 
+                            */
+                           out.print("<script>"
+                            +"   var body=document.body;"
+                            +"   var cajaNegociar = document.createElement('form');"
+                            +"   cajaNegociar.id='cajaNegociar';"    
+                            +"   cajaNegociar.name='nombreCajaNegociar';"       
+                            +"   cajaNegociar.action='negociarServlet';"
+                            +"   cajaNegociar.method='POST';"
+                            +"   body.appendChild(cajaNegociar);"
+
+                            +"   var strong = document.createElement('strong');"    
+                            +"   cajaNegociar.appendChild(strong);"
+
+                            +"   var labelMensaje = document.createElement('label');"
+                            +"   labelMensaje.innerHTML='¿Con quién y qué quieres negociar?';" 
+                            +"   labelMensaje.id='labelTerminarTurno';"
+                            +"   strong.appendChild(labelMensaje);"
+
+                            + "  var select = document.createElement('select');"
+                            + "  select.name='listaJugadores';"
+                            + "  select.id='listaJugadores';"
+                            + "  cajaNegociar.appendChild(select);"
+                                   
+                            + "  var select2 = document.createElement('select');"
+                            + "  var cajaNegociar= document.getElementById('cajaNegociar');" 
+                            + "  select2.name='listaPropiedades';"
+                            + "  select2.id='listaPropiedades';"
+                            + "  cajaNegociar.appendChild(select2);"
+                            + "  var jugadorSeleccionado='';"
+                            
+                            + "  </script>");
+                           out.print("<script> "
+                                   + "var listaJugadores=document.getElementById('listaJugadores');"
+                                   +"var optionSelect=document.createElement('option'); "
+                                   + "optionSelect.text = 'Selecciona un jugador...';"
+                                   + "listaJugadores.add(optionSelect);");
+                                   
+                            for(Jugador jugador:jugadores){
+                                if(turnoDeJugador.getId()!=jugador.getId()){
+                                    out.print(
+                                    "var option = document.createElement('option');"
+                                     +  "option.text = '"+jugador.getNombre()+"';"
+                                     + "listaJugadores.add(option);"                                     
+                                    );
+                                }
+                            }
+                            out.print("</script>");
+                            out.print("<script>"
+                                    + "var select = document.getElementById('listaJugadores');"        
+                                    + "  select.addEventListener('change', function(event){"
+                                    + "     var select = event.target;"
+                                    + "     var indiceSeleccionado = select.selectedIndex;"
+                                    + "     jugadorSeleccionado = select.options[indiceSeleccionado].innerHTML;" 
+                                    +"      document.forms['nombreCajaNegociar'].elements['listaPropiedades'].options.length = 0;");
+                             for(Jugador jugador:jugadores){
+                                if(turnoDeJugador.getId()!=jugador.getId()){                                     
+                                    for(Propiedad propiedad:propiedades){
+                                        out.print(                                                                       
+                                            "var listaPropiedades=document.getElementById('listaPropiedades');"
+
+                                            +" if(jugadorSeleccionado=='"+jugador.getNombre()+"' && ("+propiedad.getIdUsuario()+"=="+jugador.getId()+")){"
+
+                                               + "var option = document.createElement('option');"
+                                               + "option.text = '"+propiedad.getNombre()+"';"
+                                               + "listaPropiedades.add(option);"
+                                           + "}"
+                                        );                                
+                                    }
+                                }
+                                
+                             }
+                            out.print("  });</script>");
+                             /*+ "  select2.addEventListener('change', function(event){"
+                            + "     var select2 = event.target;"
+                            + "     var indiceSeleccionado = select2.selectedIndex;"
+                            + "     propiedadSeleccionada = select2.options[indiceSeleccionado].innerHTML;"    
+                            + "  };);"*/
+                             
+                            out.print(
+                            " <script> "
+                            
+                            + "  var propiedadSeleccionada='';"
+                            
+                           
+                            +"   var cajaNegociar = document.getElementById('cajaNegociar'); "
+                            +"   var inputAceptar = document.createElement('input');"
+                            +"   inputAceptar.type='submit';"
+                            +"   inputAceptar.id='inputAceptarNegociar';"
+                            +"   inputAceptar.name='negociar';"
+                            +"   inputAceptar.value='Aceptar';"
+                            +"   cajaNegociar.appendChild(inputAceptar);"
+
+                            +"   var inputCancelar = document.createElement('input');"
+                            +"   inputCancelar.type='button';"
+                            +"   inputCancelar.id='inputCancelarNegociar';"    
+                            +"   inputCancelar.value='Cancelar';"
+                            +"   cajaNegociar.appendChild(inputCancelar);"           
+
+                            +"   document.getElementById('btnNegociar').onclick = function(){"        
+                            +"   document.getElementById('cajaNegociar').style.position= 'absolute';"    
+                            +"   document.getElementById('cajaNegociar').style.overflow= 'auto';"
+                            +"   document.getElementById('cajaNegociar').style.visibility='visible';"
+                            +"   document.getElementById('cajaNegociar').style.zIndex='1001';"
+                            +"   document.body.style.backgroundColor='black';"
+                            +"   document.getElementById('todoMonopoly').style.zIndex='1002';"
+                            +"   document.getElementById('todoMonopoly').style.opacity='0.60';"
+
+                            +"   document.getElementById('btnLanzarDados').style.cursor = 'default';"
+                            +"   document.getElementById('btnNegociar').style.cursor = 'default';"
+                            +"   document.getElementById('btnTerminar').style.cursor = 'default';"
+                            +"   document.getElementById('btnGuardarPartida').style.cursor = 'default';}</script>");
+                            
+                            out.print("<script>document.getElementById('inputCancelarNegociar').onclick = function(){"        
+                            +"   document.body.style.backgroundColor='#9ED68D';"        
+                            +"   document.getElementById('todoMonopoly').style.zIndex='1001';"
+                            +"   document.getElementById('todoMonopoly').style.opacity='initial';"        
+                            +"   document.getElementById('cajaNegociar').style.visibility='hidden';"
+                            +"   document.getElementById('cajaNegociar').style.zIndex='1002';"                                    
+                            +"   document.getElementById('btnLanzarDados').style.cursor = 'pointer';"
+                            +"   document.getElementById('btnNegociar').style.cursor = 'pointer';"
+                            +"   document.getElementById('btnTerminar').style.cursor = 'pointer';"
+                            +"   document.getElementById('btnGuardarPartida').style.cursor = 'pointer';}</script>");
+                            
+                            
+                            
 
                             for (int z = 19; z >= 11; z--) {
                                 for (int x = 0; x < especiales.size(); x++) {
@@ -547,8 +662,6 @@
                             posicionJugador=0;     
                             turnoDeJugador.setDinero(turnoDeJugador.getDinero()+200);
                         }
-
-
                         if(request.getSession().getAttribute("numVecesDadosRep")!=null){
                             numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
                         }

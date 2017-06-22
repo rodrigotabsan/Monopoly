@@ -6,7 +6,6 @@
 package monopoly.controlador.servlet;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -96,7 +95,6 @@ public class CargarPartidaServlet extends HttpServlet{
             request.getSession().setAttribute("tableroNuevo",tableroNuevo);
             request.getSession().setAttribute("partidaNueva",partidaNueva);
             request.getSession().setAttribute("listaJugadoresPartida",jugadores);
-            request.getSession().setAttribute("cargarPartida", true);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
              
          }

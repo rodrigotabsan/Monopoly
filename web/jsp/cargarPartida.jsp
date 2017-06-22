@@ -29,7 +29,6 @@
             File dir = new File("./xml");
             String[] ficheros = dir.list();
             ArrayList partidas = new ArrayList();
-            ArrayList rutasPartidas = new ArrayList();
             int numDirectorio=0;
             if (ficheros == null)
                 System.out.println("No hay ficheros en el directorio especificado");
@@ -38,7 +37,6 @@
                     File subdir= new File(dir.getAbsolutePath()+"/"+ficheros[x]);
                     if(subdir.isDirectory()){
                         partidas.add(ficheros[x]);
-                        rutasPartidas.add(subdir.getAbsolutePath());
                     }                    
                 }
                 out.print("<script>"               

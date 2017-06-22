@@ -5,7 +5,6 @@
  */
 package monopoly.modelo;
 
-import java.io.File;
 import java.util.List;
 import monopoly.modelo.entidades.Propiedad;
 

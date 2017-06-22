@@ -6,19 +6,13 @@
 package monopoly.controlador.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import monopoly.modelo.entidades.Casilla;
-import monopoly.modelo.entidades.Especial;
 import monopoly.modelo.entidades.Jugador;
-import monopoly.modelo.entidades.Partida;
 import monopoly.modelo.entidades.Propiedad;
-import monopoly.modelo.entidades.TSorpresaSuerte;
-import monopoly.modelo.entidades.Tablero;
 import monopoly.util.UtilesServlets;
 
 /**
