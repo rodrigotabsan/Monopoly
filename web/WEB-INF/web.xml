@@ -38,7 +38,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>NegociarServlet</servlet-name>
-        <url-pattern>/negociarTurnoServlet</url-pattern>
+        <url-pattern>/negociarServlet</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>TerminarTurnoServlet</servlet-name>

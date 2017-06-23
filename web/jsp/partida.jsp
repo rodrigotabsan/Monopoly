@@ -317,14 +317,16 @@
                                     + "     var select = event.target;"
                                     + "     var indiceSeleccionado = select.selectedIndex;"
                                     + "     jugadorSeleccionado = select.options[indiceSeleccionado].innerHTML;" 
-                                    +"      document.forms['nombreCajaNegociar'].elements['listaPropiedades'].options.length = 0;");
+                                    + "     document.forms['nombreCajaNegociar'].elements['listaPropiedades'].options.length = 0;"
+                                    + "     var listaPropiedades=document.getElementById('listaPropiedades');"
+                                    + "     var optionSelect2=document.createElement('option'); "
+                                    + "     optionSelect2.text = 'Selecciona una propiedad...';"
+                                    + "     listaPropiedades.add(optionSelect2);");
                              for(Jugador jugador:jugadores){
                                 if(turnoDeJugador.getId()!=jugador.getId()){                                     
                                     for(Propiedad propiedad:propiedades){
                                         out.print(                                                                       
-                                            "var listaPropiedades=document.getElementById('listaPropiedades');"
-
-                                            +" if(jugadorSeleccionado=='"+jugador.getNombre()+"' && ("+propiedad.getIdUsuario()+"=="+jugador.getId()+")){"
+                                            " if(jugadorSeleccionado=='"+jugador.getNombre()+"' && ("+propiedad.getIdUsuario()+"=="+jugador.getId()+")){"
 
                                                + "var option = document.createElement('option');"
                                                + "option.text = '"+propiedad.getNombre()+"';"
@@ -336,19 +338,25 @@
                                 
                              }
                             out.print("  });</script>");
-                             /*+ "  select2.addEventListener('change', function(event){"
-                            + "     var select2 = event.target;"
-                            + "     var indiceSeleccionado = select2.selectedIndex;"
-                            + "     propiedadSeleccionada = select2.options[indiceSeleccionado].innerHTML;"    
-                            + "  };);"*/
                              
+                            /* "*/
                             out.print(
                             " <script> "
                             
-                            + "  var propiedadSeleccionada='';"
-                            
+                            + "     var propiedadSeleccionada='';"
+                            + "  select2.addEventListener('change', function(event){"
+                            + "     var select2 = event.target;"
+                            + "     var indiceSeleccionado = select2.selectedIndex;"
+                            + "     propiedadSeleccionada = select2.options[indiceSeleccionado].innerHTML;"    
+                            + "  });"
                            
                             +"   var cajaNegociar = document.getElementById('cajaNegociar'); "
+                            +"   var dineroANegociar = document.createElement('input');"
+                            +"   dineroANegociar.id='campoDineroANegociar';"
+                            +"   dineroANegociar.name='campoDineroANegociar';"        
+                            +"   dineroANegociar.type='text';"                
+                            +"   cajaNegociar.appendChild(dineroANegociar);"
+                                    
                             +"   var inputAceptar = document.createElement('input');"
                             +"   inputAceptar.type='submit';"
                             +"   inputAceptar.id='inputAceptarNegociar';"
@@ -386,7 +394,7 @@
                             +"   document.getElementById('btnNegociar').style.cursor = 'pointer';"
                             +"   document.getElementById('btnTerminar').style.cursor = 'pointer';"
                             +"   document.getElementById('btnGuardarPartida').style.cursor = 'pointer';}</script>");
-                            
+                            request.getSession().setAttribute("jugador", turnoDeJugador);
                             
                             
 
