@@ -6,10 +6,10 @@
 
 
 
+<%@page import="java.security.SecureRandom"%>
 <%@page import="monopoly.modelo.dal.TSorpresaSuerteDAL"%>
 <%@page import="monopoly.modelo.ITSorpresaSuerteDAL"%>
 <%@page import="monopoly.controlador.DadoRule"%>
-<%@page import="java.util.Random"%>
 <%@page import="monopoly.modelo.entidades.Partida"%>
 <%@page import="monopoly.modelo.entidades.Tablero"%>
 <%@page import="monopoly.modelo.entidades.TSorpresaSuerte"%>
@@ -162,7 +162,7 @@
                     List<TSorpresaSuerte> tarjetasCCySuerte = (ArrayList<TSorpresaSuerte>) 
                            request.getSession().getAttribute("listaTarjetaCCySuerte");
                                                            
-                    Random rnd = new Random();
+                    SecureRandom rnd = new SecureRandom();
                     int minimoRes = 1;                    
                     int result11 = 0;                             
                     
@@ -339,7 +339,6 @@
                              }
                             out.print("  });</script>");
                              
-                            /* "*/
                             out.print(
                             " <script> "
                             
@@ -396,8 +395,12 @@
                             +"   document.getElementById('btnGuardarPartida').style.cursor = 'pointer';}</script>");
                             request.getSession().setAttribute("jugador", turnoDeJugador);
                             
+                            if(request.getSession().getAttribute("mensajeErrorNegociar")!=null){
+                                String mensajeErrorNegociar=(String)request.getSession().getAttribute("mensajeErrorNegociar");
+                                request.getSession().setAttribute("mensajeErrorNegociar", null); 
+                                out.print("<script>alert('"+mensajeErrorNegociar+"');</script>");
+                            }
                             
-
                             for (int z = 19; z >= 11; z--) {
                                 for (int x = 0; x < especiales.size(); x++) {
                                     if (casillas.get(z).getId() == especiales.get(x).getIdCasilla()) {
@@ -629,7 +632,7 @@
                 }
                 if(turnoDeJugador!=null){
                     if(turnoDeJugador.getEstadoTurno()==1){
-                        Random random = new Random();            
+                        SecureRandom random = new SecureRandom();            
                         int numVecesDadosRep=0;
                         int minimo = 1;
                         int maximo = 7;
@@ -714,40 +717,123 @@
                 
                 for(int i=0; i<jugadores.size();i++){
                     int contadorFiguras = 0;
+                    int contadorJugadoresMismaCasilla=0;
                     for(int j=0; j<figuras.size();j++){
                         if(jugadores.get(i).getFigura().equals(figuras.get(j))){
                             contadorFiguras=j+1;
                         }
                     }
+                    ArrayList <String> arrayFichasJugadores = new ArrayList<String>();
+                    arrayFichasJugadores.add(jugadores.get(i).getFigura());
+                    for(Jugador jugador:jugadores){
+                        if(jugadores.get(i).getIdCasilla()==jugador.getIdCasilla()){
+                            arrayFichasJugadores.add(jugador.getFigura());
+                        }                        
+                    }
+                    if(arrayFichasJugadores.size()<=1){
+                        int contadorCasilla=jugadores.get(i).getIdCasilla();
+                        System.out.println("El jugador se mueve a la casilla: "+jugadores.get(i).getIdCasilla());
+                        out.println("<script>"                            
+                                 +"var casilla=document.getElementById('casillafigura"+contadorCasilla+"');"
+
+                                  +"casilla.style.backgroundRepeat='no-repeat';"
+                                  +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                                  +"casilla.style.backgroundSize = '30px';"
+
+                                  +"if("+jugadores.get(i).getIdCasilla()+">=21 && "+jugadores.get(i).getIdCasilla()+"<=30){"
+                                    +"casilla.style.backgroundRepeat='no-repeat';"
+                                  +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                                  +"casilla.style.backgroundSize = '30px';"     
+                                  + "}"
+                                  +"if("+jugadores.get(i).getIdCasilla()+">=11 && "+jugadores.get(i).getIdCasilla()+"<=20){"
+                                   +"casilla.style.backgroundRepeat='no-repeat';"
+                                  +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                                  +"casilla.style.backgroundSize = '30px';"      
+                                  + "}"
+                                  +"if("+jugadores.get(i).getIdCasilla()+">=31 && "+jugadores.get(i).getIdCasilla()+"<=39){" 
+                                    +"casilla.style.backgroundRepeat='no-repeat';"
+                                  +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                                  +"casilla.style.backgroundSize = '30px';"
+                                  + "}"                                         
+                                  + "</script>");
+                    }
                     
-                    int contadorCasilla=jugadores.get(i).getIdCasilla();
-                    System.out.println("El jugador se mueve a la casilla: "+jugadores.get(i).getIdCasilla());
-                    out.println("<script>"                            
+                    if(arrayFichasJugadores.size()>1){
+                        int contadorCasilla=jugadores.get(i).getIdCasilla();
+                        ArrayList<String> fichas = new ArrayList<String>();
+                        contadorFiguras=0;
+                        for(int x=0;x<arrayFichasJugadores.size();x++){
+                                String urlFichas="";
+                                for(int j=0; j<figuras.size();j++){
+                                    if(arrayFichasJugadores.get(x).equals(figuras.get(j))){
+                                        contadorFiguras=j+1;
+                                        String posicionFigura="";
+                                        switch(contadorFiguras){
+                                            case 1:
+                                                posicionFigura="left top";   
+                                                break;
+                                            case 2:
+                                                posicionFigura="left center";   
+                                                break;
+                                            case 3:
+                                                posicionFigura="right center";   
+                                                break;
+                                            case 4:
+                                                posicionFigura="center top";   
+                                                break;
+                                            case 5:
+                                                posicionFigura="right top";   
+                                                break;
+                                            case 6:
+                                                posicionFigura="center center";   
+                                                break;
+                                            case 7:
+                                                posicionFigura="right center";   
+                                                break;
+                                            case 8:
+                                                posicionFigura="right top";   
+                                                break;    
+                                            default:
+                                                posicionFigura="center center";   
+                                                break;
+
+                                        }
+                                        fichas.add("url(./img/figura"+contadorFiguras+".png) "+posicionFigura+" no-repeat" );
+                                    }
+                                }
+                                if(fichas.size()>0){
+                                    urlFichas=fichas.get(0);
+                                    for(int p=1;p<fichas.size();p++){
+                                        urlFichas+=", "+fichas.get(p);
+                                    }
+                                }
+                                out.println("<script>"                            
                              +"var casilla=document.getElementById('casillafigura"+contadorCasilla+"');"
                               
-                              +"casilla.style.backgroundRepeat='no-repeat';"
-                              +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                              +"casilla.style.background='"+urlFichas+"';"                                
                               +"casilla.style.backgroundSize = '30px';"
                                       
                               +"if("+jugadores.get(i).getIdCasilla()+">=21 && "+jugadores.get(i).getIdCasilla()+"<=30){"
-                                +"casilla.style.backgroundRepeat='no-repeat';"
-                              +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
-                              +"casilla.style.backgroundSize = '30px';"     
+                              +"casilla.style.background='"+urlFichas+"';"                                
+                              +"casilla.style.backgroundSize = '30px';"
                               + "}"
                               +"if("+jugadores.get(i).getIdCasilla()+">=11 && "+jugadores.get(i).getIdCasilla()+"<=20){"
-                               +"casilla.style.backgroundRepeat='no-repeat';"
-                              +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
-                              +"casilla.style.backgroundSize = '30px';"      
+                               +"casilla.style.background='"+urlFichas+"';"                                
+                              +"casilla.style.backgroundSize = '30px';"
                               + "}"
                               +"if("+jugadores.get(i).getIdCasilla()+">=31 && "+jugadores.get(i).getIdCasilla()+"<=39){" 
-                                +"casilla.style.backgroundRepeat='no-repeat';"
-                              +"casilla.style.backgroundImage = 'url(./img/figura"+contadorFiguras+".png)';"  
+                              +"casilla.style.background='"+urlFichas+"';"                                
                               +"casilla.style.backgroundSize = '30px';"
                               + "}"                                         
                               + "</script>");
+                            }
+                    }
                 }
+                            
+                        
+            
                 
-           
+                
             %>
             <footer id="piePagina2">
                 <p>(c) 2017 Invest In Andorra Services</p>

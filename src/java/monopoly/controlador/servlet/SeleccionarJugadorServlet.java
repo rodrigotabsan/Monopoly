@@ -5,13 +5,11 @@
  */
 package monopoly.controlador.servlet;
 import java.io.IOException; 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException; 
 import javax.servlet.http.HttpServlet; 
 import javax.servlet.http.HttpServletRequest; 
@@ -45,9 +43,10 @@ import monopoly.util.UtilesXML;
  * @author Rodrigo
  */
 public class SeleccionarJugadorServlet extends HttpServlet {
-
+        Tablero tableroNuevo = new Tablero();
+        Partida partidaNueva=new Partida();
     /**
-     *  Procesa la petición
+     * Procesa la petición
      * @param request peticion de la pagina
      * @param response respuesta de la pagina
      */
@@ -63,6 +62,8 @@ public class SeleccionarJugadorServlet extends HttpServlet {
            String jugadoresCPU=request.getParameter("CPUName");
            if(jugadoresCPU!=null && !jugadoresCPU.isEmpty() && !"null".equals(jugadoresCPU)){        
                crearPartida(request, response);
+               //Aquí termino de crear todos los jugadores, tanto humanos como CPU.
+                enviarJugadoresCPU(request,response,partidaNueva);
            } 
         }catch(ServletException | IOException ex){
             System.out.println("Error: "+ex);
@@ -78,15 +79,14 @@ public class SeleccionarJugadorServlet extends HttpServlet {
      */
     private void crearPartida(HttpServletRequest request, HttpServletResponse response){
         UtilesXML utilXML= new UtilesXML();                
-        try {
+        
             IEspecialDAL casillasEspeciales = new EspecialDAL();
             IPropiedadDAL casillasPropiedades = new PropiedadDAL();
             ICasillaDAL casillas = new CasillaDAL();
             ITSorpresaSuerteDAL tarjetaCCySuerte= new TSorpresaSuerteDAL();
             ITableroDAL tableros= new TableroDAL();
             IPartidaDAL partidas= new PartidaDAL();
-            Tablero tableroNuevo = new Tablero();
-            Partida partidaNueva=new Partida();
+            
                         
             List <Especial> listaCasillasEspeciales = casillasEspeciales.obtenerTodasEspeciales();
             List <Propiedad> listaCasillasPropiedades = casillasPropiedades.obtenerTodasPropiedades();
@@ -142,12 +142,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 request.getSession().setAttribute("listaTarjetaCCySuerte",listaTarjetaCCySuerte);
                 request.getSession().setAttribute("tableroNuevo",tableroNuevo);
                 request.getSession().setAttribute("partidaNueva",partidaNueva);
-            
-            //Aquí termino de crear todos los jugadores, tanto humanos como CPU.
-            enviarJugadoresCPU(request,response,partidaNueva);
-        } catch (ServletException | IOException ex) {
-            Logger.getLogger(SeleccionarJugadorServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+              
     }
     
     /**
@@ -226,14 +221,15 @@ public class SeleccionarJugadorServlet extends HttpServlet {
                 for(int i = 0; i<jugadores.size();i++){
                     listaJugadores.add(jugadores.get(i));
                 }             
-                Random rndm = new Random();
+                SecureRandom rndm = new SecureRandom();
                 //Mezclo el arrayList para que sea aleatorio el comienzo.
                 Collections.shuffle(jugadores, rndm);
                 request.getSession().setAttribute("listaJugadoresTotales", jugadores);
             }
-            jugadores.get(0).setEstadoTurno(1);
-            Random rndm = new Random();
+            
+            SecureRandom rndm = new SecureRandom();
             Collections.shuffle(jugadores, rndm);
+            jugadores.get(0).setEstadoTurno(1);
             request.getSession().setAttribute("listaJugadoresPartida", jugadores);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
         }     
@@ -252,6 +248,7 @@ public class SeleccionarJugadorServlet extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         UtilesServlets utilServlet= new UtilesServlets();
         utilServlet.eliminarMensajesDeError(request, response);  
+        UtilesXML utilXML = new UtilesXML();
         //Según se avance el desarrollo, hay que tener en cuenta que ese ArrayList
         //tiene que cambiar por jugadorDAL.obtenerTodosUsuarios 
         IJugadorDAL jugadorDAL = new JugadorDAL();
@@ -320,13 +317,28 @@ public class SeleccionarJugadorServlet extends HttpServlet {
         //si jugadores humanos es igual a 8 no tenemos que ir a la pantalla de elegir
         //CPU. Sino, vamos a seleccionarNumCPU        
             if(numJugadores==8){
-                Random rndm = new Random();
                 //Mezclo el arrayList para que sea aleatorio el comienzo.
+                crearPartida(request, response);
+                IJugadorDAL jugadoresDAL = new JugadorDAL();
+                //Si existe el fichero xml de usuarios almaceno el contenido en el arrayList.
+                if(!utilXML.crearXML("usuarios.xml")){                                            
+                    List <Jugador> listaJugadores = jugadoresDAL.obtenerTodosUsuarios();
+                    for(int i = 0; i<jugadores.size();i++){
+                        listaJugadores.add(jugadores.get(i));
+                    }             
+                    SecureRandom rndm = new SecureRandom();
+                    //Mezclo el arrayList para que sea aleatorio el comienzo.
+                    Collections.shuffle(jugadores, rndm);
+                    request.getSession().setAttribute("listaJugadoresTotales", jugadores);
+                }
+                
+                SecureRandom rndm = new SecureRandom();
                 Collections.shuffle(jugadores, rndm);
-                request.getSession().setAttribute("jugadoresTotales", jugadores);
+                jugadores.get(0).setEstadoTurno(1);
+                request.getSession().setAttribute("listaJugadoresPartida", jugadores);
                 utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
             }else{        
-                Random rndm = new Random();
+                SecureRandom rndm = new SecureRandom();
                 //Mezclo el arrayList para que sea aleatorio el comienzo.
                 Collections.shuffle(jugadores, rndm);
                 request.getSession().setAttribute("jugadores", jugadores);
