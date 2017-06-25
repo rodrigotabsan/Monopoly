@@ -106,7 +106,7 @@ public class EspecialDAL implements IEspecialDAL{
      * Crea una Especial pasándole el objeto Especial
      * @param fichero donde quiero guardarlo
      * @param especiales listado de casillas especiales
-     * @see Casilla
+     * @see Especial clase especial relacionado con el metodo
      */
     @Override
     public void guardarEspecial(String fichero, List<Especial> especiales) {

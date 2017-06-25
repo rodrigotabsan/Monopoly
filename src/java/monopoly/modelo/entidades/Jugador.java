@@ -207,7 +207,7 @@ public class Jugador implements Serializable{
     
     /**
      * Recoge si coge tarjeta cc o suerte
-     * @return 
+     * @return si puede coger carta o no
      */
     public int getCogeTarjeta() {
         return cogeTarjeta;
@@ -225,7 +225,7 @@ public class Jugador implements Serializable{
      * Indica cual es el estado para comprar del jugador
      * Con el estado 1 el usuario puede comprar
      * Con el estado 0 el usuario no puede comprar
-     * @return 
+     * @return el estado en el que se encuentra el jugador para comprar.
      */
     public int getEstadoParaComprar() {
         return estadoParaComprar;
@@ -233,7 +233,7 @@ public class Jugador implements Serializable{
     
     /**
      * Se indica cual es el estado del jugador para comprar.
-     * @param estadoParaComprar 
+     * @param estadoParaComprar estado en el que se encuentra el jugador para comprar
      */
     public void setEstadoParaComprar(int estadoParaComprar) {
         this.estadoParaComprar = estadoParaComprar;

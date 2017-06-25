@@ -18,7 +18,7 @@ public interface IPartidaDAL {
      * Guardar una partida pasándole un objeto Partida.
      * @param fichero fichero donde se va a guardar     
      * @param partida  Partida que se desea guardar
-     * @see Jugador
+     * @see Partida Clase Partida relacionado con el método
      */
     public void guardarPartida(String fichero,Partida partida);
     

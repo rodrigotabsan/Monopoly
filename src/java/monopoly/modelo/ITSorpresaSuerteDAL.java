@@ -17,8 +17,7 @@ public interface ITSorpresaSuerteDAL {
     /**
      * Guardar un listado de itSorpresaSuerteDAL pasándole un listado de objetos itSorpresaSuerteDAL.
      * @param fichero fichero donde se va a guardar     
-     * @param itSorpresaSuerte  itSorpresaSuerte que se desean guardar
-     * @see ITSorpresaSuerte
+     * @param itSorpresaSuerte  itSorpresaSuerte que se desean guardar     
      */
     public void guardarITSorpresaSuerte(String fichero, List<TSorpresaSuerte> itSorpresaSuerte);
     

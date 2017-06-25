@@ -185,6 +185,7 @@ public class UtilesXML {
     /**
      * Comprueba si el XML existe. En caso negativo, crea un XML con el nombre 
      * dado, y devuelve true. Sino devuelve false.
+     * @param directorio directorio donde se encuentra el fichero.
      * @param nombreXML Fichero XML al que se quiere acceder.
      * @return Un booleano para saber si es necesario crearlo o no.
      */
