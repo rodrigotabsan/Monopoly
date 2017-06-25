@@ -151,7 +151,9 @@ function guardarPartida(){
 function tarjetaCCSuerte(){
     var body=document.body;
     var cajaTarjeta = document.createElement("form");
-    cajaTarjeta.id="cajaTarjeta";        
+    cajaTarjeta.id="cajaTarjeta";     
+    cajaTarjeta.action="cogerTarjetaCajaComunidadYSuerteServlet";
+    cajaTarjeta.method="POST";
     body.appendChild(cajaTarjeta);
     
     var strong = document.createElement("strong");    
@@ -171,7 +173,7 @@ function tarjetaCCSuerte(){
     divTarjeta.appendChild(textoTarjeta);
     
     var inputAceptar = document.createElement("input");
-    inputAceptar.type="button";
+    inputAceptar.type="submit";
     inputAceptar.id="inputAceptarTarjeta";
     inputAceptar.name="terminarTarjeta";
     inputAceptar.value="Aceptar";

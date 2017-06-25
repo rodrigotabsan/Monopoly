@@ -163,7 +163,7 @@
                            request.getSession().getAttribute("listaTarjetaCCySuerte");
                                                            
                     SecureRandom rnd = new SecureRandom();
-                    int minimoRes = 1;                    
+                    int minimoRes = 0;                    
                     int result11 = 0;                             
                     
                     if(turnoDeJugador.getCogeTarjeta()==1){
@@ -190,12 +190,19 @@
                                     int maximoRes = 14;
                                     result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
                                     tarjetas=tarjetasSuerte;
+                                    request.getSession().setAttribute("listaTarjetas",tarjetas);
+                                    request.getSession().setAttribute("idTarjeta",result11);
+                                    request.getSession().setAttribute("turnoDeJugador",turnoDeJugador);
                                 }else{
                                     //El maximo es 15 porque el array empieza a contar por 0
                                     int maximoRes = 15;
                                     result11=rnd.nextInt(maximoRes-minimoRes) + minimoRes;
                                     tarjetas=tarjetasCC;
+                                    request.getSession().setAttribute("listaTarjetas",tarjetas);
+                                    request.getSession().setAttribute("idTarjeta",result11);
+                                    request.getSession().setAttribute("turnoDeJugador",turnoDeJugador);
                                 }
+                                
                                 out.print("<script>"
                                     +"tarjetaCCSuerte();"
                                     +"document.getElementById('cajaTarjeta').style.position= 'absolute';"    
@@ -218,28 +225,7 @@
                                     + "document.getElementById('btnTerminar').disabled=true;"
                                     + "document.getElementById('btnGuardarPartida').disabled=true;"
 
-                                    + "document.getElementById('inputAceptarTarjeta').onclick=function(){"                                
-                                        + "document.getElementById('todoMonopoly').style.zIndex='1001';"
-                                        + "document.getElementById('todoMonopoly').style.opacity='initial';"                                    
-                                        + "document.getElementById('cajaTarjeta').style.visibility='hidden';"  
-                                        + "document.getElementById('cajaTarjeta').style.zIndex='1002';" 
-                                        + "if("+turnoDeJugador.getEstadoTurno()+"==2){"
-                                            + "document.getElementById('btnLanzarDados').disabled=true;"
-                                            + "document.getElementById('btnNegociar').disabled=false;"
-                                            + "document.getElementById('btnTerminar').disabled=false;"
-                                            + "document.getElementById('btnGuardarPartida').disabled=false;"
-                                        + "}"
-                                        + "if("+turnoDeJugador.getEstadoTurno()+"==1){"
-                                            + "document.getElementById('btnLanzarDados').disabled=false;"
-                                            + "document.getElementById('btnNegociar').disabled=true;"
-                                            + "document.getElementById('btnTerminar').disabled=true;"
-                                            + "document.getElementById('btnGuardarPartida').disabled=false;"
-                                        + "}"        
-                                        + "document.getElementById('btnLanzarDados').style.cursor = 'pointer';"
-                                        + "document.getElementById('btnNegociar').style.cursor = 'pointer';"
-                                        + "document.getElementById('btnTerminar').style.cursor = 'pointer';"
-                                        + "document.getElementById('btnGuardarPartida').style.cursor = 'pointer';"
-                                    + "}"
+                                    
                                 +"</script>");
                                 turnoDeJugador.setCogeTarjeta(0);
                             }

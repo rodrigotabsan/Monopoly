@@ -69,7 +69,7 @@ and open the template in the editor.
     </tarjeta>   
     <tarjeta>
         <id>11</id>
-        <tipo>CARTA SORPRESA</tipo>
+        <tipo>CARTA SUERTE</tipo>
         <descripcion>Paga impuestos 15€.</descripcion>
         <bonus>-15</bonus>
     </tarjeta>

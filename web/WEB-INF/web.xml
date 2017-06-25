@@ -64,6 +64,14 @@
         <servlet-name>ComprarPropiedadServlet</servlet-name>
         <url-pattern>/comprarPropiedadServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CogerTarjetaCajaComunidadYSuerteServlet</servlet-name>    
+        <servlet-class>monopoly.controlador.servlet.CogerTarjetaCajaComunidadYSuerteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CogerTarjetaCajaComunidadYSuerteServlet</servlet-name>
+        <url-pattern>/cogerTarjetaCajaComunidadYSuerteServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             300

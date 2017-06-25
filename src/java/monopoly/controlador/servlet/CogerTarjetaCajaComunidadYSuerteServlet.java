@@ -14,66 +14,230 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import monopoly.modelo.entidades.Casilla;
-import monopoly.modelo.entidades.Especial;
 import monopoly.modelo.entidades.Jugador;
 import monopoly.modelo.entidades.Propiedad;
-import monopoly.modelo.entidades.Tablero;
+import monopoly.modelo.entidades.TSorpresaSuerte;
 import monopoly.util.UtilesServlets;
 
 /**
  *
  * @author Rodrigo
  */
-public class LanzarDadosServlet extends HttpServlet{
-
+public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
+    
     /**
-     * Procesa la petición
+     * Procesa la peticion
      * @param request peticion de la pagina
      * @param response respuesta de la pagina
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) { 
-        try{ 
+        
          response.setContentType("text/html;charset=UTF-8");
          UtilesServlets utilServlet = new UtilesServlets();
-         utilServlet.eliminarMensajesDeError(request, response); 
-         String lanzarDados=request.getParameter("lanzarDados");
-         System.out.println("Lanza dados "+lanzarDados);
-         Jugador jugador = new Jugador();
-         List<Casilla> casillas = new ArrayList<Casilla>();
-         List<Propiedad> propiedades = new ArrayList<Propiedad>();
-         List<Especial> especiales = new ArrayList<Especial>();
-         Tablero tablero = new Tablero();
-         if(lanzarDados!=null){                
-           lanzarDados(request, response, jugador, casillas, propiedades, especiales,tablero);     
-         }
-        }catch(IOException ex){
-            System.out.println("Error: "+ex);
-        }
          
+         
+        
+         String cogeTarjeta=request.getParameter("terminarTarjeta");
+         System.out.println("Se ha cogido una tarjeta");
+         if(cogeTarjeta!=null){                
+           cogerTarjeta(request, response);     
+         }        
      }
-    
+    private int sumarBonusTarjeta(Jugador jugador, TSorpresaSuerte tarjeta){
+        return jugador.getDinero()+((tarjeta.getBonus()));
+    }
     /**
-     * Utilizado para responder a la petición de lanzar dados.
+     * Método que permite gestionar el resultado de la carta escogida.
      * @param request peticion de la pagina
-     * @param response respuesta de la pagina
-     * @param jugador Jugador que lanza los dados
+     * @param response respuesta de la pagina 
      */
-    private void lanzarDados(HttpServletRequest request, HttpServletResponse response, Jugador jugador, List <Casilla> casillas, List <Propiedad> propiedades, List<Especial> especiales, Tablero tablero){
+    private void cogerTarjeta(HttpServletRequest request, HttpServletResponse response){
         try {
-            UtilesServlets utilServlet = new UtilesServlets();  
-            
-            int posicionJugador = (int) request.getSession().getAttribute("posicionJugador");
-            
-            jugador=(Jugador)request.getSession().getAttribute("turnoDeJugador");
-            casillas=(List<Casilla>) request.getSession().getAttribute("listaCasillas");
-            propiedades=(List<Propiedad>)request.getSession().getAttribute("listaPropiedades");
-            especiales=(List<Especial>)request.getSession().getAttribute("listaEspeciales");
-            tablero=(Tablero)request.getSession().getAttribute("tableroNuevo");
-            int resultado1=(Integer)request.getSession().getAttribute("resultado1");
-            int resultado2=(Integer)request.getSession().getAttribute("resultado2");
-            int numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
-            
+            UtilesServlets utilServlet = new UtilesServlets();
+            List<Propiedad> propiedades = (ArrayList<Propiedad>)request.getSession().getAttribute("listaPropiedades");
+            List<Jugador> jugadores=(List<Jugador>)request.getSession().getAttribute("listaJugadoresPartida");
+            List<TSorpresaSuerte> tarjetas = (ArrayList<TSorpresaSuerte>)request.getSession().getAttribute("listaTarjetas");
+            int idTarjeta=(int)request.getSession().getAttribute("idTarjeta");
+            Jugador jugador=(Jugador)request.getSession().getAttribute("turnoDeJugador");
+            TSorpresaSuerte tarjeta=tarjetas.get(idTarjeta);
+            //jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+            for(Jugador jugadorDeLista:jugadores){
+                
+            }
+            //RECORDAR QUE COMO SE SACA DE UN ARRAY COMIENZA EN 0 EN LUGAR DE 1
+                if(tarjeta.getTipo().equals("CARTA SORPRESA")){
+                    switch(idTarjeta){
+                        case 0:                            
+                            jugador.setIdCasilla(0);
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 1:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 2:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 3:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 4:
+                            
+                            break;
+                        case 5:
+                            //Si el jugador cae en la casilla de "ve a la carcel",
+                            //el jugador va a la casilla de visita carcel.
+                            jugador.setIdCasilla(30);
+                            if(jugador.getIdCasilla()==30){
+                                jugador.setIdCasilla(10);
+                                jugador.setTurnoCarcel(3);
+                                jugador.setEstadoTurno(1);
+                            }
+                            break;
+                        case 6:
+                            for(int i=0;i<jugadores.size();i++){
+                                if(jugadores.get(i).getId()!=jugador.getId()){
+                                    jugadores.get(i).setDinero(jugadores.get(i).getDinero()-50);                                    
+                                }
+                            }
+                            jugador.setDinero(jugador.getDinero()+(50*(jugadores.size()-1)));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 7:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 8:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 9:
+                            for(int i=0;i<jugadores.size();i++){
+                                if(jugadores.get(i).getId()!=jugador.getId()){
+                                    jugadores.get(i).setDinero(jugadores.get(i).getDinero()-10);                                    
+                                }
+                            }
+                            jugador.setDinero(jugador.getDinero()+(10*(jugadores.size()-1)));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 10:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 11:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 12:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 13:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 14:
+                            //ES DE LAS CASAS. COMO NO USO NO ES NECESARIO
+                            break;
+                        case 15:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta)); 
+                            jugador.setEstadoTurno(2);
+                            break;
+                    }
+                }
+                if(tarjeta.getTipo().equals("CARTA SUERTE")){
+                    switch(idTarjeta){
+                        case 0:
+                            jugador.setIdCasilla(0);
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 1:
+                            jugador.setIdCasilla(39);
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 2:
+                            jugador.setIdCasilla(1);
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 3:
+                            for(int i =0;i<propiedades.size();i++){
+                                if(propiedades.get(i).getIdCasilla()>jugador.getIdCasilla()
+                                    && (propiedades.get(i).getTipo().equals("OTROS"))){
+                                    jugador.setIdCasilla(propiedades.get(i).getIdCasilla()); 
+                                    jugador.setEstadoTurno(2);
+                                    break;
+                                }
+                            }
+                            break;
+                        case 4:
+                            for(int i =0;i<propiedades.size();i++){
+                                if(propiedades.get(i).getIdCasilla()>jugador.getIdCasilla()
+                                    && (propiedades.get(i).getTipo().equals("ESTACION"))){
+                                    jugador.setIdCasilla(propiedades.get(i).getIdCasilla()); 
+                                    jugador.setEstadoTurno(2);
+                                    break;
+                                }
+                            }
+                            break;
+                        case 5:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 6:
+                               
+                            break;
+                        case 7:
+                            for(int i=0;i<3;i++){
+                                if(jugador.getIdCasilla()==0){
+                                    jugador.setIdCasilla(39);
+                                }else{
+                                    jugador.setIdCasilla(jugador.getIdCasilla() - 1);
+                                }
+                                jugador.setEstadoTurno(2);
+                            }
+                            break;
+                        case 8:
+                            //Si el jugador cae en la casilla de "ve a la carcel",
+                            //el jugador va a la casilla de visita carcel.
+                            jugador.setIdCasilla(30);
+                            if(jugador.getIdCasilla()==30){
+                                jugador.setIdCasilla(10);
+                                jugador.setTurnoCarcel(3);
+                                jugador.setEstadoTurno(1);
+                            }
+                            break;
+                        case 9:
+                            //ES DE LAS CASAS. COMO NO USO NO ES NECESARIO
+                            break;
+                        case 10:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 11:
+                            jugador.setIdCasilla(5);
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 12:
+                            for(int i=0;i<jugadores.size();i++){
+                                if(jugadores.get(i).getId()!=jugador.getId()){
+                                    jugadores.get(i).setDinero(jugadores.get(i).getDinero()-50);                                    
+                                }
+                            }
+                            jugador.setDinero(jugador.getDinero()+(50*(jugadores.size()-1)));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 13:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                        case 14:
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
+                            jugador.setEstadoTurno(2);
+                            break;
+                    }  
+                }
             boolean primeraEstacion=false;
             boolean segundaEstacion=false;
             boolean terceraEstacion=false;
@@ -82,48 +246,9 @@ public class LanzarDadosServlet extends HttpServlet{
             boolean centralAgua=false;
             boolean caeEnCasillaEstacion=false;
             boolean caeEnCasillaCentral=false;
-            
-            //posicion actual del jugador
-            jugador.setIdCasilla(posicionJugador);
-            
-            System.out.println("El jugador se encuentra en la casilla "+jugador.getIdCasilla());
-            List <Jugador> jugadores= (List <Jugador>)request.getSession().getAttribute("listaJugadoresPartida");
-            for(int i = 0; i<jugadores.size();i++){
-                
+            for(int i = 0; i<jugadores.size();i++){                
                 if(jugador.getId()==jugadores.get(i).getId()){
-                    if(resultado1==resultado2){
-                        jugadores.get(i).setEstadoTurno(1);
-                        numVecesDadosRep++;
-                        
-                        //Si el numero de veces que se repite la tirada de dobles
-                        //es igual a 3, el jugador va a la cárcel                        
-                        if (numVecesDadosRep==3){
-                            jugadores.get(i).setIdCasilla(10);
-                            jugadores.get(i).setTurnoCarcel(3);
-                            jugadores.get(i).setEstadoTurno(1);
-                        }
-                    }else{
-                        jugadores.get(i).setEstadoTurno(2);
-                        numVecesDadosRep=0;
-                    }
-                    //Compruebo si el jugador esta en la casilla de CC o de suerte. 
-                    //En caso de que este, indico que coja tarjeta.
-                    for (int j=0;j<casillas.size();j++){
-                        if(jugador.getIdCasilla()==casillas.get(j).getId() && 
-                                    (casillas.get(j).getNombre().equals("CAJA DE COMUNIDAD") || 
-                                     casillas.get(j).getNombre().equals("SUERTE"))){
-                            jugador.setCogeTarjeta(1);
-                        }
-                    }
-                    jugadores.get(i).setIdCasilla(jugador.getIdCasilla());
-                    //Si el jugador cae en la casilla de "ve a la carcel",
-                    //el jugador va a la casilla de visita carcel.
-                    if(jugadores.get(i).getIdCasilla()==30){
-                        jugadores.get(i).setIdCasilla(10);
-                        jugadores.get(i).setTurnoCarcel(3);
-                        jugadores.get(i).setEstadoTurno(1);
-                    }
-                    //Si el jugador cae en una propiedad que no es suya, realiza
+            //Si el jugador cae en una propiedad que no es suya, realiza
                     //el pago correspondiente.                    
                     for(int p=0; p<propiedades.size();p++){ 
                         if(jugador.getIdCasilla()==propiedades.get(p).getIdCasilla()){
@@ -219,11 +344,11 @@ public class LanzarDadosServlet extends HttpServlet{
                                             centralAgua=true;
                                         }
                                         if(centralElectrica==true||centralAgua==true){                                            
-                                            dinero=(resultado1+resultado2)*4;
+                                            dinero=(10)*4;
                                             System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
                                         }
                                         if(centralElectrica==true && centralAgua==true){
-                                            dinero=(resultado1+resultado2)*10;
+                                            dinero=(10)*10;
                                             System.out.println("El alquiler para "+propiedades.get(r).getNombre()+" es "+dinero);
                                         }
                                     }                                                                    
@@ -256,45 +381,26 @@ public class LanzarDadosServlet extends HttpServlet{
                             }                                
                         }                                                
                     }
-                    //En caso de que sea una casilla de impuestos especiales pagará lo correspondiente el jugador.
-                    for(int esp=0; esp<especiales.size();esp++){
-                        if(jugadores.get(i).getIdCasilla()==especiales.get(esp).getIdCasilla()
-                                && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
-                                &&(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()))>0){
-                            tablero.setFondoDinero(-1*(especiales.get(esp).getBonus()));
-                            jugadores.get(i).setDinero(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()));                            
-                            System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha pagado "+especiales.get(esp).getBonus()+" de impuestos");
-                            
-                        }
-                        if(jugadores.get(i).getIdCasilla()==especiales.get(esp).getIdCasilla()
-                                && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
-                                &&(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()))<0){
-                            System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha perdido");
-                            jugadores.get(i).setDinero(jugadores.get(i).getDinero()+(especiales.get(esp).getBonus()));
-                            for(int h=0;h<propiedades.size();h++){
-                                if(propiedades.get(h).getIdUsuario()==jugadores.get(i).getId()){
-                                        propiedades.get(h).setIdUsuario(0);
-                                        request.getSession().setAttribute("jugadorHaPerdido", "El jugador"+jugadores.get(i).getNombre()+" ha perdido. Todas sus pertenencias han pasado a la banca.");
-                                }
-                            }
-                        }
-                    }
-                }                
+                }
             }
-            System.out.println("Estado "+jugador.getEstadoTurno()+ " del jugador "+jugador.getNombre());
-            request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);
-            request.getSession().setAttribute("listaJugadoresPartida", jugadores);
-            request.getSession().setAttribute("listaPropiedades",propiedades);
-            request.getSession().setAttribute("tablero",tablero);
-            utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
-        } catch (ServletException | IOException ex) {
-            Logger.getLogger(LanzarDadosServlet.class.getName()).log(Level.SEVERE, null, ex);
+            for(int i=0;i<jugadores.size();i++){
+                if(jugadores.get(i).getId()==jugador.getId()){
+                    jugadores.get(i).setCogeTarjeta(jugador.getCogeTarjeta());
+                    jugadores.get(i).setDinero(jugador.getDinero());
+                    jugadores.get(i).setEstadoParaComprar(jugador.getEstadoParaComprar());
+                    jugadores.get(i).setEstadoTurno(jugador.getEstadoTurno());
+                    jugadores.get(i).setIdCasilla(jugador.getIdCasilla());
+                    jugadores.get(i).setTurnoCarcel(jugador.getTurnoCarcel());
+                }
+            }
+            request.getSession().setAttribute("listaJugadoresPartida",jugadores);
+            utilServlet.mostrarVista("./jsp/partida.jsp", request, response);        
+        } catch (IOException |ServletException ex) {
+            Logger.getLogger(CogerTarjetaCajaComunidadYSuerteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    
-    
-    /**
+     /**
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
