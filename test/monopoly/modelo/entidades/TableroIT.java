@@ -144,5 +144,32 @@ public class TableroIT {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of getFondoDinero method, of class Tablero.
+     */
+    @Test
+    public void testGetFondoDinero() {
+        System.out.println("getFondoDinero");
+        Tablero instance = new Tablero();
+        int expResult = 0;
+        int result = instance.getFondoDinero();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setFondoDinero method, of class Tablero.
+     */
+    @Test
+    public void testSetFondoDinero() {
+        System.out.println("setFondoDinero");
+        int fondoDinero = 0;
+        Tablero instance = new Tablero();
+        instance.setFondoDinero(fondoDinero);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

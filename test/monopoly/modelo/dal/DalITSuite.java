@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package monopoly.controlador.servlet;
+package monopoly.modelo.dal;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,8 +17,8 @@ import org.junit.runners.Suite;
  * @author Rodrigo
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({monopoly.controlador.servlet.CogerTarjetaCajaComunidadYSuerteServletIT.class, monopoly.controlador.servlet.NegociarServletIT.class, monopoly.controlador.servlet.LanzarDadosServletIT.class, monopoly.controlador.servlet.CargarPartidaServletIT.class, monopoly.controlador.servlet.InicioServletIT.class, monopoly.controlador.servlet.SeleccionarJugadorServletIT.class, monopoly.controlador.servlet.ComprarPropiedadServletIT.class, monopoly.controlador.servlet.GuardarPartidaServletIT.class, monopoly.controlador.servlet.TerminarTurnoServletIT.class})
-public class ServletITSuite {
+@Suite.SuiteClasses({monopoly.modelo.dal.TSorpresaSuerteDALIT.class, monopoly.modelo.dal.JugadorDALIT.class, monopoly.modelo.dal.PropiedadDALIT.class, monopoly.modelo.dal.TableroDALIT.class, monopoly.modelo.dal.EspecialDALIT.class, monopoly.modelo.dal.CasillaDALIT.class, monopoly.modelo.dal.PartidaDALIT.class})
+public class DalITSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

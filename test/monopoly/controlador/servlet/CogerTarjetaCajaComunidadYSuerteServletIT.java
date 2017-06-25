@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Rodrigo
  */
-public class NegociarServletIT {
+public class CogerTarjetaCajaComunidadYSuerteServletIT {
     
-    public NegociarServletIT() {
+    public CogerTarjetaCajaComunidadYSuerteServletIT() {
     }
     
     @BeforeClass
@@ -40,84 +40,54 @@ public class NegociarServletIT {
     }
 
     /**
-     * Test of processRequest method, of class NegociarServlet.
+     * Test of processRequest method, of class CogerTarjetaCajaComunidadYSuerteServlet.
      */
     @Test
     public void testProcessRequest() {
         System.out.println("processRequest");
         HttpServletRequest request = null;
         HttpServletResponse response = null;
-        NegociarServlet instance = new NegociarServlet();
+        CogerTarjetaCajaComunidadYSuerteServlet instance = new CogerTarjetaCajaComunidadYSuerteServlet();
         instance.processRequest(request, response);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of validarString method, of class NegociarServlet.
-     */
-    @Test
-    public void testValidarString() {
-        System.out.println("validarString");
-        String cadena = "";
-        NegociarServlet instance = new NegociarServlet();
-        boolean expResult = false;
-        boolean result = instance.validarString(cadena);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of convertirStringAInteger method, of class NegociarServlet.
-     */
-    @Test
-    public void testConvertirStringAInteger() {
-        System.out.println("convertirStringAInteger");
-        String numero = "";
-        NegociarServlet instance = new NegociarServlet();
-        int expResult = 0;
-        int result = instance.convertirStringAInteger(numero);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of doGet method, of class NegociarServlet.
+     * Test of doGet method, of class CogerTarjetaCajaComunidadYSuerteServlet.
      */
     @Test
     public void testDoGet() throws Exception {
         System.out.println("doGet");
         HttpServletRequest request = null;
         HttpServletResponse response = null;
-        NegociarServlet instance = new NegociarServlet();
+        CogerTarjetaCajaComunidadYSuerteServlet instance = new CogerTarjetaCajaComunidadYSuerteServlet();
         instance.doGet(request, response);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of doPost method, of class NegociarServlet.
+     * Test of doPost method, of class CogerTarjetaCajaComunidadYSuerteServlet.
      */
     @Test
     public void testDoPost() throws Exception {
         System.out.println("doPost");
         HttpServletRequest request = null;
         HttpServletResponse response = null;
-        NegociarServlet instance = new NegociarServlet();
+        CogerTarjetaCajaComunidadYSuerteServlet instance = new CogerTarjetaCajaComunidadYSuerteServlet();
         instance.doPost(request, response);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getServletInfo method, of class NegociarServlet.
+     * Test of getServletInfo method, of class CogerTarjetaCajaComunidadYSuerteServlet.
      */
     @Test
     public void testGetServletInfo() {
         System.out.println("getServletInfo");
-        NegociarServlet instance = new NegociarServlet();
+        CogerTarjetaCajaComunidadYSuerteServlet instance = new CogerTarjetaCajaComunidadYSuerteServlet();
         String expResult = "";
         String result = instance.getServletInfo();
         assertEquals(expResult, result);
