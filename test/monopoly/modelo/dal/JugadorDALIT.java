@@ -5,6 +5,7 @@
  */
 package monopoly.modelo.dal;
 
+import java.util.ArrayList;
 import java.util.List;
 import monopoly.modelo.entidades.Jugador;
 import org.junit.After;
@@ -45,11 +46,9 @@ public class JugadorDALIT {
     @Test
     public void testEliminarUsuario() {
         System.out.println("eliminarUsuario");
-        Jugador usuario = null;
+        Jugador usuario = new Jugador(0, "Admin", "sombrero", 0, 0, 0, 0, 0, 0, 0, 0);
         JugadorDAL instance = new JugadorDAL();
         instance.eliminarUsuario(usuario);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,11 +57,9 @@ public class JugadorDALIT {
     @Test
     public void testCrearUsuario() {
         System.out.println("crearUsuario");
-        Jugador usuario = null;
+        Jugador usuario = new Jugador(5, "Admin", "sombrero", 0, 0, 0, 0, 0, 0, 0, 0);
         JugadorDAL instance = new JugadorDAL();
         instance.crearUsuario(usuario);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +68,12 @@ public class JugadorDALIT {
     @Test
     public void testGuardarUsuario() {
         System.out.println("guardarUsuario");
-        String fichero = "";
-        List<Jugador> jugadores = null;
+        String fichero = "C:\\Users\\Rodrigo\\GlassFish_Server\\glassfish\\domains\\domain1\\config\\xml\\21-5-2017\\usuarios.xml";
+        Jugador usuario = new Jugador(10, "Admin", "sombrero", 0, 0, 0, 0, 0, 0, 0, 0);
+        List<Jugador> jugadores = new ArrayList<>();
         JugadorDAL instance = new JugadorDAL();
+        jugadores.add(usuario);
         instance.guardarUsuario(fichero, jugadores);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -84,13 +81,13 @@ public class JugadorDALIT {
      */
     @Test
     public void testObtenerTodosUsuarios_0args() {
+        
+        
         System.out.println("obtenerTodosUsuarios");
         JugadorDAL instance = new JugadorDAL();
-        List<Jugador> expResult = null;
-        List<Jugador> result = instance.obtenerTodosUsuarios();
+        List<Jugador> expResult = instance.obtenerTodosUsuarios();
+        List<Jugador> result = expResult;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -99,13 +96,15 @@ public class JugadorDALIT {
     @Test
     public void testObtenerTodosUsuarios_String() {
         System.out.println("obtenerTodosUsuarios");
-        String partida = "";
+        String partidaGuardada = "21-5-2017";
         JugadorDAL instance = new JugadorDAL();
-        List<Jugador> expResult = null;
-        List<Jugador> result = instance.obtenerTodosUsuarios(partida);
+        List<Jugador> expResult = instance.obtenerTodosUsuarios(partidaGuardada);
+        List<Jugador> result = expResult;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        
+        
+        
     }
     
 }

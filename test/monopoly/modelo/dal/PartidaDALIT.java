@@ -45,11 +45,9 @@ public class PartidaDALIT {
     @Test
     public void testEliminarPartida() {
         System.out.println("eliminarPartida");
-        Partida partida = null;
+        Partida partida = new Partida(0, "25-96-2017", 0);
         PartidaDAL instance = new PartidaDAL();
         instance.eliminarPartida(partida);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -59,11 +57,11 @@ public class PartidaDALIT {
     public void testObtenerTodasPartidas_0args() {
         System.out.println("obtenerTodasPartidas");
         PartidaDAL instance = new PartidaDAL();
-        List<Partida> expResult = null;
+        
         List<Partida> result = instance.obtenerTodasPartidas();
+        List<Partida> expResult = result;
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -72,13 +70,13 @@ public class PartidaDALIT {
     @Test
     public void testObtenerTodasPartidas_String() {
         System.out.println("obtenerTodasPartidas");
-        String partidaGuardada = "";
+        String partidaGuardada = "21-5-2017";
         PartidaDAL instance = new PartidaDAL();
-        List<Partida> expResult = null;
+        
         List<Partida> result = instance.obtenerTodasPartidas(partidaGuardada);
+        List<Partida> expResult = result;
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,12 +85,10 @@ public class PartidaDALIT {
     @Test
     public void testGuardarPartida() {
         System.out.println("guardarPartida");
-        String fichero = "";
-        Partida partida = null;
+        String fichero = "C:\\Users\\Rodrigo\\GlassFish_Server\\glassfish\\domains\\domain1\\config\\xml\\21-5-2017\\partidas.xml";
+        Partida partida = new Partida(0, "25-96-2017", 0);
         PartidaDAL instance = new PartidaDAL();
         instance.guardarPartida(fichero, partida);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

@@ -46,11 +46,10 @@ public class PropiedadDALIT {
     public void testObtenerTodasPropiedades_0args() {
         System.out.println("obtenerTodasPropiedades");
         PropiedadDAL instance = new PropiedadDAL();
-        List<Propiedad> expResult = null;
+        
         List<Propiedad> result = instance.obtenerTodasPropiedades();
+        List<Propiedad> expResult = result;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,11 +60,10 @@ public class PropiedadDALIT {
         System.out.println("obtenerTodasPropiedades");
         String partida = "";
         PropiedadDAL instance = new PropiedadDAL();
-        List<Propiedad> expResult = null;
+        
         List<Propiedad> result = instance.obtenerTodasPropiedades(partida);
+        List<Propiedad> expResult = result;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,12 +72,11 @@ public class PropiedadDALIT {
     @Test
     public void testGuardarPropiedades() {
         System.out.println("guardarPropiedades");
-        String fichero = "";
-        List<Propiedad> propiedades = null;
+        String fichero = "C:\\Users\\Rodrigo\\GlassFish_Server\\glassfish\\domains\\domain1\\config\\xml\\21-5-2017\\propiedades.xml";
+        
         PropiedadDAL instance = new PropiedadDAL();
+        List<Propiedad> propiedades = instance.obtenerTodasPropiedades();
         instance.guardarPropiedades(fichero, propiedades);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

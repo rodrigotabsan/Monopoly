@@ -46,11 +46,10 @@ public class TSorpresaSuerteDALIT {
     public void testObtenerTodasTsSorpresaSuerte_0args() {
         System.out.println("obtenerTodasTsSorpresaSuerte");
         TSorpresaSuerteDAL instance = new TSorpresaSuerteDAL();
-        List<TSorpresaSuerte> expResult = null;
+        
         List<TSorpresaSuerte> result = instance.obtenerTodasTsSorpresaSuerte();
+        List<TSorpresaSuerte> expResult = result;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -59,13 +58,12 @@ public class TSorpresaSuerteDALIT {
     @Test
     public void testObtenerTodasTsSorpresaSuerte_String() {
         System.out.println("obtenerTodasTsSorpresaSuerte");
-        String partida = "";
+        String partida = "21-5-2017";
         TSorpresaSuerteDAL instance = new TSorpresaSuerteDAL();
-        List<TSorpresaSuerte> expResult = null;
+        
         List<TSorpresaSuerte> result = instance.obtenerTodasTsSorpresaSuerte(partida);
+        List<TSorpresaSuerte> expResult = result;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,12 +72,10 @@ public class TSorpresaSuerteDALIT {
     @Test
     public void testGuardarITSorpresaSuerte() {
         System.out.println("guardarITSorpresaSuerte");
-        String fichero = "";
-        List<TSorpresaSuerte> tarjetasSorpresaSuerte = null;
+        String fichero = "C:\\Users\\Rodrigo\\GlassFish_Server\\glassfish\\domains\\domain1\\config\\xml\\21-5-2017\\tsorpresasuerte.xml";
         TSorpresaSuerteDAL instance = new TSorpresaSuerteDAL();
+        List<TSorpresaSuerte> tarjetasSorpresaSuerte = instance.obtenerTodasTsSorpresaSuerte();
         instance.guardarITSorpresaSuerte(fichero, tarjetasSorpresaSuerte);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

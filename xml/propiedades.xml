@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<propiedades>
+    <propiedad>
+        <id>1</id>
+        <nombre>RONDA DE VALENCIA</nombre>
+        <tipo>CALLE</tipo>
+        <precio>6000</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>BlueViolet</color>
+        <idcasilla>1</idcasilla> 
+        <hipoteca>30</hipoteca>  
+        <alquiler>2</alquiler> 
+        <casa>50</casa>
+        <alquilerprimeracasa>10</alquilerprimeracasa>
+        <alquilersegundacasa>30</alquilersegundacasa>
+        <alquilerterceracasa>90</alquilerterceracasa>
+        <alquilercuartacasa>160</alquilercuartacasa>
+        <hotel>100</hotel>  
+        <alquilerhotel>250</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>2</id>
+        <nombre>PLAZA LAVAPIÉS</nombre>
+        <tipo>CALLE</tipo>
+        <precio>6000</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>BlueViolet</color>
+        <idcasilla>3</idcasilla>  
+        <hipoteca>30</hipoteca>  
+        <alquiler>4</alquiler> 
+        <casa>50</casa>
+        <alquilerprimeracasa>20</alquilerprimeracasa>
+        <alquilersegundacasa>60</alquilersegundacasa>
+        <alquilerterceracasa>180</alquilerterceracasa>
+        <alquilercuartacasa>320</alquilercuartacasa>
+        <hotel>100</hotel>  
+        <alquilerhotel>450</alquilerhotel>         
+    </propiedad>
+    <propiedad>
+        <id>3</id>
+        <nombre>ESTACIÓN DE GOYA</nombre>
+        <tipo>ESTACION</tipo>
+        <precio>200</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>White</color>
+        <idcasilla>5</idcasilla>   
+        <hipoteca>100</hipoteca>  
+        <alquiler>25</alquiler> 
+        <casa>0</casa>
+        <alquilerprimeracasa>0</alquilerprimeracasa>
+        <alquilersegundacasa>0</alquilersegundacasa>
+        <alquilerterceracasa>0</alquilerterceracasa>
+        <alquilercuartacasa>0</alquilercuartacasa>
+        <hotel>0</hotel>  
+        <alquilerhotel>0</alquilerhotel>       
+    </propiedad>
+    <propiedad>
+        <id>4</id>
+        <nombre>GLORIETA CUATRO CAMINOS</nombre>
+        <tipo>CALLE</tipo>
+        <precio>100</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>SkyBlue</color>
+        <idcasilla>6</idcasilla>  
+        <hipoteca>50</hipoteca>  
+        <alquiler>6</alquiler>
+        <casa>50</casa>
+        <alquilerprimeracasa>30</alquilerprimeracasa>
+        <alquilersegundacasa>90</alquilersegundacasa>
+        <alquilerterceracasa>270</alquilerterceracasa>
+        <alquilercuartacasa>400</alquilercuartacasa>
+        <hotel>100</hotel>  
+        <alquilerhotel>550</alquilerhotel>       
+    </propiedad>    
+    <propiedad>
+        <id>5</id>
+        <nombre>AVENIDA DE REINA VICTORIA</nombre>
+        <tipo>CALLE</tipo>
+        <precio>100</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>SkyBlue</color>
+        <idcasilla>8</idcasilla> 
+        <hipoteca>50</hipoteca>  
+        <alquiler>6</alquiler> 
+        <casa>50</casa>
+        <alquilerprimeracasa>30</alquilerprimeracasa>
+        <alquilersegundacasa>90</alquilersegundacasa>
+        <alquilerterceracasa>270</alquilerterceracasa>
+        <alquilercuartacasa>400</alquilercuartacasa>
+        <hotel>100</hotel>  
+        <alquilerhotel>550</alquilerhotel>      
+    </propiedad>
+    <propiedad>
+        <id>6</id>
+        <nombre>CALLE BRAVO MURILLO</nombre>
+        <tipo>CALLE</tipo>
+        <precio>120</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>SkyBlue</color>
+        <idcasilla>9</idcasilla>  
+        <hipoteca>60</hipoteca>  
+        <alquiler>8</alquiler> 
+        <casa>50</casa>
+        <alquilerprimeracasa>40</alquilerprimeracasa>
+        <alquilersegundacasa>100</alquilersegundacasa>
+        <alquilerterceracasa>300</alquilerterceracasa>
+        <alquilercuartacasa>450</alquilercuartacasa>
+        <hotel>100</hotel>  
+        <alquilerhotel>600</alquilerhotel>       
+    </propiedad>
+    <propiedad>
+        <id>7</id>
+        <nombre>GLORIETA DE BILBAO</nombre>
+        <tipo>CALLE</tipo>
+        <precio>140</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Pink</color>
+        <idcasilla>11</idcasilla>  
+        <hipoteca>70</hipoteca>  
+        <alquiler>10</alquiler> 
+        <casa>100</casa>
+        <alquilerprimeracasa>50</alquilerprimeracasa>
+        <alquilersegundacasa>150</alquilersegundacasa>
+        <alquilerterceracasa>450</alquilerterceracasa>
+        <alquilercuartacasa>625</alquilercuartacasa>
+        <hotel>200</hotel>  
+        <alquilerhotel>750</alquilerhotel>        
+    </propiedad>
+    <propiedad>
+        <id>8</id>
+        <nombre>COMPAÑÍA DE ELECTRICIDAD</nombre>
+        <tipo>OTROS</tipo>
+        <precio>150</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>White</color>
+        <idcasilla>12</idcasilla>
+        <hipoteca>75</hipoteca>  
+        <alquiler>4</alquiler> 
+        <casa>0</casa>
+        <alquilerprimeracasa>0</alquilerprimeracasa>
+        <alquilersegundacasa>0</alquilersegundacasa>
+        <alquilerterceracasa>0</alquilerterceracasa>
+        <alquilercuartacasa>0</alquilercuartacasa>
+        <hotel>0</hotel>  
+        <alquilerhotel>0</alquilerhotel>         
+    </propiedad>
+    <propiedad>
+        <id>9</id>
+        <nombre>CALLE ALBERTO AGUILERA</nombre>
+        <tipo>CALLE</tipo>
+        <precio>140</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Pink</color>
+        <idcasilla>13</idcasilla>
+        <hipoteca>70</hipoteca>  
+        <alquiler>10</alquiler> 
+        <casa>100</casa>
+        <alquilerprimeracasa>50</alquilerprimeracasa>
+        <alquilersegundacasa>150</alquilersegundacasa>
+        <alquilerterceracasa>450</alquilerterceracasa>
+        <alquilercuartacasa>625</alquilercuartacasa>
+        <hotel>200</hotel>  
+        <alquilerhotel>750</alquilerhotel>         
+    </propiedad>    
+    <propiedad>
+        <id>10</id>
+        <nombre>CALLE FUENCARRAL</nombre>
+        <tipo>CALLE</tipo>
+        <precio>160</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Pink</color>
+        <idcasilla>14</idcasilla>
+        <hipoteca>80</hipoteca>  
+        <alquiler>12</alquiler> 
+        <casa>100</casa>
+        <alquilerprimeracasa>60</alquilerprimeracasa>
+        <alquilersegundacasa>180</alquilersegundacasa>
+        <alquilerterceracasa>500</alquilerterceracasa>
+        <alquilercuartacasa>700</alquilercuartacasa>
+        <hotel>200</hotel>  
+        <alquilerhotel>900</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>11</id>
+        <nombre>ESTACIÓN DE LAS DELICIAS</nombre>
+        <tipo>ESTACION</tipo>
+        <precio>200</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>White</color>
+        <idcasilla>15</idcasilla>
+        <hipoteca>100</hipoteca>  
+        <alquiler>25</alquiler> 
+        <casa>0</casa>
+        <alquilerprimeracasa>0</alquilerprimeracasa>
+        <alquilersegundacasa>0</alquilersegundacasa>
+        <alquilerterceracasa>0</alquilerterceracasa>
+        <alquilercuartacasa>0</alquilercuartacasa>
+        <hotel>0</hotel>  
+        <alquilerhotel>0</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>12</id>
+        <nombre>AVENIDA FELIPE II</nombre>
+        <tipo>CALLE</tipo>
+        <precio>180</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Orange</color>
+        <idcasilla>16</idcasilla>
+        <hipoteca>90</hipoteca>  
+        <alquiler>14</alquiler> 
+        <casa>100</casa>
+        <alquilerprimeracasa>70</alquilerprimeracasa>
+        <alquilersegundacasa>200</alquilersegundacasa>
+        <alquilerterceracasa>550</alquilerterceracasa>
+        <alquilercuartacasa>700</alquilercuartacasa>
+        <hotel>200</hotel>  
+        <alquilerhotel>950</alquilerhotel>         
+    </propiedad>
+    <propiedad>
+        <id>13</id>
+        <nombre>CALLE VELÁZQUEZ</nombre>
+        <tipo>CALLE</tipo>
+        <precio>180</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Orange</color>
+        <idcasilla>18</idcasilla>
+        <hipoteca>90</hipoteca>  
+        <alquiler>14</alquiler> 
+        <casa>100</casa>
+        <alquilerprimeracasa>70</alquilerprimeracasa>
+        <alquilersegundacasa>200</alquilersegundacasa>
+        <alquilerterceracasa>550</alquilerterceracasa>
+        <alquilercuartacasa>700</alquilercuartacasa>
+        <hotel>200</hotel>  
+        <alquilerhotel>950</alquilerhotel>         
+    </propiedad>
+    <propiedad>
+        <id>14</id>
+        <nombre>CALLE SERRANO</nombre>
+        <tipo>CALLE</tipo>
+        <precio>200</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Orange</color>
+        <idcasilla>19</idcasilla>
+        <hipoteca>100</hipoteca>  
+        <alquiler>16</alquiler> 
+        <casa>100</casa>
+        <alquilerprimeracasa>80</alquilerprimeracasa>
+        <alquilersegundacasa>220</alquilersegundacasa>
+        <alquilerterceracasa>600</alquilerterceracasa>
+        <alquilercuartacasa>800</alquilercuartacasa>
+        <hotel>200</hotel>  
+        <alquilerhotel>1000</alquilerhotel>         
+    </propiedad>
+    <propiedad>
+        <id>15</id>
+        <nombre>AVENIDA DE AMÉRICA</nombre>
+        <tipo>CALLE</tipo>
+        <precio>220</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Red</color>
+        <idcasilla>21</idcasilla>
+        <hipoteca>110</hipoteca>  
+        <alquiler>18</alquiler> 
+        <casa>150</casa>
+        <alquilerprimeracasa>90</alquilerprimeracasa>
+        <alquilersegundacasa>250</alquilersegundacasa>
+        <alquilerterceracasa>700</alquilerterceracasa>
+        <alquilercuartacasa>875</alquilercuartacasa>
+        <hotel>300</hotel>  
+        <alquilerhotel>1050</alquilerhotel>         
+    </propiedad>
+    <propiedad>
+        <id>16</id>
+        <nombre>CALLE MARÍA DE MOLINA</nombre>
+        <tipo>CALLE</tipo>
+        <precio>220</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Red</color>
+        <idcasilla>23</idcasilla>
+        <hipoteca>110</hipoteca>  
+        <alquiler>18</alquiler> 
+        <casa>150</casa>
+        <alquilerprimeracasa>90</alquilerprimeracasa>
+        <alquilersegundacasa>250</alquilersegundacasa>
+        <alquilerterceracasa>700</alquilerterceracasa>
+        <alquilercuartacasa>875</alquilercuartacasa>
+        <hotel>300</hotel>  
+        <alquilerhotel>1050</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>17</id>
+        <nombre>CALLE DE CEA BERMÚDEZ</nombre>
+        <tipo>CALLE</tipo>
+        <precio>240</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Red</color>
+        <idcasilla>24</idcasilla>
+        <hipoteca>120</hipoteca>  
+        <alquiler>20</alquiler> 
+        <casa>150</casa>
+        <alquilerprimeracasa>100</alquilerprimeracasa>
+        <alquilersegundacasa>300</alquilersegundacasa>
+        <alquilerterceracasa>750</alquilerterceracasa>
+        <alquilercuartacasa>925</alquilercuartacasa>
+        <hotel>300</hotel>  
+        <alquilerhotel>1100</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>18</id>
+        <nombre>ESTACIÓN DEL MEDIODÍA</nombre>
+        <tipo>ESTACIÓN</tipo>
+        <precio>200</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>White</color>
+        <idcasilla>25</idcasilla>
+        <hipoteca>100</hipoteca>  
+        <alquiler>25</alquiler> 
+        <casa>0</casa>
+        <alquilerprimeracasa>0</alquilerprimeracasa>
+        <alquilersegundacasa>0</alquilersegundacasa>
+        <alquilerterceracasa>0</alquilerterceracasa>
+        <alquilercuartacasa>0</alquilercuartacasa>
+        <hotel>0</hotel>  
+        <alquilerhotel>0</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>19</id>
+        <nombre>AVENIDA DE LOS REYES CATÓLICOS</nombre>
+        <tipo>CALLE</tipo>
+        <precio>260</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Yellow</color>
+        <idcasilla>26</idcasilla>
+        <hipoteca>130</hipoteca>  
+        <alquiler>22</alquiler> 
+        <casa>150</casa>
+        <alquilerprimeracasa>110</alquilerprimeracasa>
+        <alquilersegundacasa>330</alquilersegundacasa>
+        <alquilerterceracasa>800</alquilerterceracasa>
+        <alquilercuartacasa>975</alquilercuartacasa>
+        <hotel>300</hotel>   
+        <alquilerhotel>1150</alquilerhotel>           
+    </propiedad>
+    <propiedad>
+        <id>20</id>
+        <nombre>CALLE BAILÉN</nombre>
+        <tipo>CALLE</tipo>
+        <precio>250</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Yellow</color>
+        <idcasilla>27</idcasilla>
+        <hipoteca>125</hipoteca>  
+        <alquiler>22</alquiler> 
+        <casa>150</casa>
+        <alquilerprimeracasa>110</alquilerprimeracasa>
+        <alquilersegundacasa>330</alquilersegundacasa>
+        <alquilerterceracasa>800</alquilerterceracasa>
+        <alquilercuartacasa>975</alquilercuartacasa>
+        <hotel>300</hotel>   
+        <alquilerhotel>1150</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>21</id>
+        <nombre>COMPAÑÍA DE DISTRIBUCIÓN DE AGUAS</nombre>
+        <tipo>OTROS</tipo>
+        <precio>150</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>White</color>
+        <idcasilla>28</idcasilla>
+        <hipoteca>75</hipoteca>  
+        <alquiler>4</alquiler> 
+        <casa>0</casa>
+        <alquilerprimeracasa>0</alquilerprimeracasa>
+        <alquilersegundacasa>0</alquilersegundacasa>
+        <alquilerterceracasa>0</alquilerterceracasa>
+        <alquilercuartacasa>0</alquilercuartacasa>
+        <hotel>0</hotel>  
+        <alquilerhotel>0</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>22</id>
+        <nombre>PLAZA DE ESPAÑA</nombre>
+        <tipo>CALLE</tipo>
+        <precio>280</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Yellow</color>
+        <idcasilla>29</idcasilla>
+        <hipoteca>140</hipoteca>  
+        <alquiler>24</alquiler> 
+        <casa>150</casa>
+        <alquilerprimeracasa>120</alquilerprimeracasa>
+        <alquilersegundacasa>360</alquilersegundacasa>
+        <alquilerterceracasa>850</alquilerterceracasa>
+        <alquilercuartacasa>1025</alquilercuartacasa>
+        <hotel>300</hotel>  
+        <alquilerhotel>1200</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>23</id>
+        <nombre>PUERTA DEL SOL</nombre>
+        <tipo>CALLE</tipo>
+        <precio>300</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Green</color>
+        <idcasilla>31</idcasilla>
+        <hipoteca>150</hipoteca>  
+        <alquiler>26</alquiler> 
+        <casa>200</casa>
+        <alquilerprimeracasa>130</alquilerprimeracasa>
+        <alquilersegundacasa>390</alquilersegundacasa>
+        <alquilerterceracasa>900</alquilerterceracasa>
+        <alquilercuartacasa>1100</alquilercuartacasa>
+        <hotel>400</hotel>  
+        <alquilerhotel>1275</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>24</id>
+        <nombre>CALLE DE ALCALÁ</nombre>
+        <tipo>CALLE</tipo>
+        <precio>300</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Green</color>
+        <idcasilla>32</idcasilla>
+        <hipoteca>150</hipoteca>  
+        <alquiler>26</alquiler> 
+        <casa>200</casa>
+        <alquilerprimeracasa>130</alquilerprimeracasa>
+        <alquilersegundacasa>390</alquilersegundacasa>
+        <alquilerterceracasa>900</alquilerterceracasa>
+        <alquilercuartacasa>1100</alquilercuartacasa>
+        <hotel>400</hotel>  
+        <alquilerhotel>1275</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>25</id>
+        <nombre>GRAN VÍA</nombre>
+        <tipo>CALLE</tipo>
+        <precio>320</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Green</color>
+        <idcasilla>34</idcasilla>
+        <hipoteca>160</hipoteca>  
+        <alquiler>28</alquiler> 
+        <casa>200</casa>
+        <alquilerprimeracasa>150</alquilerprimeracasa>
+        <alquilersegundacasa>450</alquilersegundacasa>
+        <alquilerterceracasa>1000</alquilerterceracasa>
+        <alquilercuartacasa>1200</alquilercuartacasa>
+        <hotel>400</hotel>  
+        <alquilerhotel>1400</alquilerhotel>           
+    </propiedad>
+    <propiedad>
+        <id>26</id>
+        <nombre>ESTACIÓN DEL NORTE</nombre>
+        <tipo>ESTACION</tipo>
+        <precio>200</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>White</color>
+        <idcasilla>35</idcasilla>
+        <hipoteca>100</hipoteca>  
+        <alquiler>25</alquiler> 
+        <casa>0</casa>
+        <alquilerprimeracasa>0</alquilerprimeracasa>
+        <alquilersegundacasa>0</alquilersegundacasa>
+        <alquilerterceracasa>0</alquilerterceracasa>
+        <alquilercuartacasa>0</alquilercuartacasa>
+        <hotel>0</hotel>  
+        <alquilerhotel>0</alquilerhotel>         
+    </propiedad>
+    <propiedad>
+        <id>27</id>
+        <nombre>PASEO DE LA CASTELLANA</nombre>
+        <tipo>CALLE</tipo>
+        <precio>350</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Blue</color>
+        <idcasilla>37</idcasilla>
+        <hipoteca>175</hipoteca>  
+        <alquiler>35</alquiler> 
+        <casa>200</casa>
+        <alquilerprimeracasa>175</alquilerprimeracasa>
+        <alquilersegundacasa>500</alquilersegundacasa>
+        <alquilerterceracasa>1100</alquilerterceracasa>
+        <alquilercuartacasa>1300</alquilercuartacasa>
+        <hotel>400</hotel>  
+        <alquilerhotel>1500</alquilerhotel>          
+    </propiedad>
+    <propiedad>
+        <id>28</id>
+        <nombre>PASEO DEL PRADO</nombre>
+        <tipo>CALLE</tipo>
+        <precio>400</precio>
+        <idusuario>0</idusuario>
+        <descripcion>No hipotecado</descripcion>
+        <color>Blue</color>
+        <idcasilla>39</idcasilla>
+        <hipoteca>200</hipoteca>  
+        <alquiler>50</alquiler> 
+        <casa>200</casa>
+        <alquilerprimeracasa>200</alquilerprimeracasa>
+        <alquilersegundacasa>600</alquilersegundacasa>
+        <alquilerterceracasa>1400</alquilerterceracasa>
+        <alquilercuartacasa>1700</alquilercuartacasa>
+        <hotel>400</hotel>  
+        <alquilerhotel>2000</alquilerhotel>          
+    </propiedad>
+</propiedades>

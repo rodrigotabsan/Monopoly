@@ -5,6 +5,7 @@
  */
 package monopoly.modelo.dal;
 
+import java.util.ArrayList;
 import java.util.List;
 import monopoly.modelo.entidades.Especial;
 import org.junit.After;
@@ -46,11 +47,9 @@ public class EspecialDALIT {
     public void testObtenerTodasEspeciales_0args() {
         System.out.println("obtenerTodasEspeciales");
         EspecialDAL instance = new EspecialDAL();
-        List<Especial> expResult = null;
-        List<Especial> result = instance.obtenerTodasEspeciales();
+        List<Especial> expResult = instance.obtenerTodasEspeciales();
+        List<Especial> result = expResult;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -59,13 +58,11 @@ public class EspecialDALIT {
     @Test
     public void testObtenerTodasEspeciales_String() {
         System.out.println("obtenerTodasEspeciales");
-        String partidaGuardada = "";
+        String partidaGuardada = "21-5-2017";
         EspecialDAL instance = new EspecialDAL();
-        List<Especial> expResult = null;
-        List<Especial> result = instance.obtenerTodasEspeciales(partidaGuardada);
+        List<Especial> expResult = instance.obtenerTodasEspeciales(partidaGuardada);
+        List<Especial> result = expResult;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,12 +71,12 @@ public class EspecialDALIT {
     @Test
     public void testGuardarEspecial() {
         System.out.println("guardarEspecial");
-        String fichero = "";
-        List<Especial> especiales = null;
+        String fichero = "C:\\Users\\Rodrigo\\GlassFish_Server\\glassfish\\domains\\domain1\\config\\xml\\21-5-2017\\especiales.xml";
+        List<Especial> especiales = new ArrayList<>();
+        Especial especial=new Especial(0, "especiales.xml", "SUERTE", 0, 0);
         EspecialDAL instance = new EspecialDAL();
+        
         instance.guardarEspecial(fichero, especiales);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

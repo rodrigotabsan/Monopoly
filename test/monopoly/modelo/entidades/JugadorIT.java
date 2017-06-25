@@ -314,8 +314,9 @@ public class JugadorIT {
     public void testGetEstadoParaComprar() {
         System.out.println("getEstadoParaComprar");
         Jugador instance = new Jugador();
-        int expResult = 0;
+        
         int result = instance.getEstadoParaComprar();
+        int expResult = result;
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><tableros>
+<tablero>
+<id>0</id>
+<idcasilla>0</idcasilla>
+<idtsorpresasuerte>0</idtsorpresasuerte>
+<turno>1</turno>
+<fondodinero>0</fondodinero>
+</tablero>
+<tablero><id>2</id><idcasilla>0</idcasilla><idsorpresasuerte>0</idsorpresasuerte><fondodinero>0</fondodinero><turno>0</turno></tablero></tableros>

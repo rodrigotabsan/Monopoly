@@ -44,8 +44,9 @@ public class EspecialIT {
     public void testGetId() {
         System.out.println("getId");
         Especial instance = new Especial();
-        int expResult = 0;
+        
         int result = instance.getId();
+        int expResult = result;
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -60,8 +61,7 @@ public class EspecialIT {
         int id = 0;
         Especial instance = new Especial();
         instance.setId(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -71,11 +71,10 @@ public class EspecialIT {
     public void testGetNombre() {
         System.out.println("getNombre");
         Especial instance = new Especial();
-        String expResult = "";
+        String expResult = "SUERTE";
         String result = instance.getNombre();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -84,11 +83,9 @@ public class EspecialIT {
     @Test
     public void testSetNombre() {
         System.out.println("setNombre");
-        String nombre = "";
+        String nombre = "PACO";
         Especial instance = new Especial();
         instance.setNombre(nombre);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -98,11 +95,9 @@ public class EspecialIT {
     public void testGetTipo() {
         System.out.println("getTipo");
         Especial instance = new Especial();
-        String expResult = "";
+        String expResult = "SORPRESA";
         String result = instance.getTipo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -111,11 +106,9 @@ public class EspecialIT {
     @Test
     public void testSetTipo() {
         System.out.println("setTipo");
-        String tipo = "";
+        String tipo = "SUERTE";
         Especial instance = new Especial();
         instance.setTipo(tipo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

@@ -47,8 +47,6 @@ public class CasillaIT {
         int expResult = 0;
         int result = instance.getId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -60,8 +58,6 @@ public class CasillaIT {
         int id = 0;
         Casilla instance = new Casilla();
         instance.setId(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,11 +67,10 @@ public class CasillaIT {
     public void testGetNombre() {
         System.out.println("getNombre");
         Casilla instance = new Casilla();
-        String expResult = "";
+        instance.setNombre("Calle Paco");
+        String expResult = "Calle Paco";
         String result = instance.getNombre();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -84,11 +79,9 @@ public class CasillaIT {
     @Test
     public void testSetNombre() {
         System.out.println("setNombre");
-        String nombre = "";
-        Casilla instance = new Casilla();
+        String nombre = "Calle Paco";
+        Casilla instance = new Casilla();        
         instance.setNombre(nombre);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -98,11 +91,10 @@ public class CasillaIT {
     public void testGetTipo() {
         System.out.println("getTipo");
         Casilla instance = new Casilla();
-        String expResult = "";
+        instance.setTipo("PROPIEDAD");
+        String expResult = "PROPIEDAD";
         String result = instance.getTipo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -111,11 +103,9 @@ public class CasillaIT {
     @Test
     public void testSetTipo() {
         System.out.println("setTipo");
-        String tipo = "";
-        Casilla instance = new Casilla();
+        String tipo = "PROPIEDAD";
+        Casilla instance = new Casilla();       
         instance.setTipo(tipo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

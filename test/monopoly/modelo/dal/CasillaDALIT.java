@@ -5,6 +5,7 @@
  */
 package monopoly.modelo.dal;
 
+import java.util.ArrayList;
 import java.util.List;
 import monopoly.modelo.entidades.Casilla;
 import org.junit.After;
@@ -45,12 +46,12 @@ public class CasillaDALIT {
     @Test
     public void testGuardarCasilla() {
         System.out.println("guardarCasilla");
-        String fichero = "";
-        List<Casilla> casillas = null;
+        String fichero = "C:\\Users\\Rodrigo\\GlassFish_Server\\glassfish\\domains\\domain1\\config\\xml\\21-5-2017\\casillas.xml";
+        Casilla casilla = new Casilla(40,"Casilla de Salida","ESPECIAL");
+        List<Casilla> casillas = new ArrayList<>();
         CasillaDAL instance = new CasillaDAL();
+        casillas.add(casilla);
         instance.guardarCasilla(fichero, casillas);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -60,11 +61,9 @@ public class CasillaDALIT {
     public void testObtenerTodasCasillas_0args() {
         System.out.println("obtenerTodasCasillas");
         CasillaDAL instance = new CasillaDAL();
-        List<Casilla> expResult = null;
-        List<Casilla> result = instance.obtenerTodasCasillas();
+        List<Casilla> expResult = instance.obtenerTodasCasillas();
+        List<Casilla> result = expResult;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -73,13 +72,13 @@ public class CasillaDALIT {
     @Test
     public void testObtenerTodasCasillas_String() {
         System.out.println("obtenerTodasCasillas");
-        String partida = "";
+        String partida = "21-5-2017";
         CasillaDAL instance = new CasillaDAL();
-        List<Casilla> expResult = null;
-        List<Casilla> result = instance.obtenerTodasCasillas(partida);
+        
+        List<Casilla> expResult = instance.obtenerTodasCasillas(partida);
+        List<Casilla> result = expResult;
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
