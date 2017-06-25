@@ -383,7 +383,7 @@
                             
                             if(request.getSession().getAttribute("mensajeErrorNegociar")!=null){
                                 String mensajeErrorNegociar=(String)request.getSession().getAttribute("mensajeErrorNegociar");
-                                request.getSession().setAttribute("mensajeErrorNegociar", null); 
+                                request.getSession().removeAttribute("mensajeErrorNegociar"); 
                                 out.print("<script>alert('"+mensajeErrorNegociar+"');</script>");
                             }
                             
