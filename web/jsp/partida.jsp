@@ -646,10 +646,15 @@
                         dado2=dado2.resultadoDado(result2);
 
                         out.println("<script>"
+                                
                                 + "var btnLanzarDados=document.getElementById('btnLanzarDados');"
                                 + "btnLanzarDados.disabled=false;"
                                 + "document.getElementById('btnNegociar').disabled=true;"
                                 + "document.getElementById('btnTerminar').disabled=true;"
+                                + "document.getElementById('btnNegociar').style.backgroundColor='#AC1528';"
+                                + "document.getElementById('btnTerminar').style.backgroundColor='#AC1528';"
+                                + "document.getElementById('btnGuardarPartida').style.backgroundColor='orange';"
+                                + "btnLanzarDados.style.backgroundColor='orange';"
                                 + "btnLanzarDados.addEventListener('click', function(){"
                                 + "document.getElementById('dados1').src='./img/"+dado1.getImagen()+"';"
                                 + "document.getElementById('dados2').src='./img/"+dado2.getImagen()+"';"
@@ -695,6 +700,10 @@
                                 + "btnTerminar.disabled=false;"
                                 + "btnNegociar.disabled=false;"
                                 + "btnLanzarDados.disabled=true;"
+                                + "btnTerminar.style.backgroundColor='orange';"
+                                + "btnNegociar.style.backgroundColor='orange';"
+                                + "document.getElementById('btnGuardarPartida').style.backgroundColor='orange';"
+                                + "btnLanzarDados.style.backgroundColor='#AC1528';"
                                 + "</script>");
 
                         request.getSession().setAttribute("turnoDeJugador", turnoDeJugador);                 

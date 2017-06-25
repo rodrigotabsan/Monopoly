@@ -123,11 +123,11 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#btnLanzarDados:hover{
+/*#btnLanzarDados:hover{
     color:#AC1528;
     background-color:white;
     cursor:pointer;
-}
+}*/
 
 #btnNegociar{
     padding: 3%;
@@ -140,11 +140,11 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#btnNegociar:hover{
+/*#btnNegociar:hover{
     color:#AC1528;
     background-color:white;
     cursor:pointer;
-}
+}*/
 
 #btnTerminar{
     padding: 3%;
@@ -157,11 +157,11 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#btnTerminar:hover{
+/*#btnTerminar:hover{
     color:#AC1528;
     background-color:white;
     cursor:pointer;
-}
+}*/
 
 #btnGuardarPartida{
     padding: 3%;
@@ -174,11 +174,11 @@ and open the template in the editor.
     font-weight: bold;
 }
 
-#btnGuardarPartida:hover{
+/*#btnGuardarPartida:hover{
     color:#AC1528;
     background-color:white;
     cursor:pointer;
-}
+}*/
 
 #cajaMensaje{
     visibility:hidden;
