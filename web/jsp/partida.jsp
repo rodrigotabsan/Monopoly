@@ -588,7 +588,7 @@
                                                 +"document.getElementById('inputNoCompra').style.marginLeft='32%';"
                                                 +"document.getElementById('inputNoCompra').style.marginTop='10%';"
                                                 +"document.getElementById('inputNoCompra').innerHTML='Aceptar';"
-                                                +"var msg=document.createElement('label');"
+                                                +"var msg=document.createElement('p');"
                                                 +"msg.innerHTML='"+jugadorNoPuedeComprar+"';"
                                                 +"msg.style.marginTop='20px';"
                                                 +"msg.style.color='red';"

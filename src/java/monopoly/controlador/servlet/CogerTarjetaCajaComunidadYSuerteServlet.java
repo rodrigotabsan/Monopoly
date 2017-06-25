@@ -14,9 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import monopoly.modelo.entidades.Especial;
 import monopoly.modelo.entidades.Jugador;
 import monopoly.modelo.entidades.Propiedad;
 import monopoly.modelo.entidades.TSorpresaSuerte;
+import monopoly.modelo.entidades.Tablero;
 import monopoly.util.UtilesServlets;
 
 /**
@@ -57,27 +59,30 @@ public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
             List<Propiedad> propiedades = (ArrayList<Propiedad>)request.getSession().getAttribute("listaPropiedades");
             List<Jugador> jugadores=(List<Jugador>)request.getSession().getAttribute("listaJugadoresPartida");
             List<TSorpresaSuerte> tarjetas = (ArrayList<TSorpresaSuerte>)request.getSession().getAttribute("listaTarjetas");
+            List<Especial> especiales=(List<Especial>)request.getSession().getAttribute("listaEspeciales");
+            Tablero tablero=(Tablero)request.getSession().getAttribute("tableroNuevo");
             int idTarjeta=(int)request.getSession().getAttribute("idTarjeta");
             Jugador jugador=(Jugador)request.getSession().getAttribute("turnoDeJugador");
             TSorpresaSuerte tarjeta=tarjetas.get(idTarjeta);
-            //jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
-            for(Jugador jugadorDeLista:jugadores){
-                
-            }
+            int resultado1=(Integer)request.getSession().getAttribute("resultado1");
+            int resultado2=(Integer)request.getSession().getAttribute("resultado2");
+            int numVecesDadosRep=(Integer)request.getSession().getAttribute("numVecesDadosRep");
+            
             //RECORDAR QUE COMO SE SACA DE UN ARRAY COMIENZA EN 0 EN LUGAR DE 1
                 if(tarjeta.getTipo().equals("CARTA SORPRESA")){
                     switch(idTarjeta){
                         case 0:                            
                             jugador.setIdCasilla(0);
                             jugador.setEstadoTurno(2);
+                            jugador.setDinero(jugador.getDinero()+200);
                             break;
                         case 1:
                             jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
                             jugador.setEstadoTurno(2);
                             break;
                         case 2:
-                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
-                            jugador.setEstadoTurno(2);
+                            jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));                            
+                            jugador.setEstadoTurno(2);                            
                             break;
                         case 3:
                             jugador.setDinero(sumarBonusTarjeta(jugador,tarjeta));
@@ -152,6 +157,7 @@ public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
                         case 0:
                             jugador.setIdCasilla(0);
                             jugador.setEstadoTurno(2);
+                            jugador.setDinero(jugador.getDinero()+200);
                             break;
                         case 1:
                             jugador.setIdCasilla(39);
@@ -248,6 +254,21 @@ public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
             boolean caeEnCasillaCentral=false;
             for(int i = 0; i<jugadores.size();i++){                
                 if(jugador.getId()==jugadores.get(i).getId()){
+                    if(resultado1==resultado2){
+                        jugador.setEstadoTurno(1);
+                        numVecesDadosRep++;
+                        
+                        //Si el numero de veces que se repite la tirada de dobles
+                        //es igual a 3, el jugador va a la cárcel                        
+                        if (numVecesDadosRep==3){
+                            jugador.setIdCasilla(10);
+                            jugador.setTurnoCarcel(3);
+                            jugador.setEstadoTurno(1);
+                        }
+                    }else{
+                        jugador.setEstadoTurno(2);
+                        numVecesDadosRep=0;
+                    }
             //Si el jugador cae en una propiedad que no es suya, realiza
                     //el pago correspondiente.                    
                     for(int p=0; p<propiedades.size();p++){ 
@@ -356,30 +377,56 @@ public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
                                     System.out.println("El jugador "+jugadores.get(x).getNombre()+" ha cobrado "+dinero+" del alquiler");
                                 }
                             }
+                            if(jugador.getDinero()<0){
+                                request.getSession().setAttribute("jugadorHaPerdido", "El jugador"+jugador.getNombre()+" ha perdido. Todas sus pertenencias han pasado a la banca.");
+                            }
                             // si el id del jugador es igual al id del propietario de la propiedad y no es igual a cero paga alquiler...
                             //(cero es neutro).
-                            if(jugadores.get(i).getId()!=propiedades.get(p).getIdUsuario()
+                            if(jugador.getId()!=propiedades.get(p).getIdUsuario()
                                     && propiedades.get(p).getIdUsuario()!=0 &&
-                                    (jugadores.get(i).getDinero()-dinero>0)){
-                                jugadores.get(i).setDinero(jugadores.get(i).getDinero()-dinero);                                
-                                System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha pagado "+dinero+" del alquiler");                               
+                                    (jugador.getDinero()-dinero>0)){
+                                jugador.setDinero(jugador.getDinero()-dinero);                                
+                                System.out.println("El jugador "+jugador.getNombre()+" ha pagado "+dinero+" del alquiler");                               
                             }
-                            if(jugadores.get(i).getId()!=propiedades.get(p).getIdUsuario()
+                            if(jugador.getId()!=propiedades.get(p).getIdUsuario()
                                     && propiedades.get(p).getIdUsuario()!=0 &&
-                                    (jugadores.get(i).getDinero()-dinero<0)){
-                                System.out.println("El jugador "+jugadores.get(i).getNombre()+" ha perdido");  
-                                jugadores.get(i).setDinero((jugadores.get(i).getDinero()-dinero));
+                                    (jugador.getDinero()-dinero<0)){
+                                System.out.println("El jugador "+jugador.getNombre()+" ha perdido");  
+                                jugador.setDinero((jugadores.get(i).getDinero()-dinero));
                                 for(int h=0;h<propiedades.size();h++){
-                                    if(propiedades.get(h).getIdUsuario()==jugadores.get(i).getId()){
+                                    if(propiedades.get(h).getIdUsuario()==jugador.getId()){
                                         propiedades.get(h).setIdUsuario(propiedades.get(p).getIdUsuario());                                           
                                         System.out.println("El jugador entrega sus propiedades");
                                             request.getSession().setAttribute("jugadorHaPerdido", 
-                                            "El jugador"+jugadores.get(i).getNombre()+" ha perdido.");                                            
+                                            "El jugador"+jugador.getNombre()+" ha perdido.");                                            
                                     }
                                 }
                                 
                             }                                
                         }                                                
+                    }
+                    //En caso de que sea una casilla de impuestos especiales pagará lo correspondiente el jugador.
+                    for(int esp=0; esp<especiales.size();esp++){
+                        if(jugador.getIdCasilla()==especiales.get(esp).getIdCasilla()
+                                && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
+                                &&(jugador.getDinero()+(especiales.get(esp).getBonus()))>0){
+                            tablero.setFondoDinero(-1*(especiales.get(esp).getBonus()));
+                            jugadores.get(i).setDinero(jugador.getDinero()+(especiales.get(esp).getBonus()));                            
+                            System.out.println("El jugador "+jugador.getNombre()+" ha pagado "+especiales.get(esp).getBonus()+" de impuestos");
+                            
+                        }
+                        if(jugador.getIdCasilla()==especiales.get(esp).getIdCasilla()
+                                && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
+                                &&(jugador.getDinero()+(especiales.get(esp).getBonus()))<0){
+                            System.out.println("El jugador "+jugador.getNombre()+" ha perdido");
+                            jugadores.get(i).setDinero(jugador.getDinero()+(especiales.get(esp).getBonus()));
+                            for(int h=0;h<propiedades.size();h++){
+                                if(propiedades.get(h).getIdUsuario()==jugador.getId()){
+                                        propiedades.get(h).setIdUsuario(0);
+                                        request.getSession().setAttribute("jugadorHaPerdido", "El jugador"+jugador.getNombre()+" ha perdido. Todas sus pertenencias han pasado a la banca.");
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -391,9 +438,12 @@ public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
                     jugadores.get(i).setEstadoTurno(jugador.getEstadoTurno());
                     jugadores.get(i).setIdCasilla(jugador.getIdCasilla());
                     jugadores.get(i).setTurnoCarcel(jugador.getTurnoCarcel());
+                    jugadores.get(i).setTurno(jugador.getTurno());
                 }
             }
+            
             request.getSession().setAttribute("listaJugadoresPartida",jugadores);
+            request.getSession().setAttribute("numVecesDadosRep", numVecesDadosRep);
             utilServlet.mostrarVista("./jsp/partida.jsp", request, response);        
         } catch (IOException |ServletException ex) {
             Logger.getLogger(CogerTarjetaCajaComunidadYSuerteServlet.class.getName()).log(Level.SEVERE, null, ex);
