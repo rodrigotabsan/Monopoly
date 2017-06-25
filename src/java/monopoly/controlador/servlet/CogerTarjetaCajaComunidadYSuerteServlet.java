@@ -392,7 +392,7 @@ public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
                                     && propiedades.get(p).getIdUsuario()!=0 &&
                                     (jugador.getDinero()-dinero<0)){
                                 System.out.println("El jugador "+jugador.getNombre()+" ha perdido");  
-                                jugador.setDinero((jugadores.get(i).getDinero()-dinero));
+                                jugador.setDinero((jugador.getDinero()-dinero));
                                 for(int h=0;h<propiedades.size();h++){
                                     if(propiedades.get(h).getIdUsuario()==jugador.getId()){
                                         propiedades.get(h).setIdUsuario(propiedades.get(p).getIdUsuario());                                           
@@ -411,7 +411,7 @@ public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
                                 && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
                                 &&(jugador.getDinero()+(especiales.get(esp).getBonus()))>0){
                             tablero.setFondoDinero(-1*(especiales.get(esp).getBonus()));
-                            jugadores.get(i).setDinero(jugador.getDinero()+(especiales.get(esp).getBonus()));                            
+                            jugador.setDinero(jugador.getDinero()+(especiales.get(esp).getBonus()));                            
                             System.out.println("El jugador "+jugador.getNombre()+" ha pagado "+especiales.get(esp).getBonus()+" de impuestos");
                             
                         }
@@ -419,7 +419,7 @@ public class CogerTarjetaCajaComunidadYSuerteServlet extends HttpServlet{
                                 && (especiales.get(esp).getId()==2 || especiales.get(esp).getId()==11)
                                 &&(jugador.getDinero()+(especiales.get(esp).getBonus()))<0){
                             System.out.println("El jugador "+jugador.getNombre()+" ha perdido");
-                            jugadores.get(i).setDinero(jugador.getDinero()+(especiales.get(esp).getBonus()));
+                            jugador.setDinero(jugador.getDinero()+(especiales.get(esp).getBonus()));
                             for(int h=0;h<propiedades.size();h++){
                                 if(propiedades.get(h).getIdUsuario()==jugador.getId()){
                                         propiedades.get(h).setIdUsuario(0);
