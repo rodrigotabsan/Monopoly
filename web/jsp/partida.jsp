@@ -265,13 +265,19 @@
 
                             +"   var labelMensaje = document.createElement('label');"
                             +"   labelMensaje.innerHTML='¿Con quién y qué quieres negociar?';" 
-                            +"   labelMensaje.id='labelTerminarTurno';"
+                            +"   labelMensaje.id='labelNegociar';"
                             +"   strong.appendChild(labelMensaje);"
-
+                                   
+                            + "  var saltoLinea = document.createElement('p');"
+                            + "  cajaNegociar.appendChild(saltoLinea);"
+                                   
                             + "  var select = document.createElement('select');"
                             + "  select.name='listaJugadores';"
                             + "  select.id='listaJugadores';"
                             + "  cajaNegociar.appendChild(select);"
+                                   
+                            + "  var saltoLinea2 = document.createElement('p');"
+                            + "  cajaNegociar.appendChild(saltoLinea2);"   
                                    
                             + "  var select2 = document.createElement('select');"
                             + "  var cajaNegociar= document.getElementById('cajaNegociar');" 
@@ -334,13 +340,18 @@
                             + "     var indiceSeleccionado = select2.selectedIndex;"
                             + "     propiedadSeleccionada = select2.options[indiceSeleccionado].innerHTML;"    
                             + "  });"
-                           
+                            + "  var saltoLinea3 = document.createElement('p');"
+                            + "  cajaNegociar.appendChild(saltoLinea3);"
+                                    
                             +"   var cajaNegociar = document.getElementById('cajaNegociar'); "
                             +"   var dineroANegociar = document.createElement('input');"
                             +"   dineroANegociar.id='campoDineroANegociar';"
                             +"   dineroANegociar.name='campoDineroANegociar';"        
                             +"   dineroANegociar.type='text';"                
                             +"   cajaNegociar.appendChild(dineroANegociar);"
+                                    
+                            + "  var saltoLinea4 = document.createElement('p');"
+                            + "  cajaNegociar.appendChild(saltoLinea4);"
                                     
                             +"   var inputAceptar = document.createElement('input');"
                             +"   inputAceptar.type='submit';"

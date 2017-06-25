@@ -325,6 +325,26 @@ and open the template in the editor.
     margin-left:77%;
 }
 
+#inputCancelarNegociar{
+    margin-left:40%;
+}
+
+#inputAceptarNegociar{
+    margin-left:17%;
+}
+
+#listaJugadores{
+    
+}
+
+#listaPropiedades{
+    
+}
+
+#labelNegociar{
+  margin-top:35%;      
+}
+
 #labelTerminarTurno{
     margin-top:35%;   
     margin-left:-9%;
