@@ -55,18 +55,17 @@ public class NegociarServlet  extends HttpServlet{
             String campoPropiedad = request.getParameter("listaPropiedades");
             String campoJugador = request.getParameter("listaJugadores");
             Jugador turnoDeJugador = (Jugador) request.getSession().getAttribute("jugador");
+            boolean error=false;
             
             if(dineroANegociar!=null && campoPropiedad!=null && campoJugador!=null){
                 if(validarString(dineroANegociar)==true){
                     if(convertirStringAInteger(dineroANegociar)>0){
                         int dineroNegociado=convertirStringAInteger(dineroANegociar);
                         boolean transferido=false;
-                        for(Jugador jugador:jugadores){
-                            
+                        for(Jugador jugador:jugadores){                            
                             if((turnoDeJugador.getDinero()-dineroNegociado)>0){
                                 //se le da el dinero al jugador propietario de la propiedad 
-                                if(campoJugador.equals(jugador.getNombre())){
-                                                            
+                                if(campoJugador.equals(jugador.getNombre())){                                                            
                                     //Se transfiere la propiedad
                                     int contadorCoincidenciasPropiedades=0;
                                     for(Propiedad propiedad:propiedades){  
@@ -75,43 +74,54 @@ public class NegociarServlet  extends HttpServlet{
                                         }
                                     }
                                     if(contadorCoincidenciasPropiedades==0){
-                                            request.getSession().setAttribute("mensajeErrorNegociar", "Escoja una propiedad de la lista, por favor. No ha seleccionado ninguna.");                                                
-                                            utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
+                                            request.getSession().setAttribute("mensajeErrorNegociar", "Escoja una propiedad de la lista, por favor. No ha seleccionado ninguna.");                                                                                            
+                                            error=true;
                                     }
                                     for(Propiedad propiedad:propiedades){
-                                        if(contadorCoincidenciasPropiedades>0){
-                                            if(propiedad.getIdUsuario()==jugador.getId() && propiedad.getNombre().equals(campoPropiedad)){                                            
-                                                propiedad.setIdUsuario(turnoDeJugador.getId());
-                                                jugador.setDinero(jugador.getDinero()+dineroNegociado);
-                                                transferido=true;                                            
-                                            }
-                                        } 
+                                        if(error!=true){
+                                            if(contadorCoincidenciasPropiedades>0){
+                                                if(propiedad.getIdUsuario()==jugador.getId() && propiedad.getNombre().equals(campoPropiedad)){                                            
+                                                    propiedad.setIdUsuario(turnoDeJugador.getId());
+                                                    jugador.setDinero(jugador.getDinero()+dineroNegociado);
+                                                    transferido=true;                                            
+                                                }
+                                            } 
+                                        }else{
+                                            break;
+                                        }
                                     }
                                 }
-                            }                         
+                            } 
+                            if(error==true){
+                                break;
+                            }
                         }
                         for(Jugador jugador:jugadores){
                             //se le resta el dinero al jugador que negocia.
                             if(turnoDeJugador.getId()==jugador.getId()){
                                 if((turnoDeJugador.getDinero()-dineroNegociado)<0){
-                                    request.getSession().setAttribute("mensajeErrorNegociar", "El jugador no dispone de tanto dinero para negociar.");                                                
-                                    utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
-                                }else{
-                                    if(transferido==true){                                    
-                                        turnoDeJugador.setDinero(turnoDeJugador.getDinero()-dineroNegociado);                                     
-                                    }
+                                    request.getSession().setAttribute("mensajeErrorNegociar", "El jugador no dispone de tanto dinero para negociar.");                                                                    
+                                    error=true;
+                                    break;
                                 }
+                                if(transferido==true && error!=true){                                    
+                                        turnoDeJugador.setDinero(turnoDeJugador.getDinero()-dineroNegociado);                                     
+                                }
+                                
                             }
-                        }
+                            if(error==true){
+                                break;
+                            }
+                        }                        
                     }else{
-                        request.getSession().setAttribute("mensajeErrorNegociar", "Para negociar una propiedad, se debe introducir una cifra superior a 0.");                                                
-                        utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
+                        request.getSession().setAttribute("mensajeErrorNegociar", "Para negociar una propiedad, se debe introducir una cifra superior a 0.");                                                                    
+                        error=true;
                     }
                     request.getSession().setAttribute("listaJugadoresPartida", jugadores);
                     request.getSession().setAttribute("listaPropiedades",propiedades);
                 }else{
-                    request.getSession().setAttribute("mensajeErrorNegociar", "La cifra introducida no es correcta.");    
-                    utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
+                    request.getSession().setAttribute("mensajeErrorNegociar", "La cifra introducida no es correcta.");                        
+                    error=true;
                 }
                 
                 utilServlet.mostrarVista("./jsp/partida.jsp", request, response);
